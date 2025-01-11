@@ -1,0 +1,287 @@
+%%%%%% LaTeX-Vorlagedatei für die Bachelorarbeit
+%%%%%% der Fakultät für Bauingenieurwesen der TU Wien
+%%%%%% Die Datei BachelorBUI.cls muss im gleichen Ordner liegen
+\documentclass{BachelorBUI}
+%
+% in oberer Dokumentklasse bereits geladene Pakete
+%
+% fontenc[T1], lmodern, microtype, babel[englisch,ngerman], graphicx, 
+% geometry with all margins or areaset (choose what you like)
+% mathtools, amssymb, xfrac, siunitx, booktabs,
+% url, xcolor[table], textcomp, marvosym, pifonts, pdfpages, ragged2e, 
+% tabularx, longtable, threeparttable, csquotes, eurosym, enumitem, 
+% multirow, setspace, listings, scrlayer-scrpage with header/footline
+
+\usepackage[utf8]{inputenc}
+\RequirePackage[babel,austrian=quotes,english=american]{csquotes}   %% context sensitives quotations
+
+\raggedbottom 
+
+\lstset{
+	language={Matlab},
+}
+
+\sisetup{output-decimal-marker = {,},
+range-phrase = --,
+group-separator = {~},
+per-mode = symbol, 
+list-final-separator={ und }}
+
+\graphicspath{{Bilder/}}
+
+\newcommand{\zB}{\mbox{z.\,B.}\xspace}
+\newcommand{\Name}[1]{\textsc{#1}}
+
+\newcommand{\vKTxv}{\mathbf{v}_1^T\tilde{\mathbf{K}}_{T},_{\xi}\mathbf{v}_1}
+\newcommand{\vKTxxv}{\mathbf{v}_1^T\tilde{\mathbf{K}}_{T},_{\xi\xi}\mathbf{v}_1}
+
+%% biblatex and biber für das Literaturverzeichnis
+%% verschiedene Zitiervarianten über Optionen einstellen:
+%% style=numeric-comp ... [1]
+%% style=authoryear ... Mang 1998 / use \textcite{} ... Mang (1998)
+%%
+\usepackage[style=numeric-comp,backend=biber,maxcitenames=2]{biblatex}
+\ExecuteBibliographyOptions{%
+  giveninits=true,maxbibnames=99}%
+\DefineBibliographyStrings{ngerman}{%
+andothers={et\;al\adddot},
+urlseen = {Zugriff am}
+}
+\addbibresource{Literatur.bib}
+
+\usepackage{acro}
+\acsetup{only-used=true,extra-style=plain}
+
+\input{Acronyms}
+
+
+%% Nun geben Sie einen Titel ein
+\title{Schreibtipps}  
+\studentname{Vorname Nachname}  	%% Hier fürgen Sie Ihren Namen ein
+\email{email@email.at}  			%% Hier Ihre E-Mailadresse angeben
+\MatrNr{12345678}   					%% Hier Matrikelnummer angeben
+% hier beginnt das Dokument
+\begin{document}
+\selectlanguage{ngerman}
+%%%%%%%%%
+%% Titel
+%%%%%%%%%
+%
+\maketitle
+
+
+
+
+
+\minisec{Zitierbeispiele entsprechend DIN ISO 690}
+
+Die DIN~ISO~690~\cite{DIN-ISO-690:2013} gibt Hinweise zur vollständigen Quellenangabe.
+Das folgende Beispiele ist dieser Norm entlehnt und angepasst:
+%
+\begin{quotation}
+Sie sollten \textcite{Kornmeier:2018} lesen, bevor Sie zu schreiben beginnen.
+Einige Standardwerke \cite{Kohm:2020,Voss:2017,Voss:2018} geben einen guten Überblick über \LaTeX{}.
+\textcite{Kohm:2020} hat die Klassen der KOMA-Script-Reihe entwickelt, die die \enquote{typografischen Gepflogenheiten eines europäischen Layouts berücksichtigen}~\cite[S.~61]{Voss:2017}.
+\end{quotation}
+
+Nun der selbe Text in Harvard Citation Style (jedoch ohne \LaTeX-Befehle -- diese wären die selben wie zuvor, es müsste nur der Zitierstil geändert werden):
+%
+\begin{quotation}
+Sie sollten Kornmeier (2018) lesen, bevor Sie zu schreiben beginnen.
+Einige Standardwerke (Kohm 2020, Voss 2017, Voss 2018) geben einen guten Überblick über \LaTeX{}.
+Kohm (2020) hat die Klassen der KOMA-Script-Reihe entwickelt, die die \enquote{typografischen Gepflogenheiten eines europäischen Layouts berücksichtigen}~(Voss 2017, S.~61).
+\end{quotation}
+
+
+\minisec
+{Tipps: Schreiben einer wissenschaftlichen Arbeit mit \LaTeX{}}
+%
+Generell stellt sich für uns das Problem, nun mit \LaTeX{} einfach und rasch eine wissenschaftliche Arbeit zu schreiben.
+Den Inhalt nimmt uns \LaTeX{} leider nicht ab, dafür sind wir selbst verantwortlich.
+Jedoch können wir uns bei \LaTeX{} auf einige Vorteile verlassen, die wir hier näher betrachten möchten.
+Vorweg sei die konsistente Formatierung genannt.
+
+Bevor wir diese Vorteile behandeln, beschäftigen wir uns mit generellen Anforderungen an wissenschaftliche Arbeiten.
+Die Erstellung der Gliederung und des Aufbaus einer wissenschaftlichen Arbeit sind meist der erste Schritt für jede Autorin bzw. jeden Autor.
+Danach beschäftigt uns der Inhalt, denn jeder dieser Punkte bei der Gliederung will auch mit sinnvollem Inhalt gefüllt sein.
+Ausreichendes Datenmaterial (Zahlen, Daten, Fakten) sollte dann gesammelt werden oder sein.
+Gute Bilder, ansprechende Diagramme und aussagekräftige Tabellen helfen jeder Leserin und jedem Leser bei der Erfassung des wissenschaftlichen Inhalts.
+
+\minisec{Vorgehensweise: Gliederung und Aufbau}
+%
+Meist ist der erste Schritt einer wissenschaftlichen Arbeit die Erstellung einer Gliederung der Arbeit (entspricht meist grob dem Inhaltsverzeichnis).
+Diese wird dann mit den Betreuern der Arbeit besprochen.
+Die folgende Aufzählung zeigt so eine sinnvolle Gliederung einer wissenschaftlichen Arbeit:
+%
+\begin{itemize}
+   \item Titel
+   \item Name
+   \item Kurzfassung
+   \item Inhaltsverzeichnis (bei Bedarf)
+\end{itemize}
+\begin{enumerate}
+   \item Einleitung
+      \begin{enumerate}
+         \item Problemstellung, Motivation
+         \item Vorgehensweise
+      \end{enumerate}
+   \item Definitionen und Abgrenzungen (Grundlagen, Theorie, Vorarbeiten)
+      \begin{enumerate}
+         \item Begriff A
+         \item Begriff B
+         \item \dots
+      \end{enumerate}
+   \item Hauptteil (eigene Arbeiten inkl. Ergebnisse)
+      \begin{enumerate}
+         \item Argument 1
+         \item Argument 2
+         \item \dots
+      \end{enumerate}
+   \item Zusammenfassung und Schlussfolgerungen (Bewertung und Ausblick)
+\end{enumerate}
+\begin{itemize}
+   \item Literaturverzeichnis
+   \item optional Abkürzungsverzeichnis, weitere Verzeichnisse und Anhang
+\end{itemize}
+%
+
+\minisec{Beispiele zur Typografie}
+%
+Den Arbeiten \enquote{typokurz -- Einige wichtige typografische Regeln}~(\textcite{Bier:2009}) sowie \citetitle{Struckmann:2007} (\textcite{Struckmann:2007}) entnehmen wir direkt einige Tipps:
+%
+\begin{enumerate}
+   \item \textsc{Auszeichnungen/Hervorhebungen von Text}
+      \begin{description}
+         \item[Kursive] Eigene Schriftform; \emph{integrierte} 
+                      Auszeichnung, die erst auffällt, wenn man an die entsprechende Stelle kommt; 
+                      im Normalfall für Auszeichungen im Text am besten geeignet.
+         \item[Fette] Normalerweise in Textabschnitten zu vermeiden, viel zu
+                      aufdringlich (\emph{aktive} Auszeichnung), zieht direkt die Aufmerksamkeit auf sich (daher für Nachschlagewerke sinnvoll); 
+                      für Überschriften, Bezeichnungen von Tabellen und Abbildungen, für Teile von Aufzählungen und Verzeichnissen sowie Tabellenköpfen geeignet;  gelegentlich wird sie auch bei Literaturverweisen im Text verwendet.
+         \item[Unterstreichung] Unbedingt zu vermeiden; Überbleibsel aus dem
+                      Schreibmaschinenzeitalter, als es nur eine Schriftform auf der Schreibmaschine gab.
+         \item[Kapitälchen] Auch nur verwenden, wenn man weiß, was man tut.
+                      Das heißt, man (er-)kennt den Unterschied zwischen echten und falschen Kapitälchen.
+      \end{description}
+   \item \textsc{Striche}
+      \begin{description}
+         \item[Trennstrich, Bindestrich] wird auch \emph{Divis} genannt und ist
+                      ein kurzer Strich. Er dient zur Silbentrennung bzw. zur Verbindung zusammengesetzter Wörter. 
+                      In \LaTeX{}: \verb|-|.
+         \item[Gedankenstrich] Halbgeviertstrich, länger als der Divis, steht
+                      zwischen zwei Leerzeichen (außer in Verbindung mit einem Satzzeichen), \zB{} Ich hoffe sehr -- und das meine ich ganz ehrlich --, Sie bald zu treffen. 
+                      In \LaTeX{}: \verb|--|.
+         \item[Streckenstrich/Bis-Strich] Halbgeviertstrich ohne Leerzeichen
+                      davor und dahinter (Ausnahme: in Verbindung mit Wörtern wird ein Leerzeichen verwendet), \zB{} Linz--Wien, 1--2 Telefonate, 25.9.--28.12., 325 v.Chr. -- 440 n.Chr. 
+                      In \LaTeX{}: \verb|--|.
+         \item[Auslassungsstrich] Der Halbgeviertstrich dient im Text auch als
+                      Auslassungszeichen; in Tabellen sollte dafür ein Geviertstrich (---) verwendet werden, der die Breite von zwei Nullen hat.
+                      In \LaTeX{}: \verb|---|.
+      \end{description}
+   \item \textsc{Absatzformatierung}: Absätze kann man auf zwei Arten
+            voneinander trennen: \emph{Einzug} oder \emph{Abstand}. In Bezug auf wissenschaftliche Arbeiten gilt meist: Absätze werden durch einen Einzug von ca. \SI{4}{mm} gekennzeichnet. 
+            Abschnitte werden durch einen Abstand von einer Leerzeile gekennzeichnet und im Unterschied zu Absätzen ohne Einzug gesetzt.
+%
+      \begin{labeling}[\dots]{Flattersatz }
+          \item[Flattersatz] Dieser hat den großen Vorteil, dass die 
+                      Wortzwischenräume immer gleich groß sind, was positiv für die Lesbarkeit ist. 
+                      Andererseits wirkt der Flattersatz eher unruhig, vor allem bei schlechtem Zeilenumbruch.
+          \item[Blocksatz] Ob man sich für oder gegen Blocksatz entscheidet, ist
+                      abhängig von der Zeilenlänge, der Sprache, in der der Text verfasst wird, dem Mechanismus der Silbentrennung und dem Umbruchalgorithmus der verwendeten Software.
+                      Will man für längere Zeilen Blocksatz verwenden, muss man sicherstellen, dass die Software gleichmäßige und enge Wortzwischenräume erzeugt; diese sollten innerhalb einer Zeile gleich groß sein und sich von jenen in der vorangehenden und nachfolgenden Zeile nicht deutlich unterscheiden. 
+      \end{labeling}
+%
+   \item \textsc{Schriften}: Es ist sinnvoll, für längere Texte mit breiten 
+            Zeilen eine Schrift mit Serifen und Strichstärkenunterschied zu verwenden.
+            Die Serifen (Endstriche) unterstützen einerseits das Auge bei der Zeilenführung und beim Zeilenrücksprung.
+            Andererseits führt der Strichstärkenunterschied zu eindeutigeren Wortbildern, was das Lesen sehr erleichtert.
+            Am Bildschirm sind serifenlose Schriften bzw. solche ohneStrichstärkenunterschied in der Tat häufig besser zu lesen alsserifenbehaftete Schriften. 
+            Daher ist der Vergleich der Schriften auf Papier wichtig.
+   \item \textsc{Trennung von Abkürzungen}: Dies ist zu vermeiden. 
+            Auch abgekürzte Einheiten sollen nach Möglichkeit nicht von den dazugehörigen Zahlen getrennt werden. 
+            Dazu verwenden Sie die Tilde \~{} zwischen Zahl und Einheit (noch besser: die Befehle des \texttt{siunitx}-Pakets).
+\end{enumerate}
+
+
+\minisec{Tipps zum guten Schreiben}
+
+Die folgenden Tipps und Zitate sind direkt dem gut verständlichen Buch von Wolf Schneider~\cite{Schneider:2011} entnommen. 
+Sie sind für alle sehr wertvoll, die eine lesbare Arbeit schreiben möchten.
+Schneider formuliert dies wie folgt:
+%
+\begin{quotation}
+\emph{
+Auf der Basis der korrekten Grammatik muss ich eine Kunst erlernen, die in der Schule ignoriert worden ist: \emph{wie man für Leser schreibt}. \dots 
+\newline
+Ganz ohne Plage geht das nicht.}
+\end{quotation}
+
+Die folgenden Ratschläge gelten für alle Texte, die nicht nur von einer Person gelesen werden sollen. 
+Sie stammen direkt aus~\cite{Schneider:2011}:
+%
+\emph{
+\begin{itemize}
+   \item Was für alle Texte gilt:
+      \begin{itemize}
+         \item Einfach draufloszuschreiben ist ein Luxus, den sich keiner
+               leisten kann, der von Unbekannten gelesen werden möchte.
+               Um seine Leser muss geworben werden, und ganz ohne Plage geht das nicht.
+               Am Anfang stehen ein paar schlichte Einsichten -- und der Wille, sich an sie zu halten.
+         \item Schon mit den ersten 350 Zeichen kann alles verdorben werden:
+               wenn sie nämlich hingehudelt, wenn sie langweilig sind.
+         \item Flickwörter müssen gemieden werden, hohle Redensarten ebenso.
+               Kürze ist aber \emph{nicht} der oberste Wert: Bilder, Beispiele, Vergleiche sind oft nötig und stets willkommen.
+         \item Wenn die Stillehrer sich in einem Punkt einig sind, dann in
+               diesem: Der sicherste Weg, die Aufmerksamkeit der Lesenden zu wecken und wachzuhalten, ist der, besonders, bestimmt und konkret zu sein.
+      \end{itemize}
+   \item Das pralle Wort
+         \begin{itemize}
+            \item Konkrete, knackige, möglichst kurze Wörter sollten gewählt
+                  werden; und in jedem Grenzfall die schlichtesten -- nach Schopenhauers schönem Satz: \emph{Man gebrauche gewöhnliche Worte und sage ungewöhnliche Dinge}.
+            \item \emph{Verben} sind die stärksten Wörter, \emph{Adjektive} die
+                  schwächsten. 
+                  \emph{Synonyme} soll man für die Nebensachen wählen -- für die Hauptsachen nie.
+            \item \emph{Anglizismen} gibt es gute und schlechte.
+            \item Der größte Feind einer klaren, leserfreundlichen Sprache ist
+                  der \emph{akademisch-bürokratische Jargon}.
+         \end{itemize}
+   \item Die elf Gebote des Satzbaus
+         \begin{itemize}
+            \item Verboten ist, 
+               \begin{enumerate}
+                  \item mehr als 6 Wörter zwischen die Teile eines zweiteiligen
+                        Verbums oder zwischen Subjekt und Prädikat zu schieben.
+                  \item einen Satz länger zu machen, als bei lautem Lesen der
+                        Atem reichen würde.
+               \end{enumerate}  
+               \item Extrem unerwünscht sind 
+               \begin{enumerate}
+                  \item[3.] eingeschobene Nebensätze.
+                  \item[4.] vorangestellte Attribute.
+               \end{enumerate}
+               \item Unerwünscht sind 
+                \begin{enumerate}
+                   \item[5.] hartnäckig wiederkehrende Satzanfänge.
+                   \item[6.] atemlos gesetzte Punkte.
+                \end{enumerate}
+               \item \textbf{Erwünscht} sind 
+                \begin{enumerate}
+                   \item[7.] Hauptsätze -- immer die erste Wahl.
+                   \item[8.] oft: angehängte Nebensätze -- ohne Handlung und mit Augenmaß.
+                   \item[9.] manchmal: vorangestellte Nebensätze, wenn sie kurz sind.
+                   \item[10.] Sätze wie Pfeile, vorwärtsstrebend.
+                   \item[11.] mind. 5 der 7~Satzzeichen in \emph{jedem} Text. \newline
+                              Diese 7 sind: Punkt, Komma, Doppelpunkt, Fragezeichen, Ausrufezeichen, Semikolon und Gedankenstrich.
+                \end{enumerate}
+         \end{itemize}
+\end{itemize}
+}
+%
+Bei Diplom- und Doktorarbeiten kann ein bisserl von obigen abgewichen werden.
+So fängt eine dieser Arbeiten normalerweise mit einer Übersicht über Ihr Vorhaben sowie jenen Fragestellungen an, die Sie im Lauf der nächsten 70 bis 200~Seiten beantworten möchten.
+
+
+% Hier wird das Literaturverzeichnis eingefügt.
+\printbibliography
+
+\end{document}

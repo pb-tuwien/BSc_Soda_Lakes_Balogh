@@ -1,0 +1,38 @@
+\DeclareDatamodelEntrytypes{norm}
+\DeclareDatamodelEntryfields[norm]{
+  label,
+  sortkey,
+  year
+  }
+\DeclareBibliographyDriver{norm}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \printfield{label}%
+  \addcolon
+  \printfield{year}%
+  \newunit\newblock
+  \printfield{title}%
+  \newunit\newblock
+	\printlist{organization}%
+  \newunit\newblock
+  \printlist{location}%
+  \iflistundef{publisher}
+    {\setunit*{\addcomma\space}}
+    {\setunit*{\addcolon\space}}%
+  \printlist{publisher}%
+   \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \usebibmacro{related}%
+  \newunit\newblock
+	\printfield{isbn}%
+  \newunit
+  \iftoggle{bbx:url}
+    {\usebibmacro{url+urldate}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \usebibmacro{finentry}}
+
+\newcommand*{\citenorm}{\addspace}
+\DeclareCiteCommand{\citenorm}{}{\printfield{label}}{}{\addcolon\printfield{year}}

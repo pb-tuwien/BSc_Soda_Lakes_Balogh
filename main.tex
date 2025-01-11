@@ -1,0 +1,87 @@
+\documentclass{BachelorBUI}
+
+\usepackage[utf8]{inputenc}
+\usepackage{subfiles}
+\RequirePackage[babel,austrian=quotes,english=american]{csquotes}
+
+\raggedbottom 
+
+\lstset{
+	language={Python},
+}
+
+\sisetup{output-decimal-marker = {,},
+range-phrase = --,
+group-separator = {~},
+per-mode = symbol, 
+list-final-separator={ and }}
+
+\graphicspath{{images/}}
+
+\newcommand{\zB}{\mbox{z.\,B.}\xspace}
+\newcommand{\Name}[1]{\textsc{#1}}
+
+\newcommand{\vKTxv}{\mathbf{v}_1^T\tilde{\mathbf{K}}_{T},_{\xi}\mathbf{v}_1}
+\newcommand{\vKTxxv}{\mathbf{v}_1^T\tilde{\mathbf{K}}_{T},_{\xi\xi}\mathbf{v}_1}
+
+\usepackage[style=numeric-comp,backend=biber,maxcitenames=2]{biblatex}
+\ExecuteBibliographyOptions{%
+  giveninits=true,maxbibnames=99}%
+\DefineBibliographyStrings{english}{%
+andothers={et\;al\adddot},
+urlseen = {Accessed on}
+}
+\addbibresource{section/bibliography.bib}
+
+\usepackage{acro}
+\acsetup{list/display=used}
+
+\input{acronyms}
+
+\setcounter{biburllcpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+
+%% Title-------------------------------------------
+\title{TEM at Martenhofer lake (filler title)}  
+\authorname{Peter Balogh}
+\email{e12202337@student.tuwien.ac.at}  %% Welche Email?
+\MatrNr{12202337}
+\thesislanguage{en-GB}   %% ist es GB? (de-AT, de-DE, en-GB, en-US)
+\keywords{bachelor thesis\sep template\sep LaTeX}
+
+% Document-----------------------------------------
+\begin{document}
+\selectlanguage{english}
+
+\begin{filecontents}[overwrite]{\jobname.xmpdata}
+\makeatletter
+\Title{\@title}
+\Author{\@authorname}
+\Language{\@thesislanguage}
+\Keywords{\@keywords}
+\Publisher{TU Wien}
+\makeatother
+\end{filecontents}
+
+% Add title----------------------------------------
+\maketitle
+
+% Abstract-----------------------------------------
+\begin{abstract}
+\subfile{section/0_abstract}
+\end{abstract}
+
+% Table of content---------------------------------
+\tableofcontents
+
+% Introduction-------------------------------------
+\section{Introduction}
+\subfile{section/1_introduction}
+\clearpage
+
+
+
+% Bibliography-------------------------------------
+\printbibliography
+
+\end{document}
