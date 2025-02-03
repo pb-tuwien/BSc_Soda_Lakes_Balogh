@@ -1,0 +1,8 @@
+config:
+  sep: ','
+  naming_pattern: '([A-Za-z]+)(\d*)_(\d*)'
+  reprojection_key: 'wgs84_utm33n'
+  file_type: 'tem'
+
+rename_points:
+  M_: 'M'
