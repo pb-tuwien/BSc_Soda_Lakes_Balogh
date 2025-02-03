@@ -6,7 +6,8 @@ fontsize=11pt,
 parskip=false,
 abstract=true,
 twoside,
-captions=tableheading
+captions=tableheading,
+twocolumn
 }
 
 \addtokomafont{captionlabel}{\bfseries}
@@ -61,7 +62,7 @@ automark
 
 \pagestyle{scrheadings}
 \clearpairofpagestyles
-\ihead{\@title}
+\ihead{\@title} %\ihead{Bachelor Thesis \@authorname}
 \ohead{\thepage}
 
 
@@ -117,7 +118,7 @@ automark
 \renewcaptionname{english}{\figurename}{Fig.}
 
 %% Title Format
-\subject{Bachelorarbeit}
+\subject{Bachelor Thesis}
 \addtokomafont{subject}{\normalfont\sffamily\huge}
 \newcommand{\authorname}[1]{\renewcommand\@authorname{#1}}
 \newcommand\@authorname{\@latex@error{No \noexpand\authorname specified}\@ehc}
@@ -129,6 +130,9 @@ automark
 \newcommand\@thesislanguage{\@latex@error{No \noexpand\thesislanguage specified}\@ehc}
 \newcommand{\keywords}[1]{\renewcommand\@keywords{#1}}
 \newcommand\@keywords{\@latex@error{No \noexpand\keywords specified}\@ehc}
+\newcommand{\supervisor}[1]{\renewcommand\@supervisor{#1}}
+\newcommand\@supervisor{\@latex@error{No \noexpand\supervisor specified}\@ehc}
+
 %\title{\@thesistitle}
 
 %% Typografische Einstellungen zu Gleitobjekten
@@ -143,7 +147,8 @@ automark
 \author{{\normalsize \sffamily \@authorname} \\ [2mm]
          {\small \@email} \\ [-2mm]
          {\small Matr.Nr. \@MatrNr} \\ [-2mm]
-         {\small Datum: \today} }
+         {\small Date: \today} \\ [-2mm]
+         {\small Supervisor: \@supervisor }}
          \addtokomafont{author}{\sffamily}
 \date{}
 %

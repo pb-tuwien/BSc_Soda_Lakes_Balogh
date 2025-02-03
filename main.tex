@@ -47,11 +47,13 @@ urlseen = {Accessed on}
 \email{e12202337@student.tuwien.ac.at}  %% Welche Email?
 \MatrNr{12202337}
 \thesislanguage{en-GB}   %% ist es GB? (de-AT, de-DE, en-GB, en-US)
-\keywords{bachelor thesis\sep template\sep LaTeX}
+\keywords{TEM\sep Nationalpark Seewinkel\sep Geophysics\sep L-curve}
+\supervisor{Associate Prof. Dr.rer.nat. Adrian Flores-Orozco}
 
 % Document-----------------------------------------
 \begin{document}
 \selectlanguage{english}
+% \inserttitlelogo{images/tuw-bui-logo-2022}
 
 \begin{filecontents}[overwrite]{\jobname.xmpdata}
 \makeatletter
@@ -72,14 +74,26 @@ urlseen = {Accessed on}
 \end{abstract}
 
 % Table of content---------------------------------
-\tableofcontents
+% \tableofcontents
 
 % Introduction-------------------------------------
 \section{Introduction}
 \subfile{section/1_introduction}
-\clearpage
 
+% Materials and Methods----------------------------
+\section{Materials and Methods}
+\subfile{section/2_materials_and_methods}
 
+% Results------------------------------------------
+\section{Results}
+\subfile{section/3_results}
+
+% Conclusion---------------------------------------
+\section{Conclusion}
+\subfile{section/4_conclusion}
+
+% Final chapters-----------------------------------
+\subfile{section/5_ending}
 
 % Bibliography-------------------------------------
 \printbibliography
