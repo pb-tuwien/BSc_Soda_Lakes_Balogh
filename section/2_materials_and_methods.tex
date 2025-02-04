@@ -22,25 +22,28 @@ A common way to solve an ill-posed problem is to use Tikhonov regularization, wh
 The penalty term is a function of the model parameters and a regularization parameter lambda.
 ...
 
-One way to determine an optimal values for the regularization parameter \lambda is the L-curve method as introduced by Hansen\cite{hansen1999curve}.
+One way to determine an optimal values for the regularization parameter $\lambda$ is the L-curve method as introduced by Hansen\cite{hansen1999curve}.
 The L-curve is a graph of the residual norm against the solution norm.
 With an increasing lambda, the residual norm is expected to increase and the solution norm is expected to decrease.
 This leads to a curve that resembles an L-shape.
-The optimal \lambda is the point on the curve where the curvature is the highest.
-The L-curve method is widely used in geophysics for the determination of the optimal \lambda for the inversion of geophysical data.
+The optimal $\lambda$ is the point on the curve where the curvature is the highest.
+The L-curve method is widely used in geophysics for the determination of the optimal $\lambda$ for the inversion of geophysical data.
 
 There are a several methods to automatically determine the optimal lambda as described in\cite{cultrera2020simple, farquharson2004comparison, lloyd1997use}.
-LLoyd et al. \cite{lloyd1997use} proposed a method that computes the \chi², also called error weighted root-mean-square, and the roughness of the model for different \lambda values to obtain the L-curve.
-In order to find the optimal \lambda a cubic spline function is fitted to the data points and used to find the maximum curvature of the L-curve.
+LLoyd et al. \cite{lloyd1997use} proposed a method that computes the $\chi^2$, also called error weighted root-mean-square, and the roughness of the model for different $\lambda$a values to obtain the L-curve.
+In order to find the optimal $\lambda$ a cubic spline function is fitted to the data points and used to find the maximum curvature of the L-curve.
 
 Another approach is the iterative golden section search as proposed by Cultrera\cite{cultrera2020simple}.
-After providing an initial range for the optimal lambda \[\lambda_1, \lambda_4\], two more lambda values are calculated using the formula:
+After providing an initial range for the optimal lambda $[\lambda_1,\lambda_4]$, two more lambda values are calculated using the formula:
 \begin{equation}
-    \lambda_1 = \lambda_0 + \frac{(\lambda_0 - \lambda_2)}{(\chi²_0 - \chi²_2)} \chi²_0
+    \varphi = \frac{1 + \sqrt{5}}{2}
 \end{equation}
-
-
-This method is less computationally expensive because for each iteration only four inversion runs are needed.
-After providing an initial range for the optimal \lambda, the method iteratively reduces the range until the optimal \lambda is found.
-Using the golden section formula, new lambda values are calculated and the inversion is performed.
-
+\begin{equation}
+    \lambda_2 = 10^{\frac{\log_{10}{\lambda_4} + \varphi \cdot \log_{10}{\lambda_1}}{1 + \varphi}}
+\end{equation}
+\begin{equation}
+    \lambda_3 = 10^{\log_{10}{\lambda_1} + (\log_{10}{\lambda_4} - \log_{10}{\lambda_2})}
+\end{equation}
+For each $\lambda$ the corresponding point on the L-curve is found and two curvatures are computed relying on three points each.
+The borders of the search interval are shifted towards the higher curvature and this process is repeated until the difference between the lambda-values of the interval are below a certain threshold.
+This method allows can find an optimal $\lambda$ while minimizing the number of inversions necessary.
