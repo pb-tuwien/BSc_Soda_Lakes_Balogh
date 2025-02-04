@@ -1,22 +1,85 @@
 \label{sec:materials_and_methods}
 
 \subsection{State of the Art}\label{subsec:state-of-the-art}
-[write here]
 
 \subsubsection{Common resistivity values}\label{subsubsec:common-resistivity-values}
-Some common values for resistivities can be found in \cite{galazoulas2015large}.
 
 \subsubsection{TEM method}\label{subsubsec:tem-method}
-development...
 
 \subsubsection{Application of TEM}\label{subsubsec:application-of-tem}
-different types and fields of application...
+Even though the TEM method originates from the mining industry, it can be applied to various environmental applications.
+The exploration and characterisation of groundwater resources is one of the most common applications of the TEM method.
+
+For this application \textcite{danielsen2003application} used the TEM method for the exploration of buried valleys as potential aquifers in Denmark.
+The study introduced two new TEM systems based on the Geonics PROTEM, the High moment Transient Electromagnetic (HiTEM) system for a deeper investigation depth
+and the Pulled Array Transient Electromagnetic (PATEM) system for a higher lateral resolution.
+The HiTEM system uses a combination of a $30\times30 m$ transmitter loop and a current of 75 A to achieve a depth of investigation (DOI) of up to 300 m.
+To mitigate distortion effects an offset receiver loop is used for the later times and a central receiver loop with a reduced current of 2.5 A for the early times.
+A Mutually Constrained Inversion (MCI) was used to invert the combination of the data gathered with the two different configurations.
+The PATEM system uses a $3\times5 m$ transmitter loop on a wheeled frame with an offset receiver loop.
+This allows for continuous measurements along a profile and a DOI of 100 to 150 m.
+To achieve a high DOI and useful near surface information, the PATEM system allows for a transmitter configuration with either 2 turns with 16 A or 8 turns with 40 to 50 A\@.
+The study also touches on the problems resulting from coupling with man-made structures.
+The coupling effects can be divided into galvanic and capacitive.
+Galvanic coupling is caused by grounded conductor like a power line and causes the underestimation of the resistivity.
+Capacitive coupling is caused current being generated in a conductor and leaking into the ground through an insulation, which leads to an oscillating signal.
+For this reason the study recommends to keep a distance of about 150 m from underground cables or pipes when the earth has a resistivity of 40 to 80 $\Omega m$.
+The study finds that a 1D inversion approach is sufficient to detect the slope of a 2D buried valley when in a layer with a low resistivity.
+In a layer with a high resistivity only the overall structure of the valley can be derived.
+
+Similar to the PATEM system \textcite{auken2019ttem} proposes a towed Transient Electromagnetic (tTEM) system for an efficient 3D mapping of the subsurface.
+The tTEM system utilizes a $2\times4 m$ transmitter loop mounted on a non-conductive sled towed by an ATV, which enables a production rate of about $1 km^2$.
+The receiver loop is towed at a 9 m offset to the transmitter.
+Like the PATEM system the tTEM system allows two different currents (2.8/30A) in order to gain a relatively high DOI of up to 70 m,
+while still allowing the investigation of shallow depths.
+This study also highlights the importance of the coupling effects with conductive objects
+and tested the system in an environment with a high resistivity of the subsurface (>600 $\Omega m$).
+Here the measured signal can be assumed as a coupling effect with the conductive objects on the ATV and a minimal distance of 3 m was determined to be necessary.
+As it is important o calibrate TEM systems, the tTEM system was validated at the Danish National TEM test site.
+Furthermore, the tTEM system was also validated against borehole data and the results showed a good agreement.
+
+As other water sources become less reliable \textcite{gonzales2018delimiting}
+showed the potential of the TEM method for the exploration of groundwater in the Punata alluvial fan, Bolivia.
+This aquifer poses an important water source, but it has zones with high salinity.
+This study used the ABEM WalkTEM system with a $50\times50 m$ transmitter loop with a current of 18 A and
+two receiver loops ($0.5\times0.5 m$ and $10\times10 m$) in a central configuration.
+This way a DOI of up to 200 m was achieved in some regions of the alluvial fan, while in other regions the DOI was limited to 80 m.
+The study was able to detect zones with high salinity and the results were validated with borehole data.
+
+A similar study was conducted by \textcite{gomez2019alluvial} in the Challapampa area, Bolivia.
+In this study the same WalkTEM system and loop sizes were used as in the study by Gonzales et al.\cite{gonzales2018delimiting}
+But the receiver loops were deployed in an offset configuration and
+for the $0.5\times0.5 m$ loop only a current of 2 A was used, while the whole 18 A were used for the $10\times10 m$ loop.
+With this configuration a DOI of up to 250 m was achieved and the influence of a hot spring was detected as a low resistivity zone (meaning higher salinity).
+
+Another application of TEM is the detection of karstic features, like caves, faults, and fracture zones\parencite{zhou2022multi, su2024response}.
+Traditionally a large transmitter loop size in the order of 100 m side length was used to achieve a high investigation depth.
+For this reason the TEM method was not suitable for the application in mountainous regions.
+However, a similar investigation depth can be achieved by using a smaller transmitter loop size and more turns.
+A multi-turn setup has the disadvantage of mutual inductance caused by the large number of turns, which can lead to underestimation of the resistivity of the subsurface.
+
+\textcite{zhou2022multi} proposed a coincident configuration with a 2 m side length and 10 turns for the transmitter loop and 20 turns for the receiver loop.
+In order to mitigate the effects of the mutual inductance, borehole and electrical resistivity tomography (ERT) data were used to constrain the inversion.
+Because boreholes and ERT measurements are expensive and time-consuming, they are only used to correct to TEM soundings in order to account for shifted resistivity values.
+This method was used to detect a karst channel in Zhijin, China.
+
+A more in depth study on how to deal with self and mutual inductance was conducted by \textcite{su2024response}.
+Here a central loop configuration (receiver loop in the center of the transmitter loop) was compared with a multi-turn small fixed-loop configuration,
+where multiple different receiver positions are used, while keeping the transmitter loop fixed.
+For the fixed-loop set up a correction coefficient was introduced to account for off centre receiver positions.
+5 model test were conducted to compare the two configurations and the results showed that after correction the fixed-loop configuration
+was more accurate in detecting the position of one or multiple anomalies.
+
+
+
+
+
+
 
 \subsubsection{Data Inversion}\label{subsubsec:data-inversion}
-stochacstic and deterministic inversion...different methods...
+
 
 \subsubsection{L-curve method}\label{subsubsec:l-curve-method}
-
 
 A common way to solve an ill-posed problem is to use Tikhonov regularization, which is a method that adds a penalty term to the least squares problem.
 The penalty term is a function of the model parameters and a regularization parameter lambda.
