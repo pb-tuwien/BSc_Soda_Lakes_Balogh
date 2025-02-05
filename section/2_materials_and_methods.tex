@@ -38,6 +38,33 @@ Here the measured signal can be assumed as a coupling effect with the conductive
 As it is important o calibrate TEM systems, the tTEM system was validated at the Danish National TEM test site.
 Furthermore, the tTEM system was also validated against borehole data and the results showed a good agreement.
 
+To investigate the subsurface below continental bodies of water, \textcite{aigner2021flexible} proposes a flexibel single loop system which can be towed by a boat.
+By using a single loop which is kept afloat by several PVC pipes segments, which keep the loop in a circular shape, the system can easily be moved around the lake.
+Using pipe segments allows for different loop sizes and thus different investigation depths.
+The TEM-FAST 48 system by Applied Electromagnetic Research (AEMR) was used to investigate the subsurface of the Lake Langau in Austria.
+A current of 4 A and loops with radii between 6.2 m and 11.9 m were used, leading to an investigation depth between 6.2 m and 50 m,
+which was sufficient to detect sedimentary layers below the lake.
+For a single loop setup it is important to understand how long the turn-off time of the transmitter is, for a proper interpretation of early time data.
+When the transmitter is turned off, the current in the loop takes a certain amount of time to decay, which is called the turn-off ramp.
+This time was measured to be between 4.2 and 10.4 $\mu$s depending on loop size and resistivity of the subsurface.
+Using this information a formula was derived to find the minimum effective sounding depth:
+\begin{equation}
+    h_{\text{eff}} = \sqrt{t_{\text{eff}}\overline{\rho}}
+    \label{eq:h_eff}
+\end{equation}
+where $h_{\text{eff}}$ is the minimum effective sounding depth, $t_{\text{eff}}$ is the minimum effective time
+and $\overline{\rho}$ is the average resistivity of the smooth subsurface model.
+The study also showcased two different approaches to find the DOI\@.
+The first approach uses different starting models for the inversion assuming that the DOI is reached
+when the data does not influence the inverted model anymore and will keep the values of the starting model.
+The second approach is based on:
+\begin{equation}
+    \text{DOI} \approx 0.55(\frac{M\times\overline{\rho}}{\eta})
+    \label{eq:doi}
+\end{equation}
+where $M$ is the magnetic moment, $\overline{\rho}$ is the average resistivity of the smooth subsurface model and $\eta$ is the noise level.
+Both methods agreed on a DOI ranging between 20 and 50 m depending on the loop size.
+
 As other water sources become less reliable \textcite{gonzales2018delimiting}
 showed the potential of the TEM method for the exploration of groundwater in the Punata alluvial fan, Bolivia.
 This aquifer poses an important water source, but it has zones with high salinity.
@@ -99,14 +126,14 @@ In order to find the optimal $\lambda$ a cubic spline function is fitted to the 
 Another approach is the iterative golden section search as proposed by Cultrera\cite{cultrera2020simple}.
 After providing an initial range for the optimal lambda $[\lambda_1,\lambda_4]$, two more lambda values are calculated using the formula:
 \begin{equation}
-    \varphi = \frac{1 + \sqrt{5}}{2}
+\begin{alignedat}{2}
+    \varphi & = \frac{1 + \sqrt{5}}{2} \\
+    \lambda_2 & = 10^{\frac{\log_{10}{\lambda_4} + \varphi \cdot \log_{10}{\lambda_1}}{1 + \varphi}} \\
+    \lambda_3 & = 10^{\log_{10}{\lambda_1} + (\log_{10}{\lambda_4} - \log_{10}{\lambda_2})}
+\end{alignedat}
+\label{eq:gls_search}
 \end{equation}
-\begin{equation}
-    \lambda_2 = 10^{\frac{\log_{10}{\lambda_4} + \varphi \cdot \log_{10}{\lambda_1}}{1 + \varphi}}
-\end{equation}
-\begin{equation}
-    \lambda_3 = 10^{\log_{10}{\lambda_1} + (\log_{10}{\lambda_4} - \log_{10}{\lambda_2})}
-\end{equation}
+
 For each $\lambda$ the corresponding point on the L-curve is found and two curvatures are computed relying on three points each.
 The borders of the search interval are shifted towards the higher curvature and this process is repeated until the difference between the lambda-values of the interval are below a certain threshold.
 This method allows can find an optimal $\lambda$ while minimizing the number of inversions necessary.

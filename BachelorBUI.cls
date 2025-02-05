@@ -62,7 +62,7 @@ automark
 
 \pagestyle{scrheadings}
 \clearpairofpagestyles
-\ihead{\@title} %\ihead{Bachelor Thesis \@authorname}
+\ihead{Bachelor Thesis \@authorname}
 \ohead{\thepage}
 
 
