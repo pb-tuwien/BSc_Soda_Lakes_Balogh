@@ -71,6 +71,7 @@ automark
 \RequirePackage[list=true]{subcaption}
 
 \RequirePackage{mathtools} %% extension of amsmath (also loads amstext)
+
 \RequirePackage{amssymb}   %% for complex formulas
 %Correct UTF8 mapping for ams fonts
 \ifdefined\pdffontattr% \ifdefined is part of the e-TeX extension, which is part of any modern LaTeX compiler.
