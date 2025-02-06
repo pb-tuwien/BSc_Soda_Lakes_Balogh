@@ -1,12 +1,49 @@
 \label{sec:materials_and_methods}
-
+\clearpage
 \subsection{State of the Art}\label{subsec:state-of-the-art}
 
+
 \subsubsection{Common resistivity values}\label{subsubsec:common-resistivity-values}
+Resistivity is a key parameter in geophysical investigations, as it provides valuable information about the Earth's subsurface properties.
+Many electrical and electromagnetic methods rely on constructing a model of the electrical resistivity distribution to characterize subsurface materials.
+By analyzing these resistivity values, it is possible to infer the composition of subsurface layers and detect geological structures such as faults, fractures, and aquifers.
+
+\begin{table}[h]
+    \centering
+    \caption{Common Resistivity Values of Subsurface Materials}
+
+\resizebox{\columnwidth}{!}{
+    \begin{tabular}{l c}
+        \hline
+        \textbf{Material} & \textbf{Resistivity ($\Omega m$)} \\
+        \hline
+        Saturated layers with high salinity & 0.1 – 5 \\
+        Saturated clays and silts & 5 – 15 \\
+        Saturated sediments & 10 – 20 \\
+        Unsaturated sediments & 50 – 80 \\
+        Saturated sand & 40 – 150 \\
+        Unsaturated sand & 400 – 1500 \\
+        \hline
+    \end{tabular}
+    }
+    \label{tab:resistivity}
+\end{table}
+
+
+\cref{tab:resistivity} presents commonly reported resistivity values for different subsurface materials.
+These values have been compiled from multiple studies conducted in diverse geological settings and
+using various geophysical methods~\parencite{gomez2019alluvial, galazoulas2015large, george2021modelling}.
+While they provide a general reference, it is important to note that resistivity ranges can vary significantly due to factors such as moisture content, salinity, porosity, and mineral composition.
+
+In the context of \cref{tab:resistivity}, the term ``sediments'' refers to unconsolidated deposits consisting of a mixture of sand, silt, and clay.
+The resistivity values presented in \cref{tab:resistivity} for sediments are not general global values but are
+specific to the study region investigated by \textcite{gomez2019alluvial}.
+These values reflect the characteristics of sediments found in the Challapampa aquifer in Bolivia,
+where variations in grain size, moisture content, and mineral composition influence the resistivity measurements.
 
 \subsubsection{TEM method}\label{subsubsec:tem-method}
 
-\subsubsection{Application of TEM}\label{subsubsec:application-of-tem}
+\subsubsection{Environmental applications of TEM}\label{subsubsec:application-of-tem}
 Even though the TEM method originates from the mining industry, it can be applied to various environmental applications.
 The exploration and characterisation of groundwater resources is one of the most common applications of the TEM method.
 
@@ -38,6 +75,14 @@ Here the measured signal can be assumed as a coupling effect with the conductive
 As it is important o calibrate TEM systems, the tTEM system was validated at the Danish National TEM test site.
 Furthermore, the tTEM system was also validated against borehole data and the results showed a good agreement.
 
+As a fast alternative to ground based TEM systems, \textcite{sorensen2004skytem} introduced the SkyTEM system.
+The SkyTEM system uses a helicopter to carry a $12.5\times12.5 m$ transmitter loop with 4 turns and a receiver loop ($0.5\times0.5 m$) in a central configuration.
+Just like the PATEM and HiTEM systems, a low moment and a high moment configuration are used to achieve a high DOI while still resolving the near surface layers.
+In the low moment configuration the current of 35 A only flows through one turn and for the high moment 50 A are used with all 4 turns.
+The SkyTEM system was validated against a ground based TEM system with a transmitter loop size of $40\times40 m$ showed a good agreement (below 5\% deviation).
+This system able to cover a larger area than traditional ground based systems and was still able to resolve underground structures,
+such as buried valleys.
+
 To investigate the subsurface below continental bodies of water, \textcite{aigner2021flexible} proposes a flexibel single loop system which can be towed by a boat.
 By using a single loop which is kept afloat by several PVC pipes segments, which keep the loop in a circular shape, the system can easily be moved around the lake.
 Using pipe segments allows for different loop sizes and thus different investigation depths.
@@ -65,9 +110,9 @@ The second approach is based on:
 where $M$ is the magnetic moment, $\overline{\rho}$ is the average resistivity of the smooth subsurface model and $\eta$ is the noise level.
 Both methods agreed on a DOI ranging between 20 and 50 m depending on the loop size.
 
-As other water sources become less reliable \textcite{gonzales2018delimiting}
-showed the potential of the TEM method for the exploration of groundwater in the Punata alluvial fan, Bolivia.
-This aquifer poses an important water source, but it has zones with high salinity.
+As other water sources become less reliable in some regions in Bolivia \textcite{gonzales2018delimiting}
+showed the potential of the TEM method for the exploration of groundwater in the Punata alluvial fan.
+This aquifer is an important water source, but it has zones with high salinity, which poses challenges in its use.
 This study used the ABEM WalkTEM system with a $50\times50 m$ transmitter loop with a current of 18 A and
 two receiver loops ($0.5\times0.5 m$ and $10\times10 m$) in a central configuration.
 This way a DOI of up to 200 m was achieved in some regions of the alluvial fan, while in other regions the DOI was limited to 80 m.
@@ -97,30 +142,72 @@ For the fixed-loop set up a correction coefficient was introduced to account for
 5 model test were conducted to compare the two configurations and the results showed that after correction the fixed-loop configuration
 was more accurate in detecting the position of one or multiple anomalies.
 
-
-
-
-
-
-
 \subsubsection{Data Inversion}\label{subsubsec:data-inversion}
+A typical geophysical problem can be defined as follows:
+\begin{equation}
+    \mathbf{d} = \mathcal{F}(\mathbf{m})
+    \label{eq:geophysical_problem}
+\end{equation}
+where $\mathbf{d}$ is the observed data, $\mathcal{F}$ is the forward operator, and $\mathbf{m}$ is the model.
+If the model is known, the forward operator can be used to calculate the expected data.
+But usually the model is unknown and the observed data is used to find the model, which is called an inverse problem.
+In practise the observed data is contaminated with noise, which introduces an error term into the equation
+and makes the inversion ill-posed and non-linear.
+An ill-posed problem means that small changes in the observed data can cause large differences in the model.
+As a result, noise introduces variability, making it impossible to find a unique solution\parencite{zhdanov2002geophysical}.
 
+Approaches to address this issue can be divided into deterministic and stochastic methods.
+The deterministic approach tries to find a single solution, by iteratively updating the model parameters
+to minimize the difference between observed and modeled data.
+To prevent overfitting to noise, Tikhonov regularization is used, which adds a penalty term to the least squares problem.
+\begin{equation}
+    \| \mathbf{W}_d (\mathcal{F}(\mathbf{m}) - \mathbf{d}) \|_2^2 + \lambda \| \mathbf{W}_m (\mathbf{m} - \mathbf{m}_0) \|_2^2 \to \min
+    \label{eq:tikhonov}
+\end{equation}
+$\mathbf{W}_d$ and $\mathbf{W}_m$ are weighting matrices, $\mathbf{m}_0$ is the initial model, and $\lambda$ is the regularization parameter.
+$\| \mathbf{W}_m (\mathbf{m} - \mathbf{m}_0) \|_2^2$ can be interpreted as the roughness of the model, which quantifies the complexity or variation of the model.
+$\| \mathbf{W}_d (\mathcal{F}(\mathbf{m}) - \mathbf{d}) \|_2^2$ is the data misfit, which quantifies the difference between observed and modeled data and can include an error term.
+With the choice of $\lambda$ the trade-off between data misfit and model complexity can be controlled
+Building on this foundation several deterministic methods have been developed, such as Gauss-Newton inversion and Conjugate Gradient.
+A constraint inversion can be used to incorporate prior information about the model, which can be useful to prevent overfitting to noise.
+Stochastic methods, on the other hand, randomly search the solution space and provide a range of plausible models rather than a single deterministic solution.
+This is much more computationally expensive, but can be more robust against noise and can provide uncertainty estimates.
+Particle Swarm Optimization (PSO) and Bayesian inversion are examples of stochastic methods\parencite{rucker2017pygimli, xue2020development}.
+
+An implementation of the deterministic approach is the PyGIMLi library, introduced by \textcite{rucker2017pygimli},
+which uses Gauss-Newton inversion to iteratively update the model parameters.
+PyGIMLI is an open-source library written in Python and C++ and is designed for the inversion of geophysical data.
+It allows for the implementation of any given forward operator into the inversion algorithm,
+which makes it a versatile tool for geophysical modeling and inversion.
 
 \subsubsection{L-curve method}\label{subsubsec:l-curve-method}
+Solving inverse problems is a task not limited to geophysics, which makes inversion theory an important field ot mathematics.
+There are several methods to solve an inverse problem, but the most common approach is to use Tikhonov regularization\ref{eq:tikhonov}.
+But the choice of the regularization parameter $\lambda$ is not trivial and can have a significant impact on the inversion result.
 
-A common way to solve an ill-posed problem is to use Tikhonov regularization, which is a method that adds a penalty term to the least squares problem.
-The penalty term is a function of the model parameters and a regularization parameter lambda.
-...
-
-One way to determine an optimal values for the regularization parameter $\lambda$ is the L-curve method as introduced by Hansen\cite{hansen1999curve}.
+The L-curve method is a widely used method to determine the optimal $\lambda$ for the solution of an inverse problem\parencite{hansen1999curve}.
 The L-curve is a graph of the residual norm against the solution norm.
-With an increasing lambda, the residual norm is expected to increase and the solution norm is expected to decrease.
+With an increasing $\lambda$, the residual norm is expected to increase and the solution norm is expected to decrease.
 This leads to a curve that resembles an L-shape.
-The optimal $\lambda$ is the point on the curve where the curvature is the highest.
-The L-curve method is widely used in geophysics for the determination of the optimal $\lambda$ for the inversion of geophysical data.
+An optimal $\lambda$ should minimize the residual norm while keeping the solution norm small.
+This leads to the ``corner'' of the L, which is also the point with the highest the curvature.
+
+\textcite{lloyd1997use} implements a method to find the point of maximum curvature and through this the optimal $\lambda$ for the inversion of diffusion battery data.
+The method computes the $\chi^2$ also called error weighted root-mean-square, and the roughness of the model for different $\lambda$ values to obtain the L-curve.
+A cubic spline function is fitted to the data points, to make it possible to calculate the curvature for each data point:
+\begin{equation}
+\begin{alignedat}{2}
+    \mathbf{C}(\lambda_i) & = \frac{d^{2}s/dx^{2}}{(1 + (ds/dx)^2)^{3/2}} \\
+    x & = \log_{10}{\chi^2(\lambda_i)}
+\end{alignedat}
+\label{eq:curvature}
+\end{equation}
+and find the point with the maximum curvature.
+The corresponding $\lambda$ is then considered the optimal one.
+
 
 There are a several methods to automatically determine the optimal lambda as described in\cite{cultrera2020simple, farquharson2004comparison, lloyd1997use}.
-LLoyd et al. \cite{lloyd1997use} proposed a method that computes the $\chi^2$, also called error weighted root-mean-square, and the roughness of the model for different $\lambda$a values to obtain the L-curve.
+LLoyd et al. \cite{lloyd1997use} proposed a method that computes the $\chi^2$ also called error weighted root-mean-square, and the roughness of the model for different $\lambda$a values to obtain the L-curve.
 In order to find the optimal $\lambda$ a cubic spline function is fitted to the data points and used to find the maximum curvature of the L-curve.
 
 Another approach is the iterative golden section search as proposed by Cultrera\cite{cultrera2020simple}.
