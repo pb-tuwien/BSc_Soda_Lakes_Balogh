@@ -1,12 +1,19 @@
 \label{sec:materials_and_methods}
 \clearpage
 \subsection{State of the Art}\label{subsec:state-of-the-art}
+The Transient Electromagnetic (TEM) method is a time-domain electromagnetic technique
+widely used for exploring the subsurface, providing valuable insights into environmental
+applications like groundwater detection.
+Interpreting TEM data effectively requires solid inversion techniques,
+and the L-curve method stands out for helping balance the fit of the data with the complexity of the model.
+
 
 
 \subsubsection{Common resistivity values}\label{subsubsec:common-resistivity-values}
-Resistivity is a key parameter in geophysical investigations, as it provides valuable information about the Earth's subsurface properties.
+Electrical resistivity is a key parameter in geophysical investigations, as it provides valuable information about the Earth's subsurface properties.
 Many electrical and electromagnetic methods rely on constructing a model of the electrical resistivity distribution to characterize subsurface materials.
-By analyzing these resistivity values, it is possible to infer the composition of subsurface layers and detect geological structures such as faults, fractures, and aquifers.
+By analyzing these resistivity values, it is possible to infer the composition of subsurface layers
+and detect geological structures such as faults, fractures, and aquifers~\parencite{christiansen2006transient}.
 
 \begin{table}[h]
     \centering
@@ -15,7 +22,7 @@ By analyzing these resistivity values, it is possible to infer the composition o
 \resizebox{\columnwidth}{!}{
     \begin{tabular}{l c}
         \hline
-        \textbf{Material} & \textbf{Resistivity ($\Omega m$)} \\
+        \textbf{Material} & \textbf{Resistivity ($\Omega\text{m}$)} \\
         \hline
         Saturated layers with high salinity & 0.1 – 5 \\
         Saturated clays and silts & 5 – 15 \\
@@ -32,11 +39,9 @@ By analyzing these resistivity values, it is possible to infer the composition o
 \cref{tab:resistivity} presents commonly reported resistivity values for different subsurface materials.
 These values have been compiled from multiple studies conducted in diverse geological settings and
 using various geophysical methods~\parencite{gomez2019alluvial, galazoulas2015large, george2021modelling}.
-While they provide a general reference, it is important to note that resistivity ranges can vary significantly
-due to factors such as moisture content, salinity, porosity, and mineral composition.
 
 In the context of~\cref{tab:resistivity}, the term ``sediments'' refers to unconsolidated deposits consisting of a mixture of sand, silt, and clay.
-The resistivity values presented in~\cref{tab:resistivity} for sediments are not general global values but are
+The precise resistivity values presented in~\cref{tab:resistivity} for sediments are not general global values but are
 specific to the study region investigated by \textcite{gomez2019alluvial}.
 These values reflect the characteristics of sediments found in the Challapampa aquifer in Bolivia,
 where variations in grain size, moisture content, and mineral composition influence the resistivity measurements.
@@ -64,71 +69,73 @@ This can be done by using the formula for late stage behavior of the secondary f
     \rho_a = \frac{1}{\pi} \left( \frac{M}{20 \cdot \frac{\partial b_z}{\partial t}} \right)^{\frac{2}{3}} \left( \frac{\mu_0}{t} \right)^{\frac{5}{3}}
     \label{eq:apparent_resistivity}
 \end{equation}
-where $M$ is the magnetic moment, $\frac{\partial b_z}{\partial t}$ is the time derivative of the vertical magnetic field,
+where $M$ is the magnetic moment, $\frac{\partial b_z}{\partial t}$ is the signal measured by the receiver coil,
 $\mu_0$ is the magnetic permeability of free space and $t$ is the time.
+The magnetic moment is the product of the number of turns, the area and the current in the transmitter loop.
+The apparent resistivity is a measure of the resistivity of the subsurface material the EM wave has traveled through,
+but it is not the true resistivity of the material.
+For this reason inflection points can be interpreted as boundaries between different layers with different resistivities
+and the slope of the curve shows, if the resistivity is increasing or decreasing in the new layer~\parencite{fitterman1986transient}.
 
-
-The method operates by transmitting a pulse of current through a loop, generating a primary magnetic field.
-When the current is abruptly turned off, it induces secondary currents (eddy currents) in the ground,
-which decay over time and produce a secondary electromagnetic field.
-This field is measured using a receiver coil,
-and its decay characteristics are analyzed to infer the conductivity structure of the subsurface.
-TEM is particularly effective for groundwater exploration and hydrogeological mapping,
-as it provides high-resolution data on aquifers, geological structures, and cover materials.
-Compared to frequency-domain methods, TEM is advantageous because it eliminates the need to measure the primary field directly,
-allowing for deeper penetration and improved sensitivity to low-resistivity layers such as clay and water-bearing formations.
-However, TEM requires sophisticated electronics and advanced computational techniques for data processing and interpretation.
-
+Another approach is to use the inversion of the data to create a model of the subsurface resistivity.
+This is explained in more detail in~\cref{subsubsec:data-inversion}.
+For the interpretation of TEM data, and for the inversion in particular, some assumptions have to be made.
+This EM wave is assumed to only propagate vertically and the subsurface is assumed to be layered.
+As most inversion algorithms are based on a 1D model, the subsurface is assumed to be homogeneous in the horizontal direction.
+Even with these limitations the TEM method is a powerful tool for the
+exploration of the subsurface and can be used in various applications~\parencite{christiansen2006transient}.
 
 \subsubsection{Environmental applications of TEM}\label{subsubsec:application-of-tem}
 Even though the TEM method originates from the mining industry, it can be applied to various environmental applications.
 The exploration and characterisation of groundwater resources is one of the most common applications of the TEM method.
 
 For this application \textcite{danielsen2003application} used the TEM method for the exploration of buried valleys as potential aquifers in Denmark.
-The study introduced two new TEM systems based on the Geonics PROTEM, the High moment Transient Electromagnetic (HiTEM) system for a deeper investigation depth
+The study introduced two new TEM systems based on the Geonics PROTEM -- the High moment Transient Electromagnetic (HiTEM) system for a deeper investigation depth
 and the Pulled Array Transient Electromagnetic (PATEM) system for a higher lateral resolution.
-The HiTEM system uses a combination of a $30\times30 m$ transmitter loop and a current of 75~A to achieve a depth of investigation (DOI) of up to 300~m.
-To mitigate distortion effects an offset receiver loop is used for the later times and a central receiver loop with a reduced current of 2.5~A for the early times.
+The HiTEM system uses a combination of a $30\times30\,\text{m}$ transmitter loop and a current of $75\,\text{m}$ to achieve a depth of investigation (DOI) of up to $300\,\text{m}$.
+To mitigate distortion effects, an offset receiver loop is used for the later times and a central receiver loop with a reduced current of $2.5\,\text{A}$ for the early times.
 A Mutually Constrained Inversion (MCI) was used to invert the combination of the data gathered with the two different configurations.
-The PATEM system uses a $3\times5 m$ transmitter loop on a wheeled frame with an offset receiver loop.
-This allows for continuous measurements along a profile and a DOI of 100 to 150~m.
-To achieve a high DOI and useful near surface information, the PATEM system allows for a transmitter configuration with either 2 turns with 16~A or 8 turns with 40 to 50~A\@.
+The PATEM system uses a $3\times5\,\text{m}$ transmitter loop on a wheeled frame with an offset receiver loop.
+This allows for continuous measurements along a profile and a DOI of$100-150\,\text{m}$.
+To achieve a high DOI and useful near surface information, the PATEM system allows for a transmitter configuration with either 2 turns with $16\,\text{A}$ or 8 turns with $40-50\,\text{A}$.
 The study also touches on the problems resulting from coupling with man-made structures.
 The coupling effects can be divided into galvanic and capacitive.
-Galvanic coupling is caused by grounded conductor like a power line and causes the underestimation of the resistivity.
-Capacitive coupling is caused current being generated in a conductor and leaking into the ground through an insulation, which leads to an oscillating signal.
-For this reason the study recommends to keep a distance of about 150~m from underground cables or pipes when the earth has a resistivity of 40 to 80 $\Omega m$.
-The study finds that a 1D inversion approach is sufficient to detect the slope of a 2D buried valley when in a layer with a low resistivity.
-In a layer with a high resistivity only the overall structure of the valley can be derived.
+Galvanic coupling is caused by grounded conductors like power lines and causes the underestimation of the resistivity.
+Capacitive coupling is caused by current being generated in the conductor and leaking into the ground through an insulation, which leads to an oscillating signal.
+For this reason the study recommends to keep a distance of about $150\,\text{m}$ from underground cables or pipes when the earth has a resistivity of $40-50\,\Omega\text{m}$.
+The study finds that a 1D inversion approach is sufficient to detect the slope of a 2D buried valley when in a layer with low resistivity.
+In a layer with high resistivity, only the overall structure of the valley can be derived.
 
-Similar to the PATEM system \textcite{auken2019ttem} proposes a towed Transient Electromagnetic (tTEM) system for an efficient 3D mapping of the subsurface.
-The tTEM system utilizes a $2\times4 m$ transmitter loop mounted on a non-conductive sled towed by an ATV, which enables a production rate of about $1 km^2$.
-The receiver loop is towed at a 9~m offset to the transmitter.
-Like the PATEM system the tTEM system allows two different currents (2.8/30A) in order to gain a relatively high DOI of up to 70~m,
+Similar to the PATEM system, \textcite{auken2019ttem} propose a towed Transient Electromagnetic (tTEM) system for an efficient 3D mapping of the subsurface.
+The tTEM system utilizes a $2\times4\,\text{m}$ transmitter loop mounted on a non-conductive sled towed by an ATV, which enables a production rate of about $1\,km^2$ per day.
+The receiver loop is towed at an $9\,\text{m}$ offset from the transmitter.
+Like the PATEM system, the tTEM system allows two different currents ($2.8~\text{and}~30\,\text{A}$) in order to gain a relatively high DOI of up to $70\,\text{m}$,
 while still allowing the investigation of shallow depths.
-This study also highlights the importance of the coupling effects with conductive objects
-and tested the system in an environment with a high resistivity of the subsurface (>600 $\Omega m$).
-Here the measured signal can be assumed as a coupling effect with the conductive objects on the ATV and a minimal distance of 3~m was determined to be necessary.
-As it is important o calibrate TEM systems, the tTEM system was validated at the Danish National TEM test site.
+This study also highlights the importance of considering coupling effects of the system with conductive objects
+and tested the system in an environment with a high resistivity of the subsurface ($>600\,\Omega\text{m}$).
+In this environment the signal caused by coupling can be observed in isolation
+and the study found that a minimal distance of $3\,\text{m}$ between transmitter and ATV was necessary.
+As it is important to calibrate TEM systems, the tTEM system was validated at the Danish National TEM test site.
 Furthermore, the tTEM system was also validated against borehole data and the results showed a good agreement.
 
-As a fast alternative to ground based TEM systems, \textcite{sorensen2004skytem} introduced the SkyTEM system.
-The SkyTEM system uses a helicopter to carry a $12.5\times12.5 m$ transmitter loop with 4 turns and a receiver loop ($0.5\times0.5 m$) in a central configuration.
+Electromagnetic methods do not require direct contact with the subsurface, which allowed the development of airborne electromagnetic methods (AEM).
+\textcite{sorensen2004skytem} introduced the SkyTEM system, as alternative to ground based TEM systems.
+The SkyTEM system uses a helicopter to carry a $12.5\times12.5\,\text{m}$ transmitter loop with 4 turns and a receiver loop ($0.5\times0.5\,\text{m}$) in a central configuration.
 Just like the PATEM and HiTEM systems, a low moment and a high moment configuration are used to achieve a high DOI while still resolving the near surface layers.
-In the low moment configuration the current of 35~A only flows through one turn and for the high moment 50~A are used with all 4 turns.
-The SkyTEM system was validated against a ground based TEM system with a transmitter loop size of $40\times40 m$ showed a good agreement (below 5\% deviation).
-This system able to cover a larger area than traditional ground based systems and was still able to resolve underground structures,
+In the low moment configuration the current of $35\,\text{A}$ only flows through one turn and for the high moment $50\,\text{A}$ are used with all 4 turns.
+The SkyTEM system was validated against a ground based TEM system with a transmitter loop size of $40\times40\,\text{m}$ showed a good agreement (below 5\% deviation).
+This system is able to cover a larger area than traditional ground based systems in the same time and was still able to resolve underground structures,
 such as buried valleys.
 
 To investigate the subsurface below continental bodies of water, \textcite{aigner2021flexible} proposes a flexibel single loop system which can be towed by a boat.
 By using a single loop which is kept afloat by several PVC pipes segments, which keep the loop in a circular shape, the system can easily be moved around the lake.
 Using pipe segments allows for different loop sizes and thus different investigation depths.
 The TEM-FAST~48 system by Applied Electromagnetic Research (AEMR) was used to investigate the subsurface of the Lake Langau in Austria.
-A current of 4~A and loops with radii between 6.2~m and 11.9~m were used, leading to an investigation depth between 6.2~m and 50~m,
+A current of $4\,\text{A}$ and loops with radii between $6.2-11.9\,\text{m}$ were used, leading to an investigation depth between $6.2-50.0\,\text{m}$,
 which was sufficient to detect sedimentary layers below the lake.
 For a single loop setup it is important to understand how long the turn-off time of the transmitter is, for a proper interpretation of early time data.
 When the transmitter is turned off, the current in the loop takes a certain amount of time to decay, which is called the turn-off ramp.
-This time was measured to be between 4.2 and 10.4 $\mu$s depending on loop size and resistivity of the subsurface.
+This time was measured to be between $4.2-10.4\,\mu\text{s}$ depending on loop size and resistivity of the subsurface.
 Using this information a formula was derived to find the minimum effective sounding depth:
 \begin{equation}
     h_{\text{eff}} = \sqrt{t_{\text{eff}}\overline{\rho}}
@@ -147,35 +154,37 @@ The second approach is based on:
 where $M$ is the magnetic moment, $\overline{\rho}$ is the average resistivity of the smooth subsurface model and $\eta$ is the noise level.
 Both methods agreed on a DOI ranging between 20 and 50~m depending on the loop size.
 
-As other water sources become less reliable in some regions in Bolivia \textcite{gonzales2018delimiting}
+As other water sources become less reliable in some regions in Bolivia, \textcite{gonzales2018delimiting}
 showed the potential of the TEM method for the exploration of groundwater in the Punata alluvial fan.
 This aquifer is an important water source, but it has zones with high salinity, which poses challenges in its use.
-This study used the ABEM WalkTEM system with a $50\times50 m$ transmitter loop with a current of 18~A and
-two receiver loops ($0.5\times0.5 m$ and $10\times10 m$) in a central configuration.
-This way a DOI of up to 200~m was achieved in some regions of the alluvial fan, while in other regions the DOI was limited to 80~m.
+This study used the ABEM~WalkTEM system with a $50\times50\,\text{m}$ transmitter loop with a current of $18\,\text{A}$ and
+two receiver loops ($0.5\times0.5\,\text{m}$ and $10\times10\,\text{m}$) in a central configuration.
+This way a DOI of up to $200\,\text{m}$ was achieved in some regions of the alluvial fan, while in other regions the DOI was limited to $80\,\text{m}$.
 The study was able to detect zones with high salinity and the results were validated with borehole data.
 
-A similar study was conducted by \textcite{gomez2019alluvial} in the Challapampa area, Bolivia.
+\textcite{gomez2019alluvial} conducted a similar study in the Challapampa area, Bolivia.
 In this study the same WalkTEM system and loop sizes were used as in the study by Gonzales et al.\cite{gonzales2018delimiting}
-But the receiver loops were deployed in an offset configuration and
-for the $0.5\times0.5 m$ loop only a current of 2~A was used, while the whole 18~A were used for the $10\times10 m$ loop.
-With this configuration a DOI of up to 250~m was achieved and the influence of a hot spring was detected as a low resistivity zone (meaning higher salinity).
+However, the receiver loops are deployed in an offset configuration and
+for the $0.5\times0.5\,\text{m}$ loop only a current of $2\,\text{A}$ was used, while the whole $18\,\text{A}$ was applied for the $10\times10\,\text{m}$ loop.
+This setup achieved a depth of investigation (DOI) of up to $250\,\text{m}$
+and identified the influence of a hot spring, which appeared as a low-resistivity zone, indicating higher salinity.
 
 Another application of TEM is the detection of karstic features, like caves, faults, and fracture zones~\parencite{zhou2022multi, su2024response}.
-Traditionally a large transmitter loop size in the order of 100~m side length was used to achieve a high investigation depth.
+Traditionally, a large transmitter loop size in the order of $100\,\text{m}$ side length was used to achieve a high investigation depth.
 For this reason the TEM method was not suitable for the application in mountainous regions.
 However, a similar investigation depth can be achieved by using a smaller transmitter loop size and more turns.
 A multi-turn setup has the disadvantage of mutual inductance caused by the large number of turns, which can lead to underestimation of the resistivity of the subsurface.
 
-\textcite{zhou2022multi} proposed a coincident configuration with a 2~m side length and 10 turns for the transmitter loop and 20 turns for the receiver loop.
+\textcite{zhou2022multi} proposed a coincident configuration with a $2\times2\,\text{m}$ and 10 turns for the transmitter loop and 20 turns for the receiver loop.
 In order to mitigate the effects of the mutual inductance, borehole and electrical resistivity tomography (ERT) data were used to constrain the inversion.
-Because boreholes and ERT measurements are expensive and time-consuming, they are only used to correct to TEM soundings in order to account for shifted resistivity values.
+Because boreholes and ERT measurements are expensive and time-consuming,
+they are only used to correct the TEM soundings in order to account for shifted resistivity values.
 This method was used to detect a karst channel in Zhijin, China.
 
-A more in depth study on how to deal with self and mutual inductance was conducted by \textcite{su2024response}.
+A more in-depth study on how to deal with self and mutual inductance was conducted by \textcite{su2024response}.
 Here a central loop configuration (receiver loop in the center of the transmitter loop) was compared with a multi-turn small fixed-loop configuration,
 where multiple different receiver positions are used, while keeping the transmitter loop fixed.
-For the fixed-loop set up a correction coefficient was introduced to account for off centre receiver positions.
+For the fixed-loop set up a correction coefficient was introduced to account for off-centre receiver positions.
 5 model test were conducted to compare the two configurations and the results showed that after correction the fixed-loop configuration
 was more accurate in detecting the position of one or multiple anomalies.
 
@@ -187,7 +196,7 @@ A typical geophysical problem can be defined as follows:
 \end{equation}
 where $\mathbf{d}$ is the observed data, $\mathcal{F}$ is the forward operator, and $\mathbf{m}$ is the model.
 If the model is known, the forward operator can be used to calculate the expected data.
-But usually the model is unknown and the observed data is used to find the model, which is called an inverse problem.
+Unfortunately, usually the model is unknown and the observed data is used to find the model, which is called an inverse problem.
 In practise the observed data is contaminated with noise, which introduces an error term into the equation
 and makes the inversion ill-posed and non-linear.
 An ill-posed problem means that small changes in the observed data can cause large differences in the model.
@@ -204,8 +213,8 @@ To prevent overfitting to noise, Tikhonov regularization is used, which adds a p
 $\mathbf{W}_d$ and $\mathbf{W}_m$ are weighting matrices, $\mathbf{m}_0$ is the initial model, and $\lambda$ is the regularization parameter.
 $\| \mathbf{W}_m (\mathbf{m} - \mathbf{m}_0) \|_2^2$ can be interpreted as the roughness of the model, which quantifies the complexity or variation of the model.
 $\| \mathbf{W}_d (\mathcal{F}(\mathbf{m}) - \mathbf{d}) \|_2^2$ is the data misfit, which quantifies the difference between observed and modeled data and can include an error term.
-With the choice of $\lambda$ the trade-off between data misfit and model complexity can be controlled
-Building on this foundation several deterministic methods have been developed, such as Gauss-Newton inversion and Conjugate Gradient.
+With the choice of $\lambda$, the trade-off between data misfit and model complexity can be controlled.
+Building on this foundation, several deterministic methods have been developed, such as Gauss-Newton inversion and Conjugate Gradient.
 A constraint inversion can be used to incorporate prior information about the model, which can be useful to prevent overfitting to noise.
 Stochastic methods, on the other hand, randomly search the solution space and provide a range of plausible models rather than a single deterministic solution.
 This is much more computationally expensive, but can be more robust against noise and can provide uncertainty estimates.
@@ -218,7 +227,7 @@ It allows for the implementation of any given forward operator into the inversio
 which makes it a versatile tool for geophysical modeling and inversion.
 
 \subsubsection{L-curve method}\label{subsubsec:l-curve-method}
-Solving inverse problems is a task not limited to geophysics, which makes inversion theory an important field ot mathematics.
+Solving inverse problems is a task not limited to geophysics, which makes inversion theory an important field of mathematics.
 There are several methods to solve an inverse problem, but the most common approach is to use Tikhonov regularization~\eqref{eq:tikhonov}.
 But the choice of the regularization parameter $\lambda$ is not trivial and can have a significant impact on the inversion result.
 
@@ -230,7 +239,7 @@ An optimal $\lambda$ should minimize the residual norm while keeping the solutio
 This leads to the ``corner'' of the L, which is also the point with the highest the curvature.
 
 \textcite{lloyd1997use} implements a method to find the point of maximum curvature and through this the optimal $\lambda$ for the inversion of diffusion battery data.
-The method computes the $\chi^2$ also called error weighted root-mean-square, and the roughness of the model for different $\lambda$ values to obtain the L-curve.
+The method computes the $\chi^2$, also called ``error weighted root-mean-square'', and the roughness of the model for different $\lambda$ values to obtain the L-curve.
 A cubic spline function is fitted to the data points, to make it possible to calculate the curvature for each data point:
 \begin{equation}
 \begin{alignedat}{2}
@@ -263,11 +272,11 @@ For the next iteration a new $\lambda$ is calculated based on:
 \end{equation}
 where $\lambda^{n}$ is the new $\lambda$ value, $\lambda^{n-1}$ is the previous $\lambda$ value, $0.01 \leq c \leq 0.5$
 and $\lambda^{\max}$ is the value for $\lambda$, which maximises the curvature.
-This cooling-schedule-type behaviour is added to prevent the inversion to jump low values of $\lambda$,
-which is supposed to prevent artifacts from overfitting.
-This method was tested on synthetic frequency domain electromagnetic data and was able to achieve an appropriate fit to the observed data.
+This cooling-schedule-type behaviour is added to prevent the inversion to skip to low values of $\lambda$,
+which is supposed to prevent artifacts created by overfitting the data.
+This method was tested on synthetic frequency domain electromagnetic data and was able to achieve an appropriate fit of inverted to the observed data.
 
-Another approach of finding the optimal $\lambda$ is the iterative golden section search as proposed by \textcite{cultrera2020simple}.
+Another approach for finding the optimal $\lambda$ is the iterative golden section search as proposed by \textcite{cultrera2020simple}.
 After providing an initial range for the optimal $\lambda$ $[\lambda_1,\lambda_4]$, two more $\lambda$ values are calculated using the formula:
 \begin{equation}
 \begin{alignedat}{2}
