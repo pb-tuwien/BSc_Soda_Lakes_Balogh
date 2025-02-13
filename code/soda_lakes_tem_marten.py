@@ -1,28 +1,30 @@
-#%% Imports
+#%% Add to sys path
 from pathlib import Path
 import sys
 
-#Path to module
-module_path = str(Path.cwd().parents[0] / 'Geophysics')
+# Path to module
+module_path = str(Path.cwd().parents[0] / 'Bsc_TEM_tools')
+
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-import gp_package.tem.test_survey_tem as st
+#%% Import modules
+import src.tem.survey_tem as st
 
 #%% Survey from 22/05/2024
 
 # tem_data = 'data/20240522/20240522_tem_martenhofer_data.tem'
 # tem_coords = 'data/20240522/20240522_tem_martenhofer_coords.csv'
 
-marten_rename_points_0522 = {'M11': 'M011', 'M12': 'M012', 'M13': 'M013', 'M14': 'M014',
-                        'M15z': 'M015', 'M16': 'M016', 'M17': 'M017', 'M18': 'M018',
-                        'M19': 'M019', 'M20': 'M020', 'M21': 'M021', 'M22': 'M022',
-                        'M23': 'M023', 'M24': 'M024', 'M25': 'M025', 'M26': 'M026',
-                        'M27': 'M027', 'M28': 'M028', 'M29': 'M029', 'M30': 'M030',
-                        'M31': 'M031', 'M32': 'M032', 'M33': 'M033', 'M34': 'M034',
-                        'M35': 'M035', 'M36': 'M036', 'M37': 'M037', 'M38': 'M038',
-                        'M39': 'M039', 'M40': 'M040', 'M41': 'M041', 'M42': 'M042',
-                        'M43': 'M043', 'M44': 'M044', 'M45': 'M045'}
+# marten_rename_points_0522 = {'M11': 'M011', 'M12': 'M012', 'M13': 'M013', 'M14': 'M014',
+#                         'M15z': 'M015', 'M16': 'M016', 'M17': 'M017', 'M18': 'M018',
+#                         'M19': 'M019', 'M20': 'M020', 'M21': 'M021', 'M22': 'M022',
+#                         'M23': 'M023', 'M24': 'M024', 'M25': 'M025', 'M26': 'M026',
+#                         'M27': 'M027', 'M28': 'M028', 'M29': 'M029', 'M30': 'M030',
+#                         'M31': 'M031', 'M32': 'M032', 'M33': 'M033', 'M34': 'M034',
+#                         'M35': 'M035', 'M36': 'M036', 'M37': 'M037', 'M38': 'M038',
+#                         'M39': 'M039', 'M40': 'M040', 'M41': 'M041', 'M42': 'M042',
+#                         'M43': 'M043', 'M44': 'M044', 'M45': 'M045'}
 marten_parsing_coords_0522 = {'EP1': 'Mtest', 'TEM_test': 'Mtest'}
 
 survey_marten_0522 = st.SurveyTEM('data/20240522')
