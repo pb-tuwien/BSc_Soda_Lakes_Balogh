@@ -1,6 +1,7 @@
 # Bachelor Thesis - Peter Balogh
 
 This repository contains all the images, LaTeX files, and resources used to compile my Bachelor thesis. It includes all necessary files for document compilation, data analysis, and visual elements used throughout the thesis.
+The code section utilizes functionality implemented in https://github.com/pb-tuwien/Bsc_TEM_tools
 
 ## Table of Contents
 1. [Thesis Structure](#thesis-structure)
