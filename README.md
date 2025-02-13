@@ -1,7 +1,7 @@
 # Bachelor Thesis - Peter Balogh
 
 This repository contains all the images, LaTeX files, and resources used to compile my Bachelor thesis. It includes all necessary files for document compilation, data analysis, and visual elements used throughout the thesis.
-The code section utilizes functionality implemented in https://github.com/pb-tuwien/Bsc_TEM_tools
+The code section utilizes functionality implemented in https://github.com/pb-tuwien/Bsc_TEM_tools.
 
 ## Table of Contents
 1. [Thesis Structure](#thesis-structure)
@@ -21,12 +21,17 @@ The thesis is organized into several sections, including the introduction, metho
 - **section/**: Directory containing individual chapter files (e.g., `0_abstract.tex`, `1_introduction.tex`, etc.).
 - **bibliography.bib**: The bibliography file for citing sources.
 
-### Images
-- **images/**: Directory containing all images used throughout the thesis (e.g., graphs, figures, etc.).
+### Logos
+- **logos/**: Directory containing the logos of the departments at TU Wien associated with this thesis.
+
+### Data
+- **data/**: Directory containing all the raw and processed TEM and Coordinate files as well as all the plots obtained from the data.
+
+### Code
+- **code/**: Python files used to analyze, invert and plot the TEM data.
 
 ### Other Files
-- **Makefile**: A file used to automate the compilation process.
-- **thesis.pdf**: The compiled PDF of the thesis (if available).
+- **main.pdf**: The compiled PDF of the thesis.
 
 
    
