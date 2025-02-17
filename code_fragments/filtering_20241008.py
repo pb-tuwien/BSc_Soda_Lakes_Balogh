@@ -20,7 +20,9 @@ rename_points_1008 = {'M_': 'M'}
 parsing_coords_1008 = {'TEST001': 'Mtest', 'TEST002': 'Mtest', 'TEST003': 'Mtest', 'TEST004': 'Mtest'}
 
 # Bad soundings
-erroneous_soundings_1008 = []
+erroneous_soundings_1008 = [2, 9, 10, 24]
+# 2: far lower apparent resistivities than all other
+# 24 far higher apparent resistivities
 
 if __name__ is '__main__':
     # Preprocessing
@@ -41,6 +43,8 @@ if __name__ is '__main__':
     survey_1008.data_preprocess(parsing_dict=parsing_coords_1008)
 
     # First look
-    survey_1008.plot_raw_filtered(filter_times=(8, 150), legend=False, fname='20241008_all_soundings.png')
-    # survey_1008.plot_raw_filtered(filter_times=(8, 150), legend=False, fname='20241008_good_soundings.png',
-    #                               subset=[f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_1008])
+    survey_1008.plot_raw_filtered(filter_times=(12, 80), legend=False, fname='20241008_all_soundings.png')
+    survey_1008.plot_raw_filtered(filter_times=(12, 80), legend=False, fname='20241008_good_soundings.png',
+                                  subset=[f'M{i:03d}' for i in range(1, 67) if i not in erroneous_soundings_1008])
+    survey_1008.plot_raw_filtered(filter_times=(12, 80), legend=True, fname='20241008_err_soundings.png',
+                                  subset=[f'M{i:03d}' for i in erroneous_soundings_1008])

@@ -36,10 +36,19 @@ if __name__ is '__main__':
 
     # L-curve
     for sounding in [f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_0522]:
-        survey_0522.l_curve_plot(sounding=sounding,
+        _ = survey_0522.l_curve_plot(sounding=sounding,
                     layer_type='dict',
                     layers={0:1, 5:1.5, 15:2},
                     max_depth=30,
                     test_range=(10, 1000, 20),
                     filter_times=(8, 150),
                     fname=f'l_curve_{sounding}.png')
+
+    for sounding in [f'M{i:03d}' for i in erroneous_soundings_0522]:
+        _ = survey_0522.l_curve_plot(sounding=sounding,
+                                 layer_type='dict',
+                                 layers={0: 1, 5: 1.5, 15: 2},
+                                 max_depth=30,
+                                 test_range=(10, 1000, 20),
+                                 filter_times=(8, 150),
+                                 fname=f'l_curve_{sounding}_err.png')

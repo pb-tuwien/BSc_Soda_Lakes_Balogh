@@ -52,3 +52,5 @@ if __name__ is '__main__':
     survey_0522.plot_raw_filtered(filter_times=(8, 150), legend=False, fname='20240522_all_soundings.png')
     survey_0522.plot_raw_filtered(filter_times=(8, 150), legend=False, fname='20240522_good_soundings.png',
                                   subset=[f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_0522])
+    survey_0522.plot_raw_filtered(filter_times=(8, 150), legend=True, fname='20240522_err_soundings.png',
+                                  subset=[f'M{i:03d}' for i in erroneous_soundings_0522])

@@ -18,7 +18,7 @@ optimal_lambda = 234 # Visual Inspection
 
 if __name__ is '__main__':
     # Preprocessing
-    survey_1008 = st.SurveyTEM('data/20240522')
+    survey_1008 = st.SurveyTEM('data/20241008')
     if Path(tem_coords).exists():
         survey_1008.coords_read(coords=tem_coords, sep=',')
         survey_1008.coords_rename_points(rename_dict=rename_points_1008)
@@ -35,11 +35,20 @@ if __name__ is '__main__':
     survey_1008.data_preprocess(parsing_dict=parsing_coords_1008)
 
     # L-curve
-    for sounding in [f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_1008]:
-        survey_1008.l_curve_plot(sounding=sounding,
+    for sounding in [f'M{i:03d}' for i in range(1, 67) if i not in erroneous_soundings_1008]:
+        _ = survey_1008.l_curve_plot(sounding=sounding,
                     layer_type='dict',
                     layers={0:1, 5:1.5, 15:2},
                     max_depth=30,
                     test_range=(10, 1000, 20),
                     filter_times=(8, 150),
                     fname=f'l_curve_{sounding}.png')
+
+    for sounding in [f'M{i:03d}' for i in erroneous_soundings_1008]:
+        _ = survey_1008.l_curve_plot(sounding=sounding,
+                                 layer_type='dict',
+                                 layers={0: 1, 5: 1.5, 15: 2},
+                                 max_depth=30,
+                                 test_range=(10, 1000, 20),
+                                 filter_times=(8, 150),
+                                 fname=f'l_curve_{sounding}_err.png')
