@@ -8,7 +8,6 @@ module_path = str(Path.cwd().parents[0] / 'Bsc_TEM_tools')
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-#%% Import modules
 import src.tem.survey_tem as st
 
 #%% Survey from 22/05/2024

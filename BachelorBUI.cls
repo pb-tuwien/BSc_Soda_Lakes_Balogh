@@ -106,7 +106,7 @@ automark
 
 \RequirePackage{enumitem}  %% to customize itemize, enumerate, description
 
-\RequirePackage{listings} %% syntax highlighting - for program code
+\RequirePackage{listings} %% syntax highlighting - for program code_fragments
 \RequirePackage{scrhack} %% solve some problems with float of listings
 
 % Eigene Sprachabhängige Begriffe
