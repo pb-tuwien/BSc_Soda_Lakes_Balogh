@@ -7,8 +7,6 @@ applications like groundwater detection.
 Interpreting TEM data effectively requires solid inversion techniques,
 and the L-curve method stands out for helping balance the fit of the data with the complexity of the model.
 
-
-
 \subsubsection{Common resistivity values}\label{subsubsec:common-resistivity-values}
 Electrical resistivity is a key parameter in geophysical investigations, as it provides valuable information about the properties of the Earth's subsurface.
 Many electrical and electromagnetic methods rely on constructing a model of the electrical resistivity distribution to characterise subsurface materials.
@@ -77,9 +75,18 @@ but it is not the true resistivity of the material.
 For this reason inflection points can be interpreted as boundaries between different layers with different resistivities,
 and the slope of the curve shows whether the resistivity is increasing or decreasing in the new layer~\parencite{fitterman1986transient}.
 
+\begin{figure}[h]
+    \centering
+    \resizebox{\columnwidth}{!}{
+        \includegraphics[angle=0, trim=0cm 0cm 0cm 0cm, clip, width=16cm]{data/20240522/TEM-data/08-forward_model/example_response}
+    }
+    \caption{Numerically modelled typical TEM reponse with the signal a) and the apparent resistivity b).}
+    \label{fig:typical_sounding}
+\end{figure}
+
 Another approach is to use the inversion of the data to create a model of the subsurface resistivity.
 This is explained in more detail in~\cref{subsubsec:data-inversion}.
-For the interpretation of TEM data -- and for the inversion in particular -- some assumptions must to be made:
+For the interpretation of TEM data -- and for the inversion in particular -- some assumptions must be made:
 EM waves only propagate vertically and the subsurface is layered.
 As most inversion algorithms are work with a 1D model, the subsurface is assumed to be homogeneous in the horizontal direction.
 Even with these limitations the TEM method is a powerful tool for the
