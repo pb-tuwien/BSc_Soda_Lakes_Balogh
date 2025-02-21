@@ -75,14 +75,12 @@ but it is not the true resistivity of the material.
 For this reason inflection points can be interpreted as boundaries between different layers with different resistivities,
 and the slope of the curve shows whether the resistivity is increasing or decreasing in the new layer~\parencite{fitterman1986transient}.
 
-\begin{figure}[h]
+\begin{figure*}[ht]
     \centering
-    \resizebox{\columnwidth}{!}{
-        \includegraphics[angle=0, trim=0cm 0cm 0cm 0cm, clip, width=16cm]{data/20240522/TEM-data/08-forward_model/example_response}
-    }
-    \caption{Numerically modelled typical TEM reponse with the signal a) and the apparent resistivity b).}
+    \includegraphics[width=\textwidth]{data/20240522/TEM-data/08-forward_model/example_response}
+    \caption{Numerically modelled typical TEM response with the signal a) and the apparent resistivity b).}
     \label{fig:typical_sounding}
-\end{figure}
+\end{figure*}
 
 Another approach is to use the inversion of the data to create a model of the subsurface resistivity.
 This is explained in more detail in~\cref{subsubsec:data-inversion}.
@@ -224,7 +222,7 @@ With the choice of $\lambda$, the trade-off between data misfit and model comple
 Building on this foundation, several deterministic methods have been developed, such as Gauss-Newton inversion and Conjugate Gradient.
 A constraint inversion can be used to incorporate prior information about the model, which can be useful to prevent overfitting to noise.
 Stochastic methods, on the other hand, randomly search the solution space and provide a range of plausible models rather than a single deterministic solution.
-This is signifacantly more computationally expensive, but can be more robust against noise and can provide uncertainty estimates.
+This is significantly more computationally expensive, but can be more robust against noise and can provide uncertainty estimates.
 Particle swarm optimization (PSO) and Bayesian inversion are examples of stochastic methods~\parencite{rucker2017pygimli, xue2020development}.
 
 An implementation of the deterministic approach is the PyGIMLi library, introduced by \textcite{rucker2017pygimli},
@@ -300,3 +298,28 @@ This process is repeated until the difference between the lambda-values of the i
 This method allows to find an optimal $\lambda$ while minimising the number of inversions necessary.
 The search algorithm was tested with the ERT method on a conductive thin film with two non-conductive anomalies
 and showed promising results in finding the ``corner'' of the L-curve.
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=\textwidth]{data/20240522/Survey_20240522}
+    \caption{Numerically modelled typical TEM reponse with the signal a) and the apparent resistivity b).}
+    \label{fig:survey_may}
+\end{figure*}
+
+\subsection{Experimental Set up}\label{subsec:set-up}
+The L-Curve method was implemented for the inversion of TEM data and tested in a study site.
+
+\subsubsection{Field Survey}\label{subsubsec:field-survey}
+The field measurements were carried out at the Martenhofer Lacke in the Nationalpark Neusiedlersee - Seewinkel (16° 51' 23.058'' N, 47° 45' 8.4348'' E).
+This site is located on the east side of the Neusiedler See, Austria.
+The Martenhofer Lacke belongs to the soda lakes, which are characterised by a high salt content in the water.
+Because this site is part of the national park, it can be assumed that it is a low noise environment.
+For this work, two separate surveys were conducted: One on the 22nd May 2024 with 45 soundings and a second one on 8th October 2024 with 66 soundings.
+Both surveys were done with the TEM-FAST 48 system manufactured by Applied Electromagnetic Research (AEMR) with a single-loop configuration.
+In the survey in May, a $12.5\times12.5\,\text{m}$ loop was combined with a current of $1.0\,\text{A}$ for all soundings except for the first two (M001 and M002), where $4.1\,\text{A}$ were used.
+For the first 14 soundings (M001-M014), 28 time windows were observed, resulting in a time range of $4-480\,\mu\text{s}$, and 4992 stacks.
+For all other soundings (M015-M045), 24 time windows were observed, resulting in a time range of $4-240\,\mu\text{s}$, and 9984 stacks.
+In the survey in October, a $6.25\times6.25\,\text{m}$ loop was used with a current of $4.1\,\text{A}$.
+For all soundings, a time range of $4-240\,\mu\text{s}$(24\,\text{time windows}) were combined with 16640 stacks.
+
+
+\subsubsection{Inversion Algorithm}\label{subsubsec:inversion}
