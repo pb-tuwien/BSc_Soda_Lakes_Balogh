@@ -1,20 +1,12 @@
-#%% Add to sys path
-from pathlib import Path
-import sys
-
-# Path to module
-module_path = str(Path.cwd().parents[0] / 'Bsc_TEM_tools')
-
-if module_path not in sys.path:
-    sys.path.append(module_path)
-
-import src.tem.survey_tem as st
+#%%
+import TEM_tools.tem.survey_tem as st
 from pathlib import Path
 
 #%%
 
-tem_data = 'data/20241008/20241008_tem_martenhofer_data.tem'
-tem_coords = 'data/20241008/20241008_tem_martenhofer_coords.csv'
+root_path = Path(__file__).parents[2]
+tem_data = root_path / 'data/20241008/20241008_tem_martenhofer_data.tem'
+tem_coords = root_path / 'data/20241008/20241008_tem_martenhofer_coords.csv'
 
 rename_points_1008 = {
     'M_': 'M'
@@ -34,7 +26,7 @@ erroneous_soundings_1008 = [
 if __name__ is '__main__':
     # Preprocessing
     survey_1008 = st.SurveyTEM(
-        'data/20241008'
+        root_path / 'data/20241008'
     )
     if Path(tem_coords).exists():
         survey_1008.coords_read(

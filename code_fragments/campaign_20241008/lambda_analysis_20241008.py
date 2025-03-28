@@ -1,23 +1,14 @@
-#%% Add to sys path
+#%%
+import TEM_tools.tem.survey_tem as st
 from pathlib import Path
-import sys
-
-# Path to module
-module_path = str(Path.cwd().parents[0] / 'Bsc_TEM_tools')
-
-if module_path not in sys.path:
-    sys.path.append(module_path)
-
-import src.tem.survey_tem as st
-from pathlib import Path
-from code_fragments.campaign_20241008.filtering_20241008 import tem_data, tem_coords, rename_points_1008, parsing_coords_1008
+from campaign_20241008.filtering_20241008 import root_path, tem_data, tem_coords, rename_points_1008, parsing_coords_1008
 
 #%%
 
 if __name__ is '__main__':
     # Preprocessing
     survey_1008 = st.SurveyTEM(
-        'data/20241008'
+        root_path / 'data/20241008'
     )
     if Path(tem_coords).exists():
         survey_1008.coords_read(
