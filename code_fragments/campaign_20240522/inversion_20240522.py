@@ -1,7 +1,7 @@
 #%%
 import TEM_tools.tem.survey_tem as st
 from pathlib import Path
-from campaign_20240522.filtering_20240522 import root_path, tem_data, tem_coords, rename_points_0522, parsing_coords_0522, erroneous_soundings_0522
+from filtering_20240522 import root_path, tem_data, tem_coords, rename_points_0522, parsing_coords_0522, erroneous_soundings_0522
 
 #%%
 
