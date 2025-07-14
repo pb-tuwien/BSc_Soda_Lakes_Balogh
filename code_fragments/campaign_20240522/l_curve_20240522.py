@@ -1,5 +1,5 @@
 #%% 
-import TEM_tools.tem.survey_tem as st
+import TEM_tools as te
 from pathlib import Path
 from filtering_20240522 import root_path, tem_data, tem_coords, rename_points_0522, parsing_coords_0522, erroneous_soundings_0522
 
@@ -7,7 +7,7 @@ from filtering_20240522 import root_path, tem_data, tem_coords, rename_points_05
 
 if __name__ is '__main__':
     # Preprocessing
-    survey_0522 = st.SurveyTEM(
+    survey_0522 = te.tem.SurveyTEM(
         root_path / 'data/20240522'
     )
     if Path(tem_coords).exists():
@@ -39,10 +39,10 @@ if __name__ is '__main__':
         _ = survey_0522.l_curve_plot(
             sounding=sounding,
             layer_type='dict',
-            layers={0:1, 5:1.5, 15:2},
-            max_depth=30,
+            layers={0:1, 5:1.5},
+            max_depth=20,
             test_range=(10, 1000, 20),
-            filter_times=(8, 150),
+            filter_times=(8, 210),
             fname=f'l_curve_{sounding}.png'
         )
 
@@ -50,9 +50,9 @@ if __name__ is '__main__':
         _ = survey_0522.l_curve_plot(
             sounding=sounding,
             layer_type='dict',
-            layers={0: 1, 5: 1.5, 15: 2},
-            max_depth=30,
+            layers={0: 1, 5: 1.5},
+            max_depth=20,
             test_range=(10, 1000, 20),
-            filter_times=(8, 150),
+            filter_times=(8, 210),
             fname=f'l_curve_{sounding}_err.png'
         )

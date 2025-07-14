@@ -1,5 +1,5 @@
 #%%
-import TEM_tools.tem.survey_tem as st
+import TEM_tools as te
 from pathlib import Path
 
 #%%
@@ -17,10 +17,10 @@ rename_points_0522 = {
     'M31': 'M031', 'M32': 'M032', 'M33': 'M033', 'M34': 'M034',
     'M35': 'M035', 'M36': 'M036', 'M37': 'M037', 'M38': 'M038',
     'M39': 'M039', 'M40': 'M040', 'M41': 'M041', 'M42': 'M042',
-    'M43': 'M043', 'M44': 'M044', 'M45': 'M045'
+    'M43': 'M043', 'M44': 'M044', 'M45': 'M045', 'TEM_test': 'Mtest'
 }
 parsing_coords_0522 = {
-    'EP1': 'Mtest', 'TEM_test': 'Mtest'
+    'T001': 'Mtest', 'T002': 'Mtest'
 }
 
 # Bad soundings
@@ -28,9 +28,9 @@ erroneous_soundings_0522 = [
     14, 43, 44
 ]
 
-if __name__ is '__main__':
+if __name__ == '__main__':
     # Preprocessing
-    survey_0522 = st.SurveyTEM(
+    survey_0522 = te.tem.SurveyTEM(
         root_path / 'data/20240522'
     )
     if Path(tem_coords).exists():
@@ -59,19 +59,23 @@ if __name__ is '__main__':
 
     # First look
     survey_0522.plot_raw_filtered(
-        filter_times=(8, 150),
+        filter_times=(8, 210),
         legend=False,
-        fname='20240522_all_soundings.png'
+        fname='20240522_all_soundings.png',
+        subset=[f'M{i:03d}' for i in range(1, 46)],
+        limits_rhoa=(0, 50)
     )
     survey_0522.plot_raw_filtered(
-        filter_times=(8, 150),
+        filter_times=(8, 210),
         legend=False,
         fname='20240522_good_soundings.png',
-        subset=[f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_0522]
+        subset=[f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_0522],
+        limits_rhoa=(0, 50)
     )
     survey_0522.plot_raw_filtered(
-        filter_times=(8, 150),
+        filter_times=(8, 210),
         legend=True,
         fname='20240522_err_soundings.png',
-        subset=[f'M{i:03d}' for i in erroneous_soundings_0522]
+        subset=[f'M{i:03d}' for i in erroneous_soundings_0522],
+        limits_rhoa=(0, 50)
     )

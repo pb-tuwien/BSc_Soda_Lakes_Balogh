@@ -1,57 +1,40 @@
 #%% Add to sys path
-import TEM_tools.tem.survey_tem as st
-from pathlib import Path
-from campaign_20240522.filtering_20240522 import root_path, tem_data, tem_coords, rename_points_0522, parsing_coords_0522
-import numpy as np
+import TEM_tools as te
+from campaign_20240522.filtering_20240522 import root_path
 
 #%%
 
-depth_vector = np.arange(
-    0,
-    31,
-    step=5
-)
-start_model = np.array(
-    [
-        100, 100, 100, 10, 10, 50, 50
-    ]
-)
-
 if __name__ is '__main__':
+    folder_handler = te.core.FolderHandler(root_path / 'data/20240522', 'tem_default', save_log=False)
+    target_dir = folder_handler.folder_structure.get('data_forward')
+
     # Preprocessing
-    survey_0522 = st.SurveyTEM(
-        root_path / 'data/20240522'
-    )
-    if Path(tem_coords).exists():
-        survey_0522.coords_read(
-            coords=tem_coords,
-            sep=','
-        )
-        survey_0522.coords_rename_points(
-            rename_dict=rename_points_0522
-        )
-        survey_0522.coords_sort_points()
-        survey_0522.coords_reproject()
-        survey_0522.coords_extract_save()
-    else:
-        survey_0522.coords_read()
+    modeller = te.tem.ForwardTEM()
 
-    if Path(tem_data).exists():
-        survey_0522.data_read(
-            data=tem_data
-        )
-    else:
-        survey_0522.data_read()
-    survey_0522.data_preprocess(
-        parsing_dict=parsing_coords_0522
-    )
+    # Set loop size in meters (side length of the square loop)
+    modeller.loop = 15
 
-    # Forward Model: Sounding
-    survey_0522.plot_forward_model(
-        subset=['M001'],
-        max_depth=30,
-        layers=depth_vector,
-        layer_type='custom',
-        start_model=start_model,
-        fname='example_response.png'
-    )
+    # Choose the current key: 1 or 4 (A)
+    modeller.currentkey = 4
+
+    # Choose time key: 1 - 9 (number of timegates)
+    modeller.timekey = 4
+
+    # Add a title to the plot
+    modeller.plot_title = 'Example Response'
+
+    # Thickness of each layer in meters
+    thks = [5, 10, 5]
+
+    # Resistivity of each layer in Ohm meters
+    rho = [30, 10, 30]
+
+    # Add the model with the thickness and resistivity of each layer
+    modeller.add_resistivity_model(thickness=thks, resistivity=rho)
+
+    # Run the forward modeller
+    modeller.run()
+
+    # Save the figure
+    modeller.savefig(target_dir / 'example_response.png')
+

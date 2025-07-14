@@ -1,5 +1,5 @@
 #%%
-import TEM_tools.tem.survey_tem as st
+import TEM_tools as te
 from pathlib import Path
 
 #%%
@@ -25,7 +25,7 @@ erroneous_soundings_1008 = [
 
 if __name__ is '__main__':
     # Preprocessing
-    survey_1008 = st.SurveyTEM(
+    survey_1008 = te.tem.SurveyTEM(
         root_path / 'data/20241008'
     )
     if Path(tem_coords).exists():
@@ -56,17 +56,21 @@ if __name__ is '__main__':
     survey_1008.plot_raw_filtered(
         filter_times=(12, 80),
         legend=False,
-        fname='20241008_all_soundings.png'
+        fname='20241008_all_soundings.png',
+        subset=[f'M{i:03d}' for i in range(1, 67)],
+        limits_rhoa=(0, 50)
     )
     survey_1008.plot_raw_filtered(
         filter_times=(12, 80),
         legend=False,
         fname='20241008_good_soundings.png',
-        subset=[f'M{i:03d}' for i in range(1, 67) if i not in erroneous_soundings_1008]
+        subset=[f'M{i:03d}' for i in range(1, 67) if i not in erroneous_soundings_1008],
+        limits_rhoa=(0, 50)
     )
     survey_1008.plot_raw_filtered(
         filter_times=(12, 80),
         legend=True,
         fname='20241008_err_soundings.png',
-        subset=[f'M{i:03d}' for i in erroneous_soundings_1008]
+        subset=[f'M{i:03d}' for i in erroneous_soundings_1008],
+        limits_rhoa=(0, 100)
     )

@@ -1,5 +1,5 @@
 #%%
-import TEM_tools.tem.survey_tem as st
+import TEM_tools as te
 from pathlib import Path
 from filtering_20240522 import root_path, tem_data, tem_coords, rename_points_0522, parsing_coords_0522, erroneous_soundings_0522
 
@@ -7,7 +7,7 @@ from filtering_20240522 import root_path, tem_data, tem_coords, rename_points_05
 
 if __name__ is '__main__':
     # Preprocessing
-    survey_0522 = st.SurveyTEM(
+    survey_0522 = te.tem.SurveyTEM(
         root_path / 'data/20240522'
     )
     if Path(tem_coords).exists():
