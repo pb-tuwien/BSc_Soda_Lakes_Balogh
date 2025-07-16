@@ -5,7 +5,7 @@ from filtering_20240522 import root_path, tem_data, tem_coords, rename_points_05
 
 #%%
 
-if __name__ is '__main__':
+if __name__ == '__main__':
     # Preprocessing
     survey_0522 = te.tem.SurveyTEM(
         root_path / 'data/20240522'

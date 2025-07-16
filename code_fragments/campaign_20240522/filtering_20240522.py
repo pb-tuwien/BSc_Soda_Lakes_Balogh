@@ -2,8 +2,6 @@
 import TEM_tools as te
 from pathlib import Path
 
-#%%
-
 root_path = Path(__file__).parents[2]
 tem_data = root_path / 'data/20240522/20240522_tem_martenhofer_data.tem'
 tem_coords = root_path / 'data/20240522/20240522_tem_martenhofer_coords.csv'
@@ -63,19 +61,19 @@ if __name__ == '__main__':
         legend=False,
         fname='20240522_all_soundings.png',
         subset=[f'M{i:03d}' for i in range(1, 46)],
-        limits_rhoa=(0, 50)
+        limits_rhoa=(5, 35)
     )
     survey_0522.plot_raw_filtered(
         filter_times=(8, 210),
         legend=False,
         fname='20240522_good_soundings.png',
         subset=[f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_0522],
-        limits_rhoa=(0, 50)
+        limits_rhoa=(5, 35)
     )
     survey_0522.plot_raw_filtered(
         filter_times=(8, 210),
         legend=True,
         fname='20240522_err_soundings.png',
         subset=[f'M{i:03d}' for i in erroneous_soundings_0522],
-        limits_rhoa=(0, 50)
+        limits_rhoa=(5, 35)
     )

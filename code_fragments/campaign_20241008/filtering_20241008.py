@@ -23,7 +23,7 @@ erroneous_soundings_1008 = [
 # 2: far lower apparent resistivities than all other soundings
 # 24 far higher apparent resistivities than all other soundings
 
-if __name__ is '__main__':
+if __name__ == '__main__':
     # Preprocessing
     survey_1008 = te.tem.SurveyTEM(
         root_path / 'data/20241008'
