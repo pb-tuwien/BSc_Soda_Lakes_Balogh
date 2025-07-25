@@ -1,24 +1,35 @@
 \label{sec:materials_and_methods}
-% \clearpage
 \subsection{State of the Art}\label{subsec:state-of-the-art}
-\subfile{2_1_state_of_the_art}
+% \subfile{2_1_state_of_the_art}
 
 \subsection{Experimental Set up}\label{subsec:set-up}
-The L-Curve method was implemented for the inversion of TEM data and tested in a study site.
+In order to investigate the applicability of automatically determining an optimal lambda value to TEM data, 
+we conducted a field survey in October of 2024 at the Martenhofer Lacke in the Nationalpark Neusiedlersee - Seewinkel. 
+The Geophysics Research Unit at TU Wien kindly provided data from May 2024 for the same 
+location but with a differing measuring configuration, which enables a comparison between varying setups.
+
+Furthermore a python package was developed to read, filter, and invert the TEM data.
+The visualisation of an L-curve as well as several methods of automatically finding an optimal lambda were also implemented. 
 
 \subsubsection{Measuring Device}\label{subsubsec:device}
-The TEM measurements for the field survey were done with the TEM-Fast 48 system by Applied Electromagnetic Research (AEMR). It is compact device allowing the use of a single-loop configuration. By connecting an external $12~/~24\,V$ battery a current either $1~/~4\,A$ can be put through the connected transmitter loop.
-It records up to 48 logarithmically spaced time gates, which results it a time range between $4 - 16000\,\mu s$. The specific number of time gates can be chosen through a time-key. \cref{tab:time-key} shows which time-key leads to which recording time range.
-The system allows for the stacking of pulses. The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aigner2021flexible}, where $n_s$ ($1-20$) is the chosen stacking-key and $n_{as}$ is the number of analogue stacks depending on the chosen time-key and can be found in \cref{tab:time-key}.
+Both survey were conducted with the TEM-Fast 48 HPC system by Applied Electromagnetic Research (AEMR).
+It is compact device allowing the use of a single-loop configuration. 
+By connecting an external $12~/~24\,V$ battery a current either $1~/~4\,A$ can be put through the connected transmitter loop.
+It records up to 48 logarithmically spaced time gates, which results in a time range between $4 - 16000\,\mu s$.
+The specific number of time gates can be chosen through a time-key. \cref{tab:time-key} shows which time-key leads to which recording time range.
+To provide an optimal signal-to-noise-ratio the device automatically stacks multiple pulses~\parencite{barsukov2015shallow}.
+The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aigner2021flexible}, 
+where $n_s$ ($1-20$) is the chosen stacking-key and $n_{as}$ is the number of analogue stacks depending on the chosen time-key 
+and can be found in \cref{tab:time-key}.
+More detailed infromation on the device can be found in the manual provided on the website \url{http://www.aemr.net/tem-fast.htm}.
 
-
-\begin{table}[h]
+\begin{table*}[!ht]
     \centering
-    \caption{Parameters relating to the time-key of the TEM-FAST 48 system (Excerpt from the manual)}
-    \resizebox{\columnwidth}{!}{
+    \caption{Parameters relating to the time-key of the TEM-FAST 48 HPC system (Excerpt from the manual).}
     \begin{tabular}{cccc}
         \hline
-        \textbf{Key} & \textbf{Max Time ($\mu s$)} & \textbf{Active Time Gates} & \textbf{Analog Stacks} \\
+        \textbf{Key} & \textbf{Max Time ($\mu s$)} & \textbf{Time Gates} & \textbf{Analogue Stacks} \\
+        \hline
         \hline
         1 & 64 & 16 & 1024\\
         2 & 128 & 20 & 512\\
@@ -31,23 +42,90 @@ The system allows for the stacking of pulses. The number of stacks are given by 
         9 & 16384 & 48 & 4\\
         \hline
     \end{tabular}
-    }
     \label{tab:time-key}
-\end{table}
+\end{table*}
 
 \subsubsection{Field Survey}\label{subsubsec:field-survey}
-The field measurements were carried out at the Martenhofer Lacke in the \textit{Nationalpark Neusiedlersee - Seewinkel} (16° 51' 23.058'' N, 47° 45' 8.4348'' E).
-This site is located on the east side of the Neusiedler See, Austria.
-The Martenhofer Lacke belongs to the soda lakes, which are characterised by a high salt content in the water.
-Because this site is part of the national park, it can be assumed that it is a low noise environment.
-For this work, two separate surveys were conducted: One on the 22nd May 2024 with 45 soundings and a second one on 8th October 2024 with 66 soundings.
-Both surveys were done with the TEM-FAST 48 system manufactured by Applied Electromagnetic Research (AEMR) with a single-loop configuration.
-In the survey in May, a $12.5\times12.5\,\text{m}$ loop was combined with a current of $1.0\,\text{A}$ for all soundings except for the first two (M001 and M002), where $4.1\,\text{A}$ were used.
-For the first 14 soundings (M001-M014), 28 time windows were observed, resulting in a time range of $4-480\,\mu\text{s}$, and 4992 stacks.
-For all other soundings (M015-M045), 24 time windows were observed, resulting in a time range of $4-240\,\mu\text{s}$, and 9984 stacks.
-In the survey in October, a $6.25\times6.25\,\text{m}$ loop was used with a current of $4.1\,\text{A}$.
-For all soundings, a time range of $4-240\,\mu\text{s}$(24\,\text{time windows}) were combined with 16640 stacks.
+The field measurements were carried out at the Martenhofer Lacke in the \textit{Nationalpark Neusiedlersee - Seewinkel} (16° 51' 23.058'' N, 47° 45' 8.4348'' E),
+which is located on the east side of the Neusiedler See, Austria.
+Being part of the Seewinkel, which are intermittent alkaline soda waters, this water cycle of this lake is fueled by deep saline groundwater and evaporation 
+leading to its high salinity and shallow water depth, which also varies throughout the year~\parencite{boros2025can}.
+This location was chosen due to having sparse man-made structures in the Nationalpark, 
+which reduces noise in the gathered data to a minimum~\parencite{aigner2024sensitivity}.
 
+The first survey, consisting of 45 soundings as shown in \cref{fig:may-map} with a $12.5\times12.5\,\text{m}$ loop, was carried out on the 22nd May 2024 
+and for the second survey 66 soundings, visualised in \cref{fig:oct-map} with a $6.25\times6.25\,\text{m}$ loop were measured on 8th October 2024.
+For both surveys a Voltage of 24V was used and \cref{tab:sounding-parameters} shows the parameters for each sounding.
+Based upon a first visual inspection of the data some soundings were marked as "anomalous" as seen in \cref{fig:may-map,fig:oct-map}.
 
-\subsubsection{Inversion Algorithm}\label{subsubsec:inversion}
-hi
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{data/20240522/Survey_20240522.png}
+    \caption[Map of sounding locations in May]{Locations of all the TEM soundings measured in the first survey (22nd May 2024), where soundings are marked as anomalies, which fell out of order in a first visual inspection.}
+    \label{fig:may-map}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{data/20241008/Survey_20241008.png}
+    \caption[Map of sounding locations in October]{Locations of all the TEM soundings measured in the second survey (8th October 2024), where soundings are marked as anomalies, which fell out of order in a first visual inspection.}
+    \label{fig:oct-map}
+\end{figure}
+
+\begin{table*}[h]
+    \centering
+    \caption{Device settings used as well as the resulting measured time ranges and total number of pulses stacked for each sounding of both surveys.}
+    \begin{tabular}{cccccc}
+        \textbf{Sounding} & \textbf{Current} & \textbf{Time Range} & \textbf{Time Key} & \textbf{Stacking Key} & \textbf{Total Stacks} \\
+        \hline
+        \hline
+        \textbf{22nd May 2024} \\
+        \hline
+        $\text{M001},\,\text{M002}$ & $4.1\,\text{A}$ & $4-480\,\mu\text{s}$ & $4$ & $3$ & $4992$\\
+        $\text{M003}\,-\,\text{M014}$ & $1.0\,\text{A}$ & $4-480\,\mu\text{s}$ & $4$ & $3$ & $4992$\\
+        $\text{M015}\,-\,\text{M045}$ & $1.0\,\text{A}$ & $4-240\,\mu\text{s}$ & $3$ & $3$ & $9984$\\
+        \hline
+        \textbf{8th October 2024} \\
+        \hline
+        $\text{M001}\,-\,\text{M066}$ & $4.1\,\text{A}$ & $4-240\,\mu\text{s}$ & $3$ & $5$ & $16640$\\
+        \hline
+    \end{tabular}
+    \label{tab:sounding-parameters}
+\end{table*}
+
+\subsubsection{Python Package}\label{subsubsec:inversion}
+In order to process the gathered data, we developed a python package mainly based on open-source python libraries.
+For the inversion routine we built upon the work of \textcite{aigner2021flexible}, 
+which combines the electromagnetic wave modelling capabilities of \texttt{empymod}~\parencite{Werthmüller2017}
+with the inversion algorithm from \texttt{PyGIMLi}~\parencite{rucker2017pygimli}.
+
+The capabilities of this package include the reading of TEM data, adding coordinates to each sounding, 
+the filtering based upon a time intervall, and the visualisation of the raw with the filtered data.
+The inversion routine requires certain starting parameters like the lambda value, a layer distribution, 
+a start model, and the relative error of the measured signal.
+If not specified otherwise a homogeneous model with the median apparent resistivity of the sounding is used as the starting model
+and the relative error is computed based of the error output of the measuring device.
+In case of particularly noisy data it is possible to set a minimum value for the relative error.
+This inversion algorithm works with a model of the subsurface, 
+where a resistivity value is assigned to a layer with a certain thickness, 
+and only modifies the resistivity value of every layer while keeping the thicknesses fixed.
+This makes the choice of an appropriate layer distribution (specifying the number and thicknesses of layers) vital~\parencite{Welkens2025}.
+
+We also implemented the functionality to compute and visualise an L-Curve for a TEM sounding.
+For this we run the inversion for various logarithmically spaced lambda values, 
+specified by the lower bound, the upper bound, and the number of values. 
+For each inversion, we compute the root-mean-square (RMS) misfit of the data with the model 
+as well as the roughness of the model and use these two values as the coordinates of a point
+corresponding to each inversion, which should result in an L-Curve~\parencite{cultrera2020simple, hansen1999curve}.
+
+To find an optimal lambda value for the inversion we implemented several search algorithms, 
+which all try to find the point (corresponding to a lambda value) with the highest curvature on the L-Curve~\parencite{lloyd1997use,cultrera2020simple}.
+We implemented the method used by \textcite{lloyd1997use}, which fits a cubic spline function to the L-Curve and 
+computes the first and second derivative of this function, which are used to compute the curvature of the function at each point.
+We also implemented a similar approach, where we used the \texttt{numpy.gradient} function 
+(\url{https://numpy.org/doc/1.26/reference/generated/numpy.gradient.html}) to compute the first and second derivative for the curvature.
+Lastly we implemented the iterative golden section search algorithm as described by \textcite{cultrera2020simple}, 
+where a lower and upper bound is defined for the lambda value and by comparing two curvatures within the interval and discarding the lower one,
+this method contracts the interval towards the optimal lambda.
+The advantage compared to the other two methods is that it is not bound to the predifined list of logarithmically spaced lambda values, 
+which in theory allows a more precise determination of the optimal lambda.

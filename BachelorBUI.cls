@@ -62,7 +62,7 @@ automark
 
 \pagestyle{scrheadings}
 \clearpairofpagestyles
-\ihead{Bachelor Thesis \@authorname}
+\ihead{\@authorname \ Bachelor Thesis}
 \ohead{\thepage}
 
 
@@ -71,7 +71,6 @@ automark
 \RequirePackage[list=true]{subcaption}
 
 \RequirePackage{mathtools} %% extension of amsmath (also loads amstext)
-
 \RequirePackage{amssymb}   %% for complex formulas
 %Correct UTF8 mapping for ams fonts
 \ifdefined\pdffontattr% \ifdefined is part of the e-TeX extension, which is part of any modern LaTeX compiler.
@@ -106,7 +105,7 @@ automark
 
 \RequirePackage{enumitem}  %% to customize itemize, enumerate, description
 
-\RequirePackage{listings} %% syntax highlighting - for program code_fragments
+\RequirePackage{listings} %% syntax highlighting - for program code
 \RequirePackage{scrhack} %% solve some problems with float of listings
 
 % Eigene Sprachabhängige Begriffe
@@ -134,6 +133,7 @@ automark
 \newcommand{\supervisor}[1]{\renewcommand\@supervisor{#1}}
 \newcommand\@supervisor{\@latex@error{No \noexpand\supervisor specified}\@ehc}
 
+
 %\title{\@thesistitle}
 
 %% Typografische Einstellungen zu Gleitobjekten
@@ -143,6 +143,8 @@ automark
 \renewcommand{\bottomfraction}{0.5}
 \setcounter{topnumber}{3}
 \setcounter{totalnumber}{5}
+
+
 
 
 \author{{\normalsize \sffamily \@authorname} \\ [2mm]
