@@ -15,12 +15,12 @@ and detect geological structures such as faults, fractures, and aquifers~\parenc
         \hline
         \textbf{Material} & \textbf{Resistivity ($\Omega\text{m}$)} \\
         \hline
-        Saturated layers with high salinity & 0.1 – 5 \\
-        Saturated clays and silts & 5 – 15 \\
-        Saturated sediments & 10 – 20 \\
-        Unsaturated sediments & 50 – 80 \\
-        Saturated sand & 40 – 150 \\
-        Unsaturated sand & 400 – 1500 \\
+        Saturated layers with high salinity & $0.1-5$ \\
+        Saturated clays and silts & $5-15$ \\
+        Saturated sediments & $10-20$ \\
+        Unsaturated sediments & $50-80$ \\
+        Saturated sand & $40-150$ \\
+        Unsaturated sand & $400-1500$ \\
         \hline
     \end{tabular}
     }
@@ -70,7 +70,7 @@ and the slope of the curve shows whether the resistivity is increasing or decrea
 
 \begin{figure*}[ht]
     \centering
-    \includegraphics[width=\textwidth]{data/20240522/TEM-data/08-forward_model/example_response}
+    \includegraphics[width=0.7\linewidth]{data/20240522/TEM-data/08-forward_model/example_response}
     \caption{Numerically modelled typical TEM response with the signal a) and the apparent resistivity b).}
     \label{fig:typical_sounding}
 \end{figure*}
@@ -291,9 +291,3 @@ This process is repeated until the difference between the lambda-values of the i
 This method allows to find an optimal $\lambda$ while minimising the number of inversions necessary.
 The search algorithm was tested with the ERT method on a conductive thin film with two non-conductive anomalies
 and showed promising results in finding the ``corner'' of the L-curve.
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=\textwidth]{data/20240522/Survey_20240522}
-    \caption{Numerically modelled typical TEM reponse with the signal a) and the apparent resistivity b).}
-    \label{fig:survey_may}
-\end{figure*}

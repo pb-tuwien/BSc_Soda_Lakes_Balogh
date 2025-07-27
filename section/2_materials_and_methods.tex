@@ -17,7 +17,7 @@ It is compact device allowing the use of a single-loop configuration.
 By connecting an external $12~/~24\,V$ battery a current either $1~/~4\,A$ can be put through the connected transmitter loop.
 It records up to 48 logarithmically spaced time gates, which results in a time range between $4 - 16000\,\mu s$.
 The specific number of time gates can be chosen through a time-key. \cref{tab:time-key} shows which time-key leads to which recording time range.
-To provide an optimal signal-to-noise-ratio the device automatically stacks multiple pulses~\parencite{barsukov2015shallow}.
+To provide an optimal signal-to-noise ratio the device automatically stacks multiple pulses~\parencite{barsukov2015shallow}.
 The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aigner2021flexible}, 
 where $n_s$ ($1-20$) is the chosen stacking-key and $n_{as}$ is the number of analogue stacks depending on the chosen time-key 
 and can be found in \cref{tab:time-key}.
@@ -25,7 +25,7 @@ More detailed infromation on the device can be found in the manual provided on t
 
 \begin{table*}[!ht]
     \centering
-    \caption{Parameters relating to the time-key of the TEM-FAST 48 HPC system (Excerpt from the manual).}
+    \caption[Time Key Parameters of the TEM-FAST Device]{Parameters relating to the time-key of the TEM-FAST 48 HPC system (Excerpt from the manual).}
     \begin{tabular}{cccc}
         \hline
         \textbf{Key} & \textbf{Max Time ($\mu s$)} & \textbf{Time Gates} & \textbf{Analogue Stacks} \\
@@ -61,20 +61,20 @@ Based upon a first visual inspection of the data some soundings were marked as "
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{data/20240522/Survey_20240522.png}
-    \caption[Map of sounding locations in May]{Locations of all the TEM soundings measured in the first survey (22nd May 2024), where soundings are marked as anomalies, which fell out of order in a first visual inspection.}
+    \caption[Map of Sounding Locations in May]{Locations of all the TEM soundings measured in the first survey (22nd May 2024), where soundings are marked as anomalies, which fell out of order in a first visual inspection.}
     \label{fig:may-map}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{data/20241008/Survey_20241008.png}
-    \caption[Map of sounding locations in October]{Locations of all the TEM soundings measured in the second survey (8th October 2024), where soundings are marked as anomalies, which fell out of order in a first visual inspection.}
+    \caption[Map of Sounding Locations in October]{Locations of all the TEM soundings measured in the second survey (8th October 2024), where soundings are marked as anomalies, which fell out of order in a first visual inspection.}
     \label{fig:oct-map}
 \end{figure}
 
-\begin{table*}[h]
+\begin{table*}[ht]
     \centering
-    \caption{Device settings used as well as the resulting measured time ranges and total number of pulses stacked for each sounding of both surveys.}
+    \caption[Device Settings in Both Surveys]{Device settings used as well as the resulting measured time ranges and total number of pulses stacked for each sounding of both surveys.}
     \begin{tabular}{cccccc}
         \textbf{Sounding} & \textbf{Current} & \textbf{Time Range} & \textbf{Time Key} & \textbf{Stacking Key} & \textbf{Total Stacks} \\
         \hline
@@ -105,7 +105,8 @@ The inversion routine requires certain starting parameters like the lambda value
 a start model, and the relative error of the measured signal.
 If not specified otherwise a homogeneous model with the median apparent resistivity of the sounding is used as the starting model
 and the relative error is computed based of the error output of the measuring device.
-In case of particularly noisy data it is possible to set a minimum value for the relative error.
+In case of particularly noisy data it is possible to set a minimum value for the relative error (noise floor).
+The noise floor limits how strongly the inversion algorithm tries to fit the model to each data point to avoid fitting errors.
 This inversion algorithm works with a model of the subsurface, 
 where a resistivity value is assigned to a layer with a certain thickness, 
 and only modifies the resistivity value of every layer while keeping the thicknesses fixed.

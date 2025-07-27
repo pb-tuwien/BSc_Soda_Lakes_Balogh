@@ -6,9 +6,6 @@ The code section utilizes functionality implemented in https://github.com/pb-tuw
 ## Table of Contents
 1. [Thesis Structure](#thesis-structure)
 2. [Files Overview](#files-overview)
-3. [Compiling the Thesis](#compiling-the-thesis)
-4. [Contributing](#contributing)
-5. [License](#license)
 
 ## Thesis Structure
 
@@ -18,17 +15,15 @@ The thesis is organized into several sections, including the introduction, metho
 
 ### LaTeX Files
 - **main.tex**: The main LaTeX file that compiles the entire thesis.
+- **BachelorBUI.cls**: The document class file for the LaTeX compilation.
 - **section/**: Directory containing individual chapter files (e.g., `0_abstract.tex`, `1_introduction.tex`, etc.).
 - **bibliography.bib**: The bibliography file for citing sources.
-
-### Logos
-- **logos/**: Directory containing the logos of the departments at TU Wien associated with this thesis.
 
 ### Data
 - **data/**: Directory containing all the raw and processed TEM and Coordinate files as well as all the plots obtained from the data.
 
 ### Code
-- **code/**: Python files used to analyze, invert and plot the TEM data.
+- **code_fragments/**: Python files used to analyze, invert and plot the TEM data.
 
 ### Other Files
 - **main.pdf**: The compiled PDF of the thesis.

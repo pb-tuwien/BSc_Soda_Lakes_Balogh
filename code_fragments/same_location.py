@@ -82,9 +82,9 @@ if __name__ == '__main__':
         max_depth=20,
         filter_times=(8, 210),
         test_range=(10, 1000, 20),
-        limits_rho=(10, 30),
+        limits_rho=(8, 42),
         limits_depth=(0, 20),
-        limits_rhoa=(10, 25),
+        limits_rhoa=(5, 35),
         fname=f'location_1_12.5_M019.png'
         )
     
@@ -108,9 +108,9 @@ if __name__ == '__main__':
         filter_times=(12, 80),
         noise_floor=0.08,
         test_range=(10, 1000, 20),
-        limits_rho=(10, 30),
+        limits_rho=(8, 42),
         limits_depth=(0, 20),
-        limits_rhoa=(10, 25),
+        limits_rhoa=(5, 35),
         fname=f'location_1_6.25_M026.png'
     )
 
@@ -133,9 +133,9 @@ if __name__ == '__main__':
         max_depth=20,
         filter_times=(8, 210),
         test_range=(10, 1000, 20),
-        limits_rho=(10, 30),
+        limits_rho=(8, 42),
         limits_depth=(0, 20),
-        limits_rhoa=(10, 25),
+        limits_rhoa=(5, 35),
         fname=f'location_2_12.5_M028.png'
         )
     
@@ -159,8 +159,8 @@ if __name__ == '__main__':
         filter_times=(12, 80),
         noise_floor=0.08,
         test_range=(10, 1000, 20),
-        limits_rho=(10, 30),
+        limits_rho=(8, 42),
         limits_depth=(0, 20),
-        limits_rhoa=(10, 25),
+        limits_rhoa=(5, 35),
         fname=f'location_2_6.25_M052.png'
     )

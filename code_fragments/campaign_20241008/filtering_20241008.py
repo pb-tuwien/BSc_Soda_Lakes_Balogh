@@ -2,8 +2,6 @@
 import TEM_tools as te
 from pathlib import Path
 
-#%%
-
 root_path = Path(__file__).parents[2]
 tem_data = root_path / 'data/20241008/20241008_tem_martenhofer_data.tem'
 tem_coords = root_path / 'data/20241008/20241008_tem_martenhofer_coords.csv'
