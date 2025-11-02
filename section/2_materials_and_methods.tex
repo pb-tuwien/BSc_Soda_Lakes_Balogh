@@ -41,7 +41,7 @@ because a EM wave attenuates stronger within a conductive layer~\parencite{evere
 For this reason the TEM method is commonly deployed to investigate conductive layers such as sea water intrusions, and
 clay layers confining aquifers~\parencite{chandra2016tem}.
 
-Every geophysical measurement includes a certain amount of uncertainty 
+Every geophysical measurement includes uncertainty
 and a single transient is usually significantly influenced by background noise~\parencite{christiansen2006tem,everett2013tem}.
 To increase the S/N ratio of a TEM sounding measurents are repeated 
 and the resulting transients are combined, which is called ``stacking''~\parencite{christiansen2006tem}.
@@ -49,29 +49,27 @@ Commonly between $1000$ and $10000$ transients are stacked into one sounding~\pa
 and when utilising a log-gating technique the S/N ratio is improved by the factor $\sqrt{\text{N}}$ where $\text{N}$ is the amount of 
 measurements per stack~\parencite{christiansen2006tem}.
 
-
-% In order to get information on the subsurface resistivity, the measured signal must be converted to an apparent resistivity ($\rho_a$).
-% This can be done by using the formula for late stage behaviour of the secondary field:
-% \begin{equation}
-%     \rho_a = \frac{1}{\pi} \left( \frac{M}{20 \cdot \frac{\partial b_z}{\partial t}} \right)^{\frac{2}{3}} \left( \frac{\mu_0}{t} \right)^{\frac{5}{3}}
-%     \label{eq:apparent_resistivity}
-% \end{equation}
-% where $M$ is the magnetic moment, $\frac{\partial b_z}{\partial t}$ is the signal measured by the receiver coil,
-% $\mu_0$ is the magnetic permeability of free space and $t$ is the time.
-% The magnetic moment is the product of the number of turns, the area, and the current in the transmitter loop.
-% The apparent resistivity is a measure of the resistivity of the subsurface material the EM wave has traveled through,
-% but it is not the true resistivity of the material.
-% For this reason inflection points can be interpreted as boundaries between different layers with different resistivities,
-% and the slope of the curve shows whether the resistivity is increasing or decreasing in the new layer~\parencite{fitterman1986transient}.
-
-
-% Another approach is to use the inversion of the data to create a model of the subsurface resistivity.
-% This is explained in more detail in~\cref{subsubsec:data-inversion}.
-% For the interpretation of TEM data -- and for the inversion in particular -- some assumptions must be made:
-% EM waves only propagate vertically and the subsurface is layered.
-% As most inversion algorithms are work with a 1D model, the subsurface is assumed to be homogeneous in the horizontal direction.
-% Even with these limitations the TEM method is a powerful tool for the
-% exploration of the subsurface and can be used in various applications~\parencite{christiansen2006tem}.
+A first evaluation of the data collected can be to convert the transient from voltage readings to apparent elctrical resistivity ($\rho_\text{a}$), 
+which equals to the weighted mean of the resistivities of the layers in which the currents were induced~\parencite{siemon2006rhoa}.
+If the EM wave travels through a half-space, the late-time apparent resistivities is given by
+\begin{equation}
+    \rho_a = \frac{1}{\pi} \left( \frac{M}{20 \cdot \frac{\partial b_z}{\partial t}} \right)^{\frac{2}{3}} \left( \frac{\mu_0}{t} \right)^{\frac{5}{3}}
+    \label{eq:apparent_resistivity}
+\end{equation}
+where $M$ is the magnetic moment, $\frac{\partial b_z}{\partial t}$ is the signal measured by the receiver coil,
+$\mu_0$ is the magnetic permeability of free space and $t$ is the time~\parencite{fitterman1986transient}.
+The magnetic moment is the product of the number of turns, the area, and the current in the transmitter loop.
+\cref{fig:typical_sounding} shows a numerically modelled example, where (a) is the one dimensional model of the layered half-space,
+(b) is the modelled decay of the secondary magnetic field, and (c) shows the converted apparent resistivity.
+\cref{fig:typical_sounding} shows that in a layered half-space the resistivities of the subsurface model in (a) can not be simply
+infered through the apparent resistivities in (c), which makes the interpretation of the data necessary~\parencite{fitterman1986transient,christiansen2006tem}.
+Reconstructing the resistivity distribution of the subsurface requires the solution of ill-posed problem, 
+as there are many subsurface models, which can explain the measured data~\parencite{xue2020inversion}.
+Infering a subsurface model from observed data is called an inverse problem or ``inversion'' and 
+will be discussed in~\cref{subsubsec:data-inversion}.
+For the interpretation of TEM data -- and for the inversion in particular -- the following assumptions must to be made: 
+The EM waves created by the transmitter only propagate downwards into a layered half-space and
+as most inversion algorithms work with a one dimensional model, the subsurface is assumed to be homogeneous in the horizontal direction~\parencite{christiansen2006tem}.
 
 \subsection{State of The Art}\label{subsec:state-of-the-art}
 \subfile{2.1_state_of_the_art}
@@ -204,3 +202,5 @@ where a lower and upper bound is defined for the lambda value and by comparing t
 this method contracts the interval towards the optimal lambda.
 The advantage compared to the other two methods is that it is not bound to the predifined list of logarithmically spaced lambda values, 
 which in theory allows a more precise determination of the optimal lambda.
+
+% second survey loop in water, not halfspace

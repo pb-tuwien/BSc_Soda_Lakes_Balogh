@@ -3,8 +3,6 @@ import TEM_tools as te
 from pathlib import Path
 from filtering_20241008 import root_path, tem_data, tem_coords, rename_points_1008, parsing_coords_1008, erroneous_soundings_1008
 
-#%%
-
 if __name__ == '__main__':
     # Preprocessing
     survey_1008 = te.tem.SurveyTEM(
@@ -41,20 +39,24 @@ if __name__ == '__main__':
             layer_type='dict',
             layers={0:1, 5:1.5},
             max_depth=20,
-            test_range=(10, 1000, 20),
-            filter_times=(12, 80),
-            noise_floor=0.08,
+            test_range=(5, 100, 20),
+            filter_times=(8, 110),
+            noise_floor=0.015,
+            constant_error=True,
             fname=f'l_curve_{sounding}.png'
         )
 
-    for sounding in [f'M{i:03d}' for i in erroneous_soundings_1008]:
-        _ = survey_1008.l_curve_plot(
-            sounding=sounding,
-            layer_type='dict',
-            layers={0: 1, 5: 1.5},
-            max_depth=20,
-            test_range=(10, 1000, 20),
-            filter_times=(12, 80),
-            noise_floor=0.08,
-            fname=f'l_curve_{sounding}_err.png'
-        )
+    # Bad soundings skipped: 
+    # For search algorithm testing the ones from the first survey are enough
+
+    # for sounding in [f'M{i:03d}' for i in erroneous_soundings_1008]:
+    #     _ = survey_1008.l_curve_plot(
+    #         sounding=sounding,
+    #         layer_type='dict',
+    #         layers={0: 1, 5: 1.5},
+    #         max_depth=20,
+    #         test_range=(10, 1000, 20),
+    #         filter_times=(12, 80),
+    #         noise_floor=0.08,
+    #         fname=f'l_curve_{sounding}_err.png'
+    #     )

@@ -18,16 +18,16 @@ if __name__ is '__main__':
     modeller.currentkey = 4
 
     # Choose time key: 1 - 9 (number of timegates)
-    modeller.timekey = 4
+    modeller.timekey = 6
 
     # Add a title to the plot
     modeller.plot_title = 'Example Response'
 
     # Thickness of each layer in meters
-    thks = [5, 10, 5]
+    thks = [30, 10, 30]
 
     # Resistivity of each layer in Ohm meters
-    rho = [30, 10, 30]
+    rho = [30, 20, 30]
 
     # Add the model with the thickness and resistivity of each layer
     modeller.add_resistivity_model(thickness=thks, resistivity=rho)
@@ -37,3 +37,4 @@ if __name__ is '__main__':
 
     # Save the figure
     modeller.savefig(target_dir / 'example_response.png')
+
