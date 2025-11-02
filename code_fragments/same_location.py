@@ -164,3 +164,60 @@ if __name__ == '__main__':
         limits_rhoa=(5, 35),
         fname=f'location_2_6.25_M052.png'
     )
+
+    opt_lam_improved_1008 = survey_1008.analyse_inversion_golden_section(
+        sounding='M052',
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        max_depth=20,
+        test_range=(10, 1000),
+        filter_times=(7, 110),
+        constant_error=True,
+        noise_floor=0.02,
+        fname=False
+    )
+
+    survey_1008.optimised_inversion_plot(
+        sounding='M052',
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        lam= opt_lam_improved_1008,
+        max_depth=20,
+        filter_times=(7, 110),
+        noise_floor=0.02,
+        constant_error=True,
+        test_range=(5, 50, 20),
+        limits_rho=(8, 42),
+        limits_depth=(0, 20),
+        limits_rhoa=(5, 35),
+        fname=f'improved_filter_time_6.25_M052.png'
+    )
+
+    opt_lam_improved_2_1008 = survey_1008.analyse_inversion_golden_section(
+        sounding='M052',
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        max_depth=20,
+        test_range=(5, 50),
+        filter_times=(7, 110),
+        constant_error=True,
+        noise_floor=0.02,
+        fname=False
+    )
+
+    survey_1008.optimised_inversion_plot(
+        sounding='M052',
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        lam= opt_lam_improved_2_1008,
+        max_depth=20,
+        filter_times=(7, 110),
+        noise_floor=0.02,
+        constant_error=True,
+        test_range=(5, 50, 20),
+        limits_rho=(8, 42),
+        limits_depth=(0, 20),
+        limits_rhoa=(5, 35),
+        fname=f'improved_ranges_6.25_M052.png'
+    )
+# %%

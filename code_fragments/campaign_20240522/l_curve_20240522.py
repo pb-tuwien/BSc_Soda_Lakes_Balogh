@@ -41,7 +41,7 @@ if __name__ == '__main__':
             layer_type='dict',
             layers={0:1, 5:1.5},
             max_depth=20,
-            test_range=(10, 1000, 20),
+            test_range=(5, 50, 20),
             filter_times=(8, 210),
             fname=f'l_curve_{sounding}.png'
         )

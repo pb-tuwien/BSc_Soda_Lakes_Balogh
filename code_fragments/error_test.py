@@ -122,5 +122,5 @@ if __name__ == '__main__':
         limits_depth=(0, 20),
         limits_rhoa=(5, 35),
         noise_floor=0.02,
-        fname=f'Test_lambda_16_M002.png'
+        fname=f'test_lambda_16_M002.png'
     )

@@ -37,4 +37,3 @@ if __name__ is '__main__':
 
     # Save the figure
     modeller.savefig(target_dir / 'example_response.png')
-

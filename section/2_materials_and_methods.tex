@@ -1,4 +1,68 @@
 \label{sec:materials_and_methods}
+The TEM method was originlly introduced for mining applications~\parencite{chandra2016tem} 
+and was since adopted to other fields like groundwater, 
+and geothermal exploration~\parencite{chandra2016tem, everett2013tem}.
+
+\subsection{Transient Electromagnetic Method}\label{subsec:tem-method}
+The transient electromagnetic (TEM) or altenatively time-domain electromagnetic (TDEM) method was
+proposed by \textcite{obukhov1968fields} and has been intensively developed 
+in the 1980s~\parencite{christiansen2006tem}.
+
+For the TEM method a pulse of current is transmitted through a ungrounded transmitter loop 
+generating a primary magnetic field~\parencite{chandra2016tem,christiansen2006tem}.
+When the current is turned off, the decay of the primary field induces 
+secondary currents (eddy currents) in the ground,
+which produce a secondary magnetic field~\parencite{chandra2016tem,christiansen2006tem}.
+This is governed by the Maxwell equations, which state that a changing electrical field 
+induces a magnetic field, and vice versa~\parencite{christiansen2006tem}.
+An electromagnetic (EM) wave propagating through the subsurface, 
+is attenuated by the electrical properties of the materials it encounters~\parencite{christiansen2006tem,everett2013tem}.
+The strength of the secondary magnetic field depends on the conductivity of the material the EM wave propagates through 
+and by measuring this field over time using a receiver loop, 
+information about the subsurface can be obtained~\parencite{christiansen2006tem,chandra2016tem}.
+Such a decay curve of the secondary magnetic field over time is called a ``transient'', 
+with an numerically modelled example shown in \cref{fig:typical_sounding}(b).
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{data/20240522/TEM-data/08-forward_model/example_response}
+    \caption{Numerically modelled typical TEM response with the used subsurface model (a), 
+    the signal (b), and the apparent resistivity (c).}
+    \label{fig:typical_sounding}
+\end{figure*}
+
+
+% By analysing the decay characteristics of the secondary field, it is possible to infer the conductivity structure of the subsurface,
+% because the wave propagates deeper into the subsurface, later times include information about deeper layers.
+% Such a decay curve is called a transient and multiple transients are measured for each sounding to counteract the random noise in the measurement.
+% An EM wave attenuates faster in conductive materials, which results in a shallower investigation depth.
+% For this reason the TEM method was developed to find conductive materials like ores, clay, and water-bearing formations in resistive media.
+% As the interpretation of the data is computationally intensive and requires sophisticated instruments to measure the secondary field accurately,
+% this method is rather ``young'' compared to other geophysical methods like electrical resistivity tomography (ERT) and magnetotellurics (MT)~\parencite{christiansen2006tem}.
+
+% In order to get information on the subsurface resistivity, the measured signal must be converted to an apparent resistivity ($\rho_a$).
+% This can be done by using the formula for late stage behaviour of the secondary field:
+% \begin{equation}
+%     \rho_a = \frac{1}{\pi} \left( \frac{M}{20 \cdot \frac{\partial b_z}{\partial t}} \right)^{\frac{2}{3}} \left( \frac{\mu_0}{t} \right)^{\frac{5}{3}}
+%     \label{eq:apparent_resistivity}
+% \end{equation}
+% where $M$ is the magnetic moment, $\frac{\partial b_z}{\partial t}$ is the signal measured by the receiver coil,
+% $\mu_0$ is the magnetic permeability of free space and $t$ is the time.
+% The magnetic moment is the product of the number of turns, the area, and the current in the transmitter loop.
+% The apparent resistivity is a measure of the resistivity of the subsurface material the EM wave has traveled through,
+% but it is not the true resistivity of the material.
+% For this reason inflection points can be interpreted as boundaries between different layers with different resistivities,
+% and the slope of the curve shows whether the resistivity is increasing or decreasing in the new layer~\parencite{fitterman1986transient}.
+
+
+% Another approach is to use the inversion of the data to create a model of the subsurface resistivity.
+% This is explained in more detail in~\cref{subsubsec:data-inversion}.
+% For the interpretation of TEM data -- and for the inversion in particular -- some assumptions must be made:
+% EM waves only propagate vertically and the subsurface is layered.
+% As most inversion algorithms are work with a 1D model, the subsurface is assumed to be homogeneous in the horizontal direction.
+% Even with these limitations the TEM method is a powerful tool for the
+% exploration of the subsurface and can be used in various applications~\parencite{christiansen2006tem}.
+
 \subsection{State of the Art}\label{subsec:state-of-the-art}
 \subfile{2_1_state_of_the_art}
 

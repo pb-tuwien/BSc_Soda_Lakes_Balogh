@@ -15,11 +15,17 @@ parsing_coords_1008 = {
 }
 
 # Bad soundings
-erroneous_soundings_1008 = [
+bad_soundings_1008 = [
     2, 9, 10, 24
 ]
 # 2: far lower apparent resistivities than all other soundings
 # 24 far higher apparent resistivities than all other soundings
+
+lake_soundings_1008 = [
+    57, 58, 59, 60, 61, 63, 64, 65
+]
+
+erroneous_soundings_1008 = bad_soundings_1008 + lake_soundings_1008
 
 if __name__ == '__main__':
     # Preprocessing
@@ -52,23 +58,30 @@ if __name__ == '__main__':
 
     # First look
     survey_1008.plot_raw_filtered(
-        filter_times=(12, 80),
+        filter_times=(7, 110),
         legend=False,
         fname='20241008_all_soundings.png',
         subset=[f'M{i:03d}' for i in range(1, 67)],
         limits_rhoa=(0, 50)
     )
     survey_1008.plot_raw_filtered(
-        filter_times=(12, 80),
+        filter_times=(7, 110),
         legend=False,
         fname='20241008_good_soundings.png',
         subset=[f'M{i:03d}' for i in range(1, 67) if i not in erroneous_soundings_1008],
         limits_rhoa=(0, 50)
     )
     survey_1008.plot_raw_filtered(
-        filter_times=(12, 80),
+        filter_times=(7, 110),
         legend=True,
         fname='20241008_err_soundings.png',
-        subset=[f'M{i:03d}' for i in erroneous_soundings_1008],
+        subset=[f'M{i:03d}' for i in bad_soundings_1008],
+        limits_rhoa=(0, 100)
+    )
+    survey_1008.plot_raw_filtered(
+        filter_times=(7, 110),
+        legend=True,
+        fname='20241008_lake_soundings.png',
+        subset=[f'M{i:03d}' for i in lake_soundings_1008],
         limits_rhoa=(0, 100)
     )
