@@ -73,9 +73,9 @@ if __name__ == '__main__':
             max_depth=20,
             test_range=(10, 1000, 20),
             filter_times=(8, 210),
-            noise_floor=0.02,
+            noise_floor=0.015,
             constant_error=True,
-            fname=f'l_curve_test_5_100.png'
+            fname=f'l_curve_test_10_1000_M028.png'
         )
     
     # Medium range: 5 - 100 (Aigner et al. 2024 in the centre: 50)
@@ -85,10 +85,10 @@ if __name__ == '__main__':
             layers={0:1, 5:1.5},
             max_depth=20,
             test_range=(5, 100, 20),
-            noise_floor=0.02,
+            noise_floor=0.015,
             constant_error=True,
             filter_times=(8, 210),
-            fname=f'l_curve_test_10_1000.png'
+            fname=f'l_curve_test_5_100_M028.png'
         )
 
     # Small range: 5 - 50 (Aigner et al. 2024 in the uppper bound)
@@ -99,7 +99,33 @@ if __name__ == '__main__':
             max_depth=20,
             test_range=(5, 50, 20),
             filter_times=(8, 210),
-            noise_floor=0.02,
+            noise_floor=0.015,
             constant_error=True,
-            fname=f'l_curve_test_5_50.png'
+            fname=f'l_curve_test_5_50_M028.png'
+        )
+    
+    # Second Survey: Medium range
+    _ = survey_1008.l_curve_plot(
+                sounding='M052',
+                layer_type='dict',
+                layers={0:1, 5:1.5},
+                max_depth=20,
+                test_range=(5, 100, 20),
+                noise_floor=0.015,
+                constant_error=True,
+                filter_times=(8, 110),
+                fname=f'l_curve_test_5_100_M052.png'
+            )
+    
+    # Second Survey: Small range
+    _ = survey_1008.l_curve_plot(
+            sounding='M052',
+            layer_type='dict',
+            layers={0:1, 5:1.5},
+            max_depth=20,
+            test_range=(5, 50, 20),
+            filter_times=(8, 110),
+            noise_floor=0.015,
+            constant_error=True,
+            fname=f'l_curve_test_5_50_M052.png'
         )

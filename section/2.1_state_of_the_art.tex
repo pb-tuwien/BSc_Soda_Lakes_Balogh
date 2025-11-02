@@ -31,7 +31,7 @@ and detect geological structures such as faults, fractures, and aquifers~\parenc
 
 \cref{tab:resistivity} presents commonly reported resistivity values for different subsurface materials.
 These values have been compiled from multiple studies conducted in diverse geological settings and
-using various geophysical methods~\parencite{gomez2019alluvial, galazoulas2015large, george2021modelling}.
+using various geophysical methods~\parencite{gomez2019alluvial, galazoulas2015petrophysical, george2021petrophysical}.
 
 In the context of~\cref{tab:resistivity}, the term ``sediments'' refers to unconsolidated deposits consisting of a mixture of sand, silt, and clay.
 The precise resistivity values presented in~\cref{tab:resistivity} for sediments are not general global values but are
@@ -154,7 +154,7 @@ Unfortunately, usually the model is unknown and the observed data is used to fin
 In practise the observed data is contaminated with noise, which introduces an error term into the equation
 and makes the inversion ill-posed and non-linear.
 An ill-posed problem means that small changes in the observed data can cause large differences in the model.
-As a result, noise introduces variability, making it impossible to find a unique solution~\parencite{zhdanov2002geophysical}.
+As a result, noise introduces variability, making it impossible to find a unique solution~\parencite{zhdanov2002inversion}.
 
 Approaches to address this issue can be divided into deterministic and stochastic methods.
 The deterministic approach tries to find a single solution, by iteratively updating the model parameters
@@ -172,7 +172,7 @@ Building on this foundation, several deterministic methods have been developed, 
 A constraint inversion can be used to incorporate prior information about the model, which can be useful to prevent overfitting to noise.
 Stochastic methods, on the other hand, randomly search the solution space and provide a range of plausible models rather than a single deterministic solution.
 This is significantly more computationally expensive, but can be more robust against noise and can provide uncertainty estimates.
-Particle swarm optimization (PSO) and Bayesian inversion are examples of stochastic methods~\parencite{rucker2017pygimli, xue2020development}.
+Particle swarm optimization (PSO) and Bayesian inversion are examples of stochastic methods~\parencite{rucker2017pygimli, xue2020inversion}.
 
 An implementation of the deterministic approach is the PyGIMLi library, introduced by \textcite{rucker2017pygimli},
 which uses Gauss-Newton inversion to iteratively update the model parameters.
@@ -185,14 +185,14 @@ Solving inverse problems is a task not limited to geophysics, which makes invers
 There are several methods to solve an inverse problem, but the most common approach is to use Tikhonov regularisation~\eqref{eq:tikhonov}.
 But the choice of the regularisation parameter $\lambda$ is not trivial and can have a significant impact on the inversion result.
 
-The L-curve method is widely used to determine the optimal $\lambda$ for the solution of an inverse problem~\parencite{hansen1999curve}.
+The L-curve method is widely used to determine the optimal $\lambda$ for the solution of an inverse problem~\parencite{hansen1992lcurve}.
 The L-curve is a graph of the residual norm against the solution norm.
 With an increasing $\lambda$, the residual norm is expected to increase and the solution norm is expected to decrease.
 This leads to a curve that resembles an L-shape.
 An optimal $\lambda$ should minimise the residual norm while keeping the solution norm small.
 This leads to the ``corner'' of the L, which is also the point with the highest curvature.
 
-\textcite{lloyd1997use} implements a method to find the point of maximum curvature and through this the optimal $\lambda$ for the inversion of diffusion battery data.
+\textcite{lloyd1997lcurve} implements a method to find the point of maximum curvature and through this the optimal $\lambda$ for the inversion of diffusion battery data.
 The method computes the $\chi^2$, also called ``error weighted root-mean-square'', and the roughness of the model for different $\lambda$ values to obtain the L-curve.
 A cubic spline function is fitted to the data points, to make it possible to calculate the curvature for each data point:
 \begin{equation}
@@ -206,7 +206,7 @@ and find the point with the maximum curvature.
 The corresponding $\lambda$ is then considered the optimal one.
 This method was not developed for geophysical data, but a modell roughness and $\chi^2$ can be computed for the TEM data as well.
 
-A similar approach was used by \textcite{farquharson2004comparison} to find the optimal $\lambda$.
+A similar approach was used by \textcite{farquharson2004lcurve} to find the optimal $\lambda$.
 In this method the value of the regularization parameter $\lambda$ is refined in each iteration of the data inversion.
 The inversion is started with a large $\lambda$ and the L-curve is calculated.
 Then the curvature for the chosen $\lambda$ is calculated through the formula:
@@ -230,7 +230,7 @@ This cooling-schedule-type behaviour is added to prevent the inversion to skip t
 which is supposed to prevent artifacts created by overfitting the data.
 This method was tested on synthetic frequency domain electromagnetic data and was able to achieve an appropriate fit of inverted to the observed data.
 
-Another approach for finding the optimal $\lambda$ is the iterative golden section search as proposed by \textcite{cultrera2020simple}.
+Another approach for finding the optimal $\lambda$ is the iterative golden section search as proposed by \textcite{cultrera2020lcurve}.
 After providing an initial range for the optimal $\lambda$ $[\lambda_1,\lambda_4]$, two more $\lambda$ values are calculated using the formula:
 \begin{equation}
 \begin{alignedat}{2}

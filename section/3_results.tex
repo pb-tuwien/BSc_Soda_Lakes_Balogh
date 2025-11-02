@@ -108,7 +108,7 @@ M002 shows a decline in the apparent resistivity curve.
 The inversion algorithm~\parencite{aigner2021flexible} used for the inversion needs various starting parameters.
 One of which is the layer distribution, which specifies the number and thicknesses of the layers characterising
 the subsurface model, which is used for the inversion.
-\textcite{Welkens2025} shows that model with $1\,\text{m}$-Layers until $5\,\text{m}$ depth 
+\textcite{welkens2025seewinkel} shows that model with $1\,\text{m}$-Layers until $5\,\text{m}$ depth 
 and $1.5\,\text{m}$-Layers below that, until a maximal depth of $10\,\text{m}$ optimises the inversion
 speed and model fit for data gathered with a $6.25\times6.25\,\text{m}$ loop and $4.1\,\text{A}$ of current.
 Since a $12.5\times12.5\,\text{m}$ loop is used in the first survey and \cref{fig:inv-depth-10m}(c) shows that the
@@ -206,7 +206,7 @@ the visual optimum of $33.6$. Hence all further searches for an optimal lambda w
 \end{figure*}
 
 \cref{fig:example-l-curve} shows how the ideal L-Curve would look like as it was 
-described by \textcite{hansen1999curve,farquharson2004comparison}, but TEM data
+described by \textcite{hansen1992lcurve,farquharson2004lcurve}, but TEM data
 gathered in the field always includes some level of noise, which can lead differenty shaped resulting
 curves from this computation.
 One extreme example can be seen in \cref{fig:search-bad-curve}, which resembles a random cluster of points 
@@ -232,7 +232,7 @@ This could possibly be explained by the inversion algorithm trying to fit the mo
 measured data, which would explain the increase in the RMS misfit.
 \cref{fig:search-boundry-minimum} shows that both the cubic spline and gradient based algorithm can find this minimum.
 Only the golden section search fails, which can be explained by the minimum being close to the upper boundry
-and thus being discarded in the first iteration of the search algorithm. \textcite{cultrera2020simple} described 
+and thus being discarded in the first iteration of the search algorithm. \textcite{cultrera2020lcurve} described 
 that the first two lambda values within the interval are calculated using the golden section method, 
 which in this case excludes the lambda value associated with the minimum.
 

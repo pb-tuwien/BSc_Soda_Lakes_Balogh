@@ -58,28 +58,28 @@ if __name__ == '__main__':
 
     # First look
     survey_1008.plot_raw_filtered(
-        filter_times=(7, 110),
+        filter_times=(8, 110),
         legend=False,
         fname='20241008_all_soundings.png',
         subset=[f'M{i:03d}' for i in range(1, 67)],
         limits_rhoa=(0, 50)
     )
     survey_1008.plot_raw_filtered(
-        filter_times=(7, 110),
+        filter_times=(8, 110),
         legend=False,
         fname='20241008_good_soundings.png',
         subset=[f'M{i:03d}' for i in range(1, 67) if i not in erroneous_soundings_1008],
         limits_rhoa=(0, 50)
     )
     survey_1008.plot_raw_filtered(
-        filter_times=(7, 110),
+        filter_times=(8, 110),
         legend=True,
         fname='20241008_err_soundings.png',
         subset=[f'M{i:03d}' for i in bad_soundings_1008],
         limits_rhoa=(0, 100)
     )
     survey_1008.plot_raw_filtered(
-        filter_times=(7, 110),
+        filter_times=(8, 110),
         legend=True,
         fname='20241008_lake_soundings.png',
         subset=[f'M{i:03d}' for i in lake_soundings_1008],

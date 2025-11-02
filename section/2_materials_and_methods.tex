@@ -2,12 +2,11 @@
 The TEM method was originlly introduced for mining applications~\parencite{chandra2016tem} 
 and was since adopted to other fields like groundwater, 
 and geothermal exploration~\parencite{chandra2016tem, everett2013tem}.
-
-\subsection{Transient Electromagnetic Method}\label{subsec:tem-method}
 The transient electromagnetic (TEM) or altenatively time-domain electromagnetic (TDEM) method was
 proposed by \textcite{obukhov1968fields} and has been intensively developed 
 in the 1980s~\parencite{christiansen2006tem}.
 
+\subsection{Transient Electromagnetic Method}\label{subsec:tem-method}
 For the TEM method a pulse of current is transmitted through a ungrounded transmitter loop 
 generating a primary magnetic field~\parencite{chandra2016tem,christiansen2006tem}.
 When the current is turned off, the decay of the primary field induces 
@@ -20,6 +19,9 @@ is attenuated by the electrical properties of the materials it encounters~\paren
 The strength of the secondary magnetic field depends on the conductivity of the material the EM wave propagates through 
 and by measuring this field over time using a receiver loop, 
 information about the subsurface can be obtained~\parencite{christiansen2006tem,chandra2016tem}.
+Data is recorded in specific time-windows (gates), 
+which are usually logarithmically spaced to increase signal-to-noise (S/N) ration in later times, 
+which is called log-gating~\parencite{christiansen2006tem}.
 Such a decay curve of the secondary magnetic field over time is called a ``transient'', 
 with an numerically modelled example shown in \cref{fig:typical_sounding}(b).
 
@@ -31,14 +33,22 @@ with an numerically modelled example shown in \cref{fig:typical_sounding}(b).
     \label{fig:typical_sounding}
 \end{figure*}
 
+By analysing the decay characteristics of a transient, it is possible to infer the conductivity structure of the subsurface,
+because with passing time the EM wave propagates deeper into the subsurface 
+and thus later time gates are linked to information about deeper layers~\parencite{christiansen2006tem}.
+The depth of investigation (DOI) is limited by the electrical conductivity of the subsurface,
+because a EM wave attenuates stronger within a conductive layer~\parencite{everett2013tem}.
+For this reason the TEM method is commonly deployed to investigate conductive layers such as sea water intrusions, and
+clay layers confining aquifers~\parencite{chandra2016tem}.
 
-% By analysing the decay characteristics of the secondary field, it is possible to infer the conductivity structure of the subsurface,
-% because the wave propagates deeper into the subsurface, later times include information about deeper layers.
-% Such a decay curve is called a transient and multiple transients are measured for each sounding to counteract the random noise in the measurement.
-% An EM wave attenuates faster in conductive materials, which results in a shallower investigation depth.
-% For this reason the TEM method was developed to find conductive materials like ores, clay, and water-bearing formations in resistive media.
-% As the interpretation of the data is computationally intensive and requires sophisticated instruments to measure the secondary field accurately,
-% this method is rather ``young'' compared to other geophysical methods like electrical resistivity tomography (ERT) and magnetotellurics (MT)~\parencite{christiansen2006tem}.
+Every geophysical measurement includes a certain amount of uncertainty 
+and a single transient is usually significantly influenced by background noise~\parencite{christiansen2006tem,everett2013tem}.
+To increase the S/N ratio of a TEM sounding measurents are repeated 
+and the resulting transients are combined, which is called ``stacking''~\parencite{christiansen2006tem}.
+Commonly between $1000$ and $10000$ transients are stacked into one sounding~\parencite{aigner2021flexible} 
+and when utilising a log-gating technique the S/N ratio is improved by the factor $\sqrt{\text{N}}$ where $\text{N}$ is the amount of 
+measurements per stack~\parencite{christiansen2006tem}.
+
 
 % In order to get information on the subsurface resistivity, the measured signal must be converted to an apparent resistivity ($\rho_a$).
 % This can be done by using the formula for late stage behaviour of the secondary field:
@@ -63,10 +73,10 @@ with an numerically modelled example shown in \cref{fig:typical_sounding}(b).
 % Even with these limitations the TEM method is a powerful tool for the
 % exploration of the subsurface and can be used in various applications~\parencite{christiansen2006tem}.
 
-\subsection{State of the Art}\label{subsec:state-of-the-art}
-\subfile{2_1_state_of_the_art}
+\subsection{State of The Art}\label{subsec:state-of-the-art}
+\subfile{2.1_state_of_the_art}
 
-\subsection{Experimental Set up}\label{subsec:set-up}
+\subsection{Experimental Set Up}\label{subsec:set-up}
 In order to investigate the applicability of automatically determining an optimal lambda value to TEM data, 
 we conducted a field survey in October of 2024 at the Martenhofer Lacke in the Nationalpark Neusiedlersee - Seewinkel. 
 The Geophysics Research Unit at TU Wien kindly provided data from May 2024 for the same 
@@ -81,7 +91,7 @@ It is compact device allowing the use of a single-loop configuration.
 By connecting an external $12~/~24\,V$ battery a current either $1~/~4\,A$ can be put through the connected transmitter loop.
 It records up to 48 logarithmically spaced time gates, which results in a time range between $4 - 16000\,\mu s$.
 The specific number of time gates can be chosen through a time-key. \cref{tab:time-key} shows which time-key leads to which recording time range.
-To provide an optimal signal-to-noise ratio the device automatically stacks multiple pulses~\parencite{barsukov2015shallow}.
+To provide an optimal signal-to-noise ratio the device automatically stacks multiple pulses~\parencite{barsukov2015temfast}.
 The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aigner2021flexible}, 
 where $n_s$ ($1-20$) is the chosen stacking-key and $n_{as}$ is the number of analogue stacks depending on the chosen time-key 
 and can be found in \cref{tab:time-key}.
@@ -113,7 +123,7 @@ More detailed infromation on the device can be found in the manual provided on t
 The field measurements were carried out at the Martenhofer Lacke in the \textit{Nationalpark Neusiedlersee - Seewinkel} (16° 51' 23.058'' N, 47° 45' 8.4348'' E),
 which is located on the east side of the Neusiedler See, Austria.
 Being part of the Seewinkel, which are intermittent alkaline soda waters, this water cycle of this lake is fueled by deep saline groundwater and evaporation 
-leading to its high salinity and shallow water depth, which also varies throughout the year~\parencite{boros2025can}.
+leading to its high salinity and shallow water depth, which also varies throughout the year~\parencite{boros2025seewinkel}.
 This location was chosen due to having sparse man-made structures in the Nationalpark, 
 which reduces noise in the gathered data to a minimum~\parencite{aigner2024sensitivity}.
 
@@ -160,7 +170,7 @@ Based upon a first visual inspection of the data some soundings were marked as "
 \subsubsection{Python Package}\label{subsubsec:inversion}
 In order to process the gathered data, we developed a python package mainly based on open-source python libraries.
 For the inversion routine we built upon the work of \textcite{aigner2021flexible}, 
-which combines the electromagnetic wave modelling capabilities of \texttt{empymod}~\parencite{Werthmüller2017}
+which combines the electromagnetic wave modelling capabilities of \texttt{empymod}~\parencite{werthmüller2017empymod}
 with the inversion algorithm from \texttt{PyGIMLi}~\parencite{rucker2017pygimli}.
 
 The capabilities of this package include the reading of TEM data, adding coordinates to each sounding, 
@@ -174,22 +184,22 @@ The noise floor limits how strongly the inversion algorithm tries to fit the mod
 This inversion algorithm works with a model of the subsurface, 
 where a resistivity value is assigned to a layer with a certain thickness, 
 and only modifies the resistivity value of every layer while keeping the thicknesses fixed.
-This makes the choice of an appropriate layer distribution (specifying the number and thicknesses of layers) vital~\parencite{Welkens2025}.
+This makes the choice of an appropriate layer distribution (specifying the number and thicknesses of layers) vital~\parencite{welkens2025seewinkel}.
 
 We also implemented the functionality to compute and visualise an L-Curve for a TEM sounding.
 For this we run the inversion for various logarithmically spaced lambda values, 
 specified by the lower bound, the upper bound, and the number of values. 
 For each inversion, we compute the root-mean-square (RMS) misfit of the data with the model 
 as well as the roughness of the model and use these two values as the coordinates of a point
-corresponding to each inversion, which should result in an L-Curve~\parencite{cultrera2020simple, hansen1999curve}.
+corresponding to each inversion, which should result in an L-Curve~\parencite{cultrera2020lcurve, hansen1992lcurve}.
 
 To find an optimal lambda value for the inversion we implemented several search algorithms, 
-which all try to find the point (corresponding to a lambda value) with the highest curvature on the L-Curve~\parencite{lloyd1997use,cultrera2020simple}.
-We implemented the method used by \textcite{lloyd1997use}, which fits a cubic spline function to the L-Curve and 
+which all try to find the point (corresponding to a lambda value) with the highest curvature on the L-Curve~\parencite{lloyd1997lcurve,cultrera2020lcurve}.
+We implemented the method used by \textcite{lloyd1997lcurve}, which fits a cubic spline function to the L-Curve and 
 computes the first and second derivative of this function, which are used to compute the curvature of the function at each point.
 We also implemented a similar approach, where we used the \texttt{numpy.gradient} function 
 (\url{https://numpy.org/doc/1.26/reference/generated/numpy.gradient.html}) to compute the first and second derivative for the curvature.
-Lastly we implemented the iterative golden section search algorithm as described by \textcite{cultrera2020simple}, 
+Lastly we implemented the iterative golden section search algorithm as described by \textcite{cultrera2020lcurve}, 
 where a lower and upper bound is defined for the lambda value and by comparing two curvatures within the interval and discarding the lower one,
 this method contracts the interval towards the optimal lambda.
 The advantage compared to the other two methods is that it is not bound to the predifined list of logarithmically spaced lambda values, 

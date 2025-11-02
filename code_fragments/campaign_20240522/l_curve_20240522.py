@@ -41,8 +41,10 @@ if __name__ == '__main__':
             layer_type='dict',
             layers={0:1, 5:1.5},
             max_depth=20,
-            test_range=(5, 50, 20),
+            test_range=(5, 100, 20),
             filter_times=(8, 210),
+            noise_floor=0.015,
+            constant_error=True,
             fname=f'l_curve_{sounding}.png'
         )
 
@@ -52,7 +54,9 @@ if __name__ == '__main__':
             layer_type='dict',
             layers={0: 1, 5: 1.5},
             max_depth=20,
-            test_range=(10, 1000, 20),
+            test_range=(5, 100, 20),
             filter_times=(8, 210),
+            noise_floor=0.015,
+            constant_error=True,
             fname=f'l_curve_{sounding}_err.png'
         )

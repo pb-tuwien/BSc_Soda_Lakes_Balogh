@@ -1,3 +1,4 @@
 .idea/
 *__pycache__/
 data_v1/
+code_fragments/error_test.py
