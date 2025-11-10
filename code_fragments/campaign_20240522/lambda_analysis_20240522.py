@@ -41,6 +41,8 @@ if __name__ == '__main__':
             max_depth=20,
             test_range=(5, 100, 20),
             filter_times=(8, 210),
+            noise_floor=0.015,
+            constant_error=True,
             fname=f'comparison_{sounding}.png'
         )
 

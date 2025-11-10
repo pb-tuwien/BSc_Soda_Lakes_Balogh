@@ -4,7 +4,7 @@ from campaign_20240522.filtering_20240522 import root_path
 
 #%%
 
-if __name__ is '__main__':
+if __name__ == '__main__':
     folder_handler = te.core.FolderHandler(root_path / 'data/20240522', 'tem_default', save_log=False)
     target_dir = folder_handler.folder_structure.get('data_forward')
 
