@@ -1,4 +1,3 @@
-\label{sec:results}
 The data gathered in the two surveys was processed separately. 
 Upon a visual inspection of apparent resistivity curves, which make minor differences more distinguishable than the signal curves, 
 the soundings were split into two groups:
@@ -8,8 +7,8 @@ and some soundings which do not align with the trend will be referenced as "anom
 \subsection{Filtering of the Data}\label{subsec:filtering}
 \cref{fig:good-signal-may} shows the normal soundings of the first survey (22nd May 2024) with the $12.5\times12.5\,\text{m}$ loop and \cref{fig:err-signal-may} shows the anomlies.
 In \cref{fig:good-signal-may}(b) it can be clearly seen that the effects of the turn-off ramp 
-as decribed by \textcite{aigner2021flexible} influence the measurents until about $8\,\mu\text{s}$, 
-which alignes with the $4.2-8.6\,\mu\text{s}$, found by \textcite{aigner2021flexible}.
+as decribed by \textcite{aigner_flexible_2021} influence the measurents until about $8\,\mu\text{s}$, 
+which alignes with the $4.2-8.6\,\mu\text{s}$, found by \textcite{aigner_flexible_2021}.
 At about $240\,\mu\text{s}$ \cref{fig:good-signal-may}(b) shows how the various curves start having distortions
 and \cref{fig:good-signal-may}(a) shows that measured impulse response is becoming a similar order of magnitude as the measured errors.
 For this reason the measurements are filtered to the time range of $8-210\,\mu\text{s}$ as shown in \cref{fig:good-signal-may}(c) and (d).
@@ -53,9 +52,9 @@ The normal soundings (\cref{fig:good-signal-oct}) and anomalies (\cref{fig:err-s
 with the $6.25\times6.25\,\text{m}$ loop were processed in a similar fashion.
 Compared to \cref{fig:good-signal-may}(b) \cref{fig:good-signal-oct}(b) shows the effects of the turn-off ramp until $12\,\mu\text{s}$, 
 but only for the soundings within the lake (M057-M065, except for M062), while the other soundings show effects until $7\,\mu\text{s}$, 
-which should be a bit smaller for smaller loop sizes~\parencite{aigner2021flexible}.
+which should be a bit smaller for smaller loop sizes~\parencite{aigner_flexible_2021}.
 The long lasting effect of the turn-off ramp for the soundings in the water, 
-can on one side be attributed to a longer turn-off ramp in water~\parencite{aigner2021flexible} and can
+can on one side be attributed to a longer turn-off ramp in water~\parencite{aigner_flexible_2021} and can
 on the other hand also be due to the loop being partially submerged during the measurents, 
 which breaks the assumption of a layered halfspace, which is necessary for the computation for the apparent resistivity
 as well as the data inversion~\parencite{kirsch2006groundwater}.
@@ -105,10 +104,10 @@ M002 shows a decline in the apparent resistivity curve.
 
 \FloatBarrier
 \subsection{Inversion Parameters}\label{subsec:inversion-parameters}
-The inversion algorithm~\parencite{aigner2021flexible} used for the inversion needs various starting parameters.
+The inversion algorithm~\parencite{aigner_flexible_2021} used for the inversion needs various starting parameters.
 One of which is the layer distribution, which specifies the number and thicknesses of the layers characterising
 the subsurface model, which is used for the inversion.
-\textcite{welkens2025seewinkel} shows that model with $1\,\text{m}$-Layers until $5\,\text{m}$ depth 
+\textcite{welkens_comparison_2025} shows that model with $1\,\text{m}$-Layers until $5\,\text{m}$ depth 
 and $1.5\,\text{m}$-Layers below that, until a maximal depth of $10\,\text{m}$ optimises the inversion
 speed and model fit for data gathered with a $6.25\times6.25\,\text{m}$ loop and $4.1\,\text{A}$ of current.
 Since a $12.5\times12.5\,\text{m}$ loop is used in the first survey and \cref{fig:inv-depth-10m}(c) shows that the
@@ -143,11 +142,11 @@ inversion algorithm struggles to fit the late time data.
     \label{fig:inv-depth-20m}
 \end{figure*}
 
-Regarding the noise floor, the minimum value for the relative error used in the inversion, \textcite{aigner2024sensitivity}
+Regarding the noise floor, the minimum value for the relative error used in the inversion, \textcite{aigner_sensitivity_2024}
 used $1.5-2.5\,\%$ for the measurements with a $12.5\times12.5\,\text{m}$ and a $50.0\times50.0\,\text{m}$ loop the in the soda lakes 
 and $3-15\,\%$ for the soundings at the ice glacier.
 For the first survey with the $12.5\times12.5\,\text{m}$ loop a noise floorof $2.5\,\%$ was chosen because this 
-measurement configuration resembles the configuration with the smaller loop by \textcite{aigner2024sensitivity}.
+measurement configuration resembles the configuration with the smaller loop by \textcite{aigner_sensitivity_2024}.
 For the second survey with the $6.25\times6.25\,\text{m}$ loop the noise floor was set to $8.0\,\%$ because
 smaller loop sizes decreases the magnetic moment, which leads to a smaller signal-to-noise ratio and 
 thus to less reliable measurements~\parencite{kirsch2006groundwater}.
@@ -155,7 +154,7 @@ thus to less reliable measurements~\parencite{kirsch2006groundwater}.
 To compute the L-Curve and find an optimal lambda value for the inversion, 
 a range of logarithmically spaced lambda values was choosen with the lower boundry of 10,
 the upper boundry of 1000, and a total of 20 values.
-This range covers the lambda values \textcite{aigner2024sensitivity} used for the inversion 
+This range covers the lambda values \textcite{aigner_sensitivity_2024} used for the inversion 
 of the data gathered in the soda lakes (50) and the former graphite mine (500 to 1000).
 By choosing 20 values in total total computation time is kept low, while the characteristics 
 of each L-Curve can still be resolved (\cref{fig:example-l-curve}).
@@ -206,7 +205,7 @@ the visual optimum of $33.6$. Hence all further searches for an optimal lambda w
 \end{figure*}
 
 \cref{fig:example-l-curve} shows how the ideal L-Curve would look like as it was 
-described by \textcite{hansen1992lcurve,farquharson2004lcurve}, but TEM data
+described by \textcite{hansen_analysis_1992,farquharson_comparison_2004}, but TEM data
 gathered in the field always includes some level of noise, which can lead differenty shaped resulting
 curves from this computation.
 One extreme example can be seen in \cref{fig:search-bad-curve}, which resembles a random cluster of points 
@@ -232,7 +231,7 @@ This could possibly be explained by the inversion algorithm trying to fit the mo
 measured data, which would explain the increase in the RMS misfit.
 \cref{fig:search-boundry-minimum} shows that both the cubic spline and gradient based algorithm can find this minimum.
 Only the golden section search fails, which can be explained by the minimum being close to the upper boundry
-and thus being discarded in the first iteration of the search algorithm. \textcite{cultrera2020lcurve} described 
+and thus being discarded in the first iteration of the search algorithm. \textcite{cultrera_simple_2020} described 
 that the first two lambda values within the interval are calculated using the golden section method, 
 which in this case excludes the lambda value associated with the minimum.
 
@@ -371,7 +370,7 @@ the start of a second layer with $24\,\Omega\text{m}$.
 The second layer is not distinctly visible, but rather a gradual increase, 
 which corresponds with the almost linearly increasing apparent resistivity curve in \cref{fig:inv-small-big}(b).
 \cref{fig:inv-small-big}(a) and (b) also show that the last measured data point possibly indicates s change in the slope
-and thus a new layer~\parencite{fitterman1986transient}, but it could also be data noise.
+and thus a new layer~\parencite{fitterman_transient_1986}, but it could also be data noise.
 
 \begin{figure*}[ht]
     \centering
@@ -411,9 +410,9 @@ but follows the general trend of the curve.
 \end{figure*}
 
 We found that the measurements with the $12.5\times12.5\,\text{m}$ loop were able
-to discern the same three layers regarding the thicknesses, which \textcite{aigner2024sensitivity} found
+to discern the same three layers regarding the thicknesses, which \textcite{aigner_sensitivity_2024} found
 in a borehole at the soda lakes, which is located about $1.5\,\text{km}$ north-east of the Martenhofer Lacke.
-\textcite{aigner2024sensitivity} describes a $1.6\,\text{m}$ clay-silt layer, 
+\textcite{aigner_sensitivity_2024} describes a $1.6\,\text{m}$ clay-silt layer, 
 followed by a $5.4\,\text{m}$ sandy gravel aquifer, 
 and a second clay-silt layer until the maximal drilled depth of $10\,\text{m}$.
 \cref{fig:inv-big-small,fig:inv-big-big} both show in subfigure (c) that the first two layers of the
@@ -425,14 +424,14 @@ The second layer present in the subfigures (c) of \cref{fig:inv-big-small,fig:in
 shows a layer with a resistivity of about $13.5\,\Omega\text{m}$, which points to a clay-silt layer when compared with
 the values in \cref{tab:resistivity} (\colorbox{yellow}{Referencing table with common resistivity}
 \colorbox{yellow}{from the State of the Art}).
-This agrees well with the borehole data described by \textcite{aigner2024sensitivity}.
+This agrees well with the borehole data described by \textcite{aigner_sensitivity_2024}.
 The third layer with the resistivity of $22\,\Omega\text{m}$ and $30\,\Omega\text{m}$ respectively, 
-could indicate a second aquifer, which was also detected by \textcite{aigner2024sensitivity}, who found
+could indicate a second aquifer, which was also detected by \textcite{aigner_sensitivity_2024}, who found
 that a second aquifer with the resistivity value of $30\,\Omega\text{m}$ at a depth below $35\,\text{m}$.
 
 The model created through the data gathered with the $6.25\times6.25\,\text{m}$ loop, as seen in \cref{fig:inv-small-big}, only shows the first 
 two layers and is unable to resolve the third layer. 
 The advantage of being able to resolve shallow layers with a smaller loop~\parencite{kirsch2006groundwater},
-is counteracted by the effects of turn-off ramp as described by \textcite{aigner2021flexible} and thus the need to discard the early time data.
+is counteracted by the effects of turn-off ramp as described by \textcite{aigner_flexible_2021} and thus the need to discard the early time data.
 The results produced with the larger loop and the current of $4.1\,\text{A}$ seem to reproduce the results of earlier studies like
-\textcite{aigner2024sensitivity} the best out of the configurations tested in this work.
+\textcite{aigner_sensitivity_2024} the best out of the configurations tested in this work.
