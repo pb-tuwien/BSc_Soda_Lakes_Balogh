@@ -99,10 +99,9 @@ More detailed infromation on the device can be found in the manual provided on t
     \centering
     \caption[Time Key Parameters of the TEM-FAST Device]{Parameters relating to the time-key of the TEM-FAST 48 HPC system (Excerpt from the manual).}
     \begin{tabular}{cccc}
-        \hline
+        \toprule
         \textbf{Key} & \textbf{Max Time ($\mu s$)} & \textbf{Time Gates} & \textbf{Analogue Stacks} \\
-        \hline
-        \hline
+        \midrule
         1 & 64 & 16 & 1024\\
         2 & 128 & 20 & 512\\
         3 & 256 & 24 & 256\\
@@ -112,7 +111,7 @@ More detailed infromation on the device can be found in the manual provided on t
         7 & 4096 & 40 & 16\\
         8 & 8192 & 44 & 8\\
         9 & 16384 & 48 & 4\\
-        \hline
+        \bottomrule
     \end{tabular}
     \label{tab:time-key}
 \end{table*}
@@ -148,19 +147,16 @@ Based upon a first visual inspection of the data some soundings were marked as "
     \centering
     \caption[Device Settings in Both Surveys]{Device settings used as well as the resulting measured time ranges and total number of pulses stacked for each sounding of both surveys.}
     \begin{tabular}{cccccc}
+        \toprule
         \textbf{Sounding} & \textbf{Current} & \textbf{Time Range} & \textbf{Time Key} & \textbf{Stacking Key} & \textbf{Total Stacks} \\
-        \hline
-        \hline
+        \midrule
         \textbf{22nd May 2024} \\
-        \hline
         $\text{M001},\,\text{M002}$ & $4.1\,\text{A}$ & $4-480\,\mu\text{s}$ & $4$ & $3$ & $4992$\\
         $\text{M003}\,-\,\text{M014}$ & $1.0\,\text{A}$ & $4-480\,\mu\text{s}$ & $4$ & $3$ & $4992$\\
         $\text{M015}\,-\,\text{M045}$ & $1.0\,\text{A}$ & $4-240\,\mu\text{s}$ & $3$ & $3$ & $9984$\\
-        \hline
         \textbf{8th October 2024} \\
-        \hline
         $\text{M001}\,-\,\text{M066}$ & $4.1\,\text{A}$ & $4-240\,\mu\text{s}$ & $3$ & $5$ & $16640$\\
-        \hline
+        \bottomrule
     \end{tabular}
     \label{tab:sounding-parameters}
 \end{table*}
