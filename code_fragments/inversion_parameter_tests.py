@@ -1,14 +1,28 @@
-#%%
+#%% Imports
 import TEM_tools as te
 from pathlib import Path
+import pandas as pd
 
 from campaign_20240522.filtering_20240522 import root_path, tem_data, tem_coords, rename_points_0522
 from campaign_20240522.filtering_20240522 import parsing_coords_0522
+from campaign_20240522.algorithm_comparison_20240522 import lambda_data_path as lambdas_0522
 
 from campaign_20241008.filtering_20241008 import root_path, tem_data, tem_coords, rename_points_1008
 from campaign_20241008.filtering_20241008 import parsing_coords_1008
+from campaign_20241008.algorithm_comparison_20241008 import lambda_data_path as lambdas_1008
 
 if __name__ == '__main__':
+
+    lambda_df_0522 = pd.read_csv(lambdas_0522, sep=',')
+    lambda_df_1008 = pd.read_csv(lambdas_1008, sep=',')
+
+    optimal_m28_0522 = lambda_df_0522[lambda_df_0522['name'] == 'M028']['manual'].values[0]
+    optimal_m52_1008 = lambda_df_1008[lambda_df_1008['name'] == 'M052']['manual'].values[0]
+
+    testing_dir = root_path / 'data' / 'parameter_testing'
+    testing_dir.mkdir(parents=True, exist_ok=True)
+
+
     # Preprocessing
     survey_0522 = te.SurveyTEM(
         root_path / 'data/20240522'
@@ -64,7 +78,75 @@ if __name__ == '__main__':
         parsing_dict=parsing_coords_1008
     )
 
-    # Testing range for L-curve
+#%% Testing different maximal depths
+
+if __name__ == "__main__":
+    
+    survey_0522.plot_inversion(
+        subset=['M028'],
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        lam= optimal_m28_0522,
+        max_depth=10,
+        noise_floor=0.015,
+        constant_error=True,
+        filter_times=(8, 210),
+        limits_rho=(5, 40),
+        limits_depth=(0, 20),
+        limits_rhoa=(5, 35),
+        fname=testing_dir / 'M028_max_depth_10m.png'
+    )
+
+    survey_0522.plot_inversion(
+        subset=['M028'],
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        lam= optimal_m28_0522,
+        max_depth=20,
+        noise_floor=0.015,
+        constant_error=True,
+        filter_times=(8, 210),
+        limits_rho=(5, 40),
+        limits_depth=(0, 20),
+        limits_rhoa=(5, 35),
+        fname=testing_dir / 'M028_max_depth_20m.png'
+    )
+
+    survey_1008.plot_inversion(
+        subset=['M052'],
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        lam= optimal_m52_1008,
+        max_depth=10,
+        noise_floor=0.015,
+        constant_error=True,
+        filter_times=(8, 110),
+        limits_rho=(5, 50),
+        limits_depth=(0, 20),
+        limits_rhoa=(5, 35),
+        fname=testing_dir / 'M052_max_depth_10m.png'
+    )
+
+    survey_1008.plot_inversion(
+        subset=['M052'],
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        lam= optimal_m52_1008,
+        max_depth=20,
+        noise_floor=0.015,
+        constant_error=True,
+        filter_times=(8, 110),
+        limits_rho=(5, 50),
+        limits_depth=(0, 20),
+        limits_rhoa=(5, 35),
+        fname=testing_dir / 'M052_max_depth_20m.png'
+    )
+
+
+
+#%% Testing range for L-curve
+
+if __name__ == "__main__":
     # Large range: 10 - 1000
     _ = survey_0522.l_curve_plot(
             sounding='M028',
@@ -75,7 +157,7 @@ if __name__ == '__main__':
             filter_times=(8, 210),
             noise_floor=0.015,
             constant_error=True,
-            fname=f'l_curve_test_10_1000_M028.png'
+            fname=testing_dir / 'M028_lambda_range_10_1000.png'
         )
     
     # Medium range: 5 - 100 (Aigner et al. 2024 in the centre: 50)
@@ -88,7 +170,7 @@ if __name__ == '__main__':
             noise_floor=0.015,
             constant_error=True,
             filter_times=(8, 210),
-            fname=f'l_curve_test_5_100_M028.png'
+            fname=testing_dir / 'M028_lambda_range_5_100.png'
         )
 
     # Small range: 5 - 50 (Aigner et al. 2024 in the uppper bound)
@@ -101,7 +183,7 @@ if __name__ == '__main__':
             filter_times=(8, 210),
             noise_floor=0.015,
             constant_error=True,
-            fname=f'l_curve_test_5_50_M028.png'
+            fname=testing_dir / 'M028_lambda_range_5_50.png'
         )
     
     # Second Survey: Medium range
@@ -114,7 +196,7 @@ if __name__ == '__main__':
                 noise_floor=0.015,
                 constant_error=True,
                 filter_times=(8, 110),
-                fname=f'l_curve_test_5_100_M052.png'
+                fname=testing_dir / 'M052_lambda_range_5_100.png'
             )
     
     # Second Survey: Small range
@@ -127,5 +209,33 @@ if __name__ == '__main__':
             filter_times=(8, 110),
             noise_floor=0.015,
             constant_error=True,
-            fname=f'l_curve_test_5_50_M052.png'
+            fname=testing_dir / 'M052_lambda_range_5_50.png'
         )
+
+#%% Testing Normalisation
+
+if __name__ == '__main__':
+    survey_0522.lambda_analysis_comparison(
+        sounding='M028',
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        max_depth=20,
+        test_range=(5, 100, 20),
+        filter_times=(8, 210),
+        noise_floor=0.015,
+        constant_error=True,
+        fname=testing_dir / 'M028_normalization_true.png'
+    )
+
+    survey_0522.lambda_analysis_comparison(
+        sounding='M028',
+        layer_type='dict',
+        layers={0:1, 5:1.5},
+        max_depth=20,
+        test_range=(5, 100, 20),
+        filter_times=(8, 210),
+        normalize=False,
+        noise_floor=0.015,
+        constant_error=True,
+        fname=testing_dir /'M028_normalization_false.png'
+    )

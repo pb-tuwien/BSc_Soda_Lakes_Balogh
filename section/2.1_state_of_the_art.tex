@@ -215,7 +215,7 @@ where variations in grain size, moisture content, and mineral composition influe
 \subsubsection{Data Inversion}
 \label{subsubsec:data-inversion}
 
-A typical geophysical problem can be defined as follows:
+\textcite{zhdanov_geophysical_2002} defines a typical geophysical problem can be defined as follows:
 
 \begin{equation}
     \mathbf{d} = \mathcal{F}(\mathbf{m})
@@ -223,38 +223,50 @@ A typical geophysical problem can be defined as follows:
 \end{equation}
 
 where $\mathbf{d}$ is the observed data, $\mathcal{F}$ is the forward operator, and $\mathbf{m}$ is the model.
-If the model is known, the forward operator can be used to calculate the expected data.
-Unfortunately, usually the model is unknown and the observed data is used to find the model, which is called an inverse problem.
-In practise the observed data is contaminated with noise, which introduces an error term into the equation
-and makes the inversion ill-posed and non-linear.
-An ill-posed problem means that small changes in the observed data can cause large differences in the model.
-As a result, noise introduces variability, making it impossible to find a unique solution~\parencite{zhdanov_geophysical_2002}.
+If the model is known, the forward operator can be used to calculate the expected data~\parencite{zhdanov_geophysical_2002}.
+In geophysical investigations usually the model is unknown and the observed data is used to find the model, 
+which is called an inverse problem~\parencite{xue_development_2020}.
+In practise, the observed data is contaminated with noise, which introduces an error term into the equation~(\cref{eq:geophysical_problem})
+and thus expands the number of possible models, which can explain the observed data 
+and thus making the inverse problem in geophysics ill-posed and non-linear~\parencite{zhdanov_geophysical_2002}.
+An ill-posed problem means that mathematically there is no or no unique solution~\parencite{zhdanov_geophysical_2002}.
 
-Approaches to address this issue can be divided into deterministic and stochastic methods.
+Approaches to address this issue can be divided into deterministic and stochastic methods~\parencite{xue_development_2020}.
 The deterministic approach tries to find a single solution, by iteratively updating the model parameters
-to minimise the difference between observed and modeled data.
-To prevent overfitting to noise, Tikhonov regularisation is used, which adds a penalty term to the least squares problem.
+to minimise the difference between observed and modeled data~\parencite{xue_development_2020}.
+To prevent overfitting to noise, Tikhonov regularisation is used, 
+which adds a penalty term to the least squares problem~\parencite{zhdanov_geophysical_2002}, such as:
 
 \begin{equation}
     \| \mathbf{W}_d (\mathcal{F}(\mathbf{m}) - \mathbf{d}) \|_2^2 + \lambda \| \mathbf{W}_m (\mathbf{m} - \mathbf{m}_0) \|_2^2 \to \min
     \label{eq:tikhonov}
 \end{equation}
 
-$\mathbf{W}_d$ and $\mathbf{W}_m$ are weighting matrices, $\mathbf{m}_0$ is the initial model, and $\lambda$ is the regularisation parameter.
-$\| \mathbf{W}_m (\mathbf{m} - \mathbf{m}_0) \|_2^2$ can be interpreted as the roughness of the model, which quantifies the complexity or variation of the model.
-$\| \mathbf{W}_d (\mathcal{F}(\mathbf{m}) - \mathbf{d}) \|_2^2$ is the data misfit, which quantifies the difference between observed and modeled data and can include an error term.
-With the choice of $\lambda$, the trade-off between data misfit and model complexity can be controlled.
-Building on this foundation, several deterministic methods have been developed, such as Gauss-Newton inversion and Conjugate Gradient.
-A constraint inversion can be used to incorporate prior information about the model, which can be useful to prevent overfitting to noise.
-Stochastic methods, on the other hand, randomly search the solution space and provide a range of plausible models rather than a single deterministic solution.
-This is significantly more computationally expensive, but can be more robust against noise and can provide uncertainty estimates.
-Particle swarm optimization (PSO) and Bayesian inversion are examples of stochastic methods~\parencite{rucker_pygimli_2017, xue_development_2020}.
+$\mathbf{W}_d$ and $\mathbf{W}_m$ are weighting matrices, $\mathbf{m}_0$ is the initial model, 
+and $\lambda$ is the regularisation parameter.
+$\| \mathbf{W}_m (\mathbf{m} - \mathbf{m}_0) \|_2^2$ can be interpreted as the roughness of the model, 
+which quantifies the complexity or variation of the model~\parencite{zhdanov_geophysical_2002}.
+$\| \mathbf{W}_d (\mathcal{F}(\mathbf{m}) - \mathbf{d}) \|_2^2$ is the data misfit, 
+which quantifies the difference between observed $\mathbf{d}$ and modeled $\mathcal{F}(\mathbf{m})$ data 
+and can include an error term~\parencite{zhdanov_geophysical_2002}.
+With the choice of $\lambda$, the trade-off between data misfit and model complexity can be controlled~\parencite{xue_development_2020}.
+Building on this foundation, several deterministic methods have been developed, 
+such as Gauss-Newton inversion and Conjugate Gradient~\parencite{xue_development_2020}.
+A constraint inversion can be used to incorporate prior information about the model, 
+which can be used to reduce the number of models able to explain the data,
+and thus improve accuracy and reliability~\parencite{xue_development_2020}.
 
-An implementation of the deterministic approach is the PyGIMLi library, introduced by \textcite{rucker_pygimli_2017},
+Stochastic methods, on the other hand, randomly search the solution space 
+and provide a range of plausible models rather than a single deterministic solution~\parencite{aigner_stochastic_2025,xue_development_2020}.
+This is significantly more computationally expensive, 
+but can be more robust against noise and can provide uncertainty estimates~\parencite{aigner_stochastic_2025}.
+Particle swarm optimization (PSO) and Bayesian inversion are examples of stochastic methods~\parencite{xue_development_2020}.
+
+An implementation of the deterministic approach is the \texttt{PyGIMLi} library, introduced by \textcite{rucker_pygimli_2017},
 which uses Gauss-Newton inversion to iteratively update the model parameters.
-PyGIMLi is an open-source library written in Python and C++ and is designed for the inversion of geophysical data.
-It allows the implementation of any given forward operator into the inversion algorithm,
-which makes it a versatile tool for geophysical modeling and inversion.
+\texttt{PyGIMLi} is an open-source library written in Python and C++ and is designed for the inversion of geophysical data~\parencite{rucker_pygimli_2017}.
+\texttt{PyGIMLi} allows the implementation of any given forward operator into the inversion algorithm,
+which makes it a versatile tool for geophysical modeling and inversion~\parencite{rucker_pygimli_2017}.
 
 \subsubsection{L-curve method}
 \label{subsubsec:l-curve-method}

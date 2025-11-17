@@ -1,0 +1,57 @@
+Date:	2025-11-17_20-14-37
+Manual precision:	66.667 %
+
+Comparing search algorithms with evalution
+Threshold for hit:	10.000 %
+
+Gradient based search:
+Acurracy:	41.667 %
+Mean relative deviation:	39.565 %
+
+Cubic spline based search:
+Acurracy:	30.556 %
+Mean relative deviation:	65.208 %
+
+Golden section search:
+Acurracy:	33.333 %
+Mean relative deviation:	118.280 %
+============================================
+
+Date:	2025-11-17_20-14-37
+Manual precision:	66.667 %
+
+Comparing search algorithms with evalution
+Threshold for hit:	15.000 %
+
+Gradient based search:
+Acurracy:	47.222 %
+Mean relative deviation:	39.565 %
+
+Cubic spline based search:
+Acurracy:	33.333 %
+Mean relative deviation:	65.208 %
+
+Golden section search:
+Acurracy:	41.667 %
+Mean relative deviation:	118.280 %
+============================================
+
+Date:	2025-11-17_20-14-37
+Manual precision:	66.667 %
+
+Comparing search algorithms with evalution
+Threshold for hit:	20.000 %
+
+Gradient based search:
+Acurracy:	47.222 %
+Mean relative deviation:	39.565 %
+
+Cubic spline based search:
+Acurracy:	44.444 %
+Mean relative deviation:	65.208 %
+
+Golden section search:
+Acurracy:	44.444 %
+Mean relative deviation:	118.280 %
+============================================
+
