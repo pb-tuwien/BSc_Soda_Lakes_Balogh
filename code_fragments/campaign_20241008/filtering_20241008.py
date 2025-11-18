@@ -75,7 +75,7 @@ if __name__ == '__main__':
         filter_times=(8, 110),
         legend=True,
         fname='20241008_err_soundings.png',
-        subset=[f'M{i:03d}' for i in bad_soundings_1008],
+        subset=[f'M{i:03d}' for i in erroneous_soundings_1008],
         limits_rhoa=(0, 100)
     )
     survey_1008.plot_raw_filtered(
