@@ -1,26 +1,26 @@
-The TEM method was originlly introduced for mining applications~\parencite{chandra_time_2016} 
+The TEM method was originlly introduced for mining applications~\parencite{chandraTimeDomainElectromagnetic2016} 
 and was since adopted to other fields like groundwater, 
-and geothermal exploration~\parencite{chandra_time_2016, everett_electromagnetic_2013}.
+and geothermal exploration~\parencite{chandraTimeDomainElectromagnetic2016, everettElectromagneticInduction2013}.
 The transient electromagnetic (TEM) or altenatively time-domain electromagnetic (TDEM) method was
-proposed by \textcite{obukhov_fields_1968} and has been intensively developed 
-in the 1980s~\parencite{christiansen_transient_2006}.
+proposed by \textcite{obukhovFieldsHorizontalElectric1968} and has been intensively developed 
+in the 1980s~\parencite{christiansenTransientElectromagneticMethod2006}.
 
 \subsection{Transient Electromagnetic Method}\label{subsec:tem-method}
 For the TEM method a pulse of current is transmitted through a ungrounded transmitter loop 
-generating a primary magnetic field~\parencite{chandra_time_2016,christiansen_transient_2006}.
+generating a primary magnetic field~\parencite{chandraTimeDomainElectromagnetic2016,christiansenTransientElectromagneticMethod2006}.
 When the current is turned off, the decay of the primary field induces 
 secondary currents (eddy currents) in the ground,
-which produce a secondary magnetic field~\parencite{chandra_time_2016,christiansen_transient_2006}.
+which produce a secondary magnetic field~\parencite{chandraTimeDomainElectromagnetic2016,christiansenTransientElectromagneticMethod2006}.
 This is governed by the Maxwell equations, which state that a changing electrical field 
-induces a magnetic field, and vice versa~\parencite{christiansen_transient_2006}.
+induces a magnetic field, and vice versa~\parencite{christiansenTransientElectromagneticMethod2006}.
 An electromagnetic (EM) wave propagating through the subsurface, 
-is attenuated by the electrical properties of the materials it encounters~\parencite{christiansen_transient_2006,everett_electromagnetic_2013}.
+is attenuated by the electrical properties of the materials it encounters~\parencite{christiansenTransientElectromagneticMethod2006,everettElectromagneticInduction2013}.
 The strength of the secondary magnetic field depends on the conductivity of the material the EM wave propagates through 
 and by measuring this field over time using a receiver loop, 
-information about the subsurface can be obtained~\parencite{christiansen_transient_2006,chandra_time_2016}.
+information about the subsurface can be obtained~\parencite{christiansenTransientElectromagneticMethod2006,chandraTimeDomainElectromagnetic2016}.
 Data is recorded in specific time-windows (gates), 
 which are usually logarithmically spaced to increase signal-to-noise (S/N) ration in later times, 
-which is called log-gating~\parencite{christiansen_transient_2006}.
+which is called log-gating~\parencite{christiansenTransientElectromagneticMethod2006}.
 Such a decay curve of the secondary magnetic field over time is called a ``transient'', 
 with an numerically modelled example shown in \cref{fig:typical_sounding}(b).
 
@@ -34,41 +34,41 @@ with an numerically modelled example shown in \cref{fig:typical_sounding}(b).
 
 By analysing the decay characteristics of a transient, it is possible to infer the conductivity structure of the subsurface,
 because with passing time the EM wave propagates deeper into the subsurface 
-and thus later time gates are linked to information about deeper layers~\parencite{christiansen_transient_2006}.
+and thus later time gates are linked to information about deeper layers~\parencite{christiansenTransientElectromagneticMethod2006}.
 The depth of investigation (DOI) is limited by the electrical conductivity of the subsurface,
-because a EM wave attenuates stronger within a conductive layer~\parencite{everett_electromagnetic_2013}.
+because a EM wave attenuates stronger within a conductive layer~\parencite{everettElectromagneticInduction2013}.
 For this reason the TEM method is commonly deployed to investigate conductive layers such as sea water intrusions, and
-clay layers confining aquifers~\parencite{chandra_time_2016}.
+clay layers confining aquifers~\parencite{chandraTimeDomainElectromagnetic2016}.
 
 Every geophysical measurement includes uncertainty
-and a single transient is usually significantly influenced by background noise~\parencite{christiansen_transient_2006,everett_electromagnetic_2013}.
+and a single transient is usually significantly influenced by background noise~\parencite{christiansenTransientElectromagneticMethod2006,everettElectromagneticInduction2013}.
 To increase the S/N ratio of a TEM sounding measurents are repeated 
-and the resulting transients are combined, which is called ``stacking''~\parencite{christiansen_transient_2006}.
-Commonly between $1000$ and $10000$ transients are stacked into one sounding~\parencite{aigner_flexible_2021} 
+and the resulting transients are combined, which is called ``stacking''~\parencite{christiansenTransientElectromagneticMethod2006}.
+Commonly between $1000$ and $10000$ transients are stacked into one sounding~\parencite{aignerFlexibleSingleLoop2021} 
 and when utilising a log-gating technique the S/N ratio is improved by the factor $\sqrt{\text{N}}$ where $\text{N}$ is the amount of 
-measurements per stack~\parencite{christiansen_transient_2006}.
+measurements per stack~\parencite{christiansenTransientElectromagneticMethod2006}.
 
 A first evaluation of the data collected can be to convert the transient from voltage readings to apparent elctrical resistivity ($\rho_\text{a}$), 
-which equals to the weighted mean of the resistivities of the layers in which the currents were induced~\parencite{siemon_electromagnetic_2009}.
+which equals to the weighted mean of the resistivities of the layers in which the currents were induced~\parencite{siemonElectromagneticMethodsFrequency2009}.
 If the EM wave travels through a half-space, the late-time apparent resistivities is given by
 \begin{equation}
     \rho_a = \frac{1}{\pi} \left( \frac{M}{20 \cdot \frac{\partial b_z}{\partial t}} \right)^{\frac{2}{3}} \left( \frac{\mu_0}{t} \right)^{\frac{5}{3}}
     \label{eq:apparent_resistivity}
 \end{equation}
 where $M$ is the magnetic moment, $\frac{\partial b_z}{\partial t}$ is the signal measured by the receiver coil,
-$\mu_0$ is the magnetic permeability of free space and $t$ is the time~\parencite{fitterman_transient_1986}.
+$\mu_0$ is the magnetic permeability of free space and $t$ is the time~\parencite{fittermanTransientElectromagneticSounding1986}.
 The magnetic moment is the product of the number of turns, the area, and the current in the transmitter loop.
 \cref{fig:typical_sounding} shows a numerically modelled example, where (a) is the one dimensional model of the layered half-space,
 (b) is the modelled decay of the secondary magnetic field, and (c) shows the converted apparent resistivity.
 \cref{fig:typical_sounding} shows that in a layered half-space the resistivities of the subsurface model in (a) can not be simply
-infered through the apparent resistivities in (c), which makes the interpretation of the data necessary~\parencite{fitterman_transient_1986,christiansen_transient_2006}.
+infered through the apparent resistivities in (c), which makes the interpretation of the data necessary~\parencite{fittermanTransientElectromagneticSounding1986,christiansenTransientElectromagneticMethod2006}.
 Reconstructing the resistivity distribution of the subsurface requires the solution of ill-posed problem, 
-as there are many subsurface models, which can explain the measured data~\parencite{xue_development_2020}.
+as there are many subsurface models, which can explain the measured data~\parencite{xueDevelopmentInversionMethod2020}.
 Infering a subsurface model from observed data is called an inverse problem or ``inversion'' and 
 will be discussed in~\cref{subsubsec:data-inversion}.
 For the interpretation of TEM data -- and for the inversion in particular -- the following assumptions must to be made: 
 The EM waves created by the transmitter only propagate downwards into a layered half-space and
-as most inversion algorithms work with a one dimensional model, the subsurface is assumed to be homogeneous in the horizontal direction~\parencite{christiansen_transient_2006}.
+as most inversion algorithms work with a one dimensional model, the subsurface is assumed to be homogeneous in the horizontal direction~\parencite{christiansenTransientElectromagneticMethod2006}.
 
 \subsection{State of The Art}
 \label{subsec:state-of-the-art}
@@ -89,8 +89,8 @@ It is compact device allowing the use of a single-loop configuration.
 By connecting an external $12~/~24\,V$ battery a current either $1~/~4\,A$ can be put through the connected transmitter loop.
 It records up to 48 logarithmically spaced time gates, which results in a time range between $4 - 16000\,\mu s$.
 The specific number of time gates can be chosen through a time-key. \cref{tab:time-key} shows which time-key leads to which recording time range.
-To provide an optimal signal-to-noise ratio the device automatically stacks multiple pulses~\parencite{barsukov_chapter_2006}.
-The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aigner_flexible_2021}, 
+To provide an optimal signal-to-noise ratio the device automatically stacks multiple pulses~\parencite{barsukovChapter3Shallow2006}.
+The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aignerFlexibleSingleLoop2021}, 
 where $n_s$ ($1-20$) is the chosen stacking-key and $n_{as}$ is the number of analogue stacks depending on the chosen time-key 
 and can be found in \cref{tab:time-key}.
 More detailed infromation on the device can be found in the manual provided on the website \url{http://www.aemr.net/tem-fast.htm}.
@@ -120,9 +120,9 @@ More detailed infromation on the device can be found in the manual provided on t
 The field measurements were carried out at the Martenhofer Lacke in the \textit{Nationalpark Neusiedlersee - Seewinkel} (16° 51' 23.058'' N, 47° 45' 8.4348'' E),
 which is located on the east side of the Neusiedler See, Austria.
 Being part of the Seewinkel, which are intermittent alkaline soda waters, this water cycle of this lake is fueled by deep saline groundwater and evaporation 
-leading to its high salinity and shallow water depth, which also varies throughout the year~\parencite{boros_how_2025}.
+leading to its high salinity and shallow water depth, which also varies throughout the year~\parencite{borosHowCanUnique2025}.
 This location was chosen due to having sparse man-made structures in the Nationalpark, 
-which reduces noise in the gathered data to a minimum~\parencite{aigner_sensitivity_2024}.
+which reduces noise in the gathered data to a minimum~\parencite{aignerSensitivityAnalysisInverted2024}.
 
 The first survey, consisting of 45 soundings as shown in \cref{fig:may-map} with a $12.5\times12.5\,\text{m}$ loop, was carried out on the 22nd May 2024 
 and for the second survey 66 soundings, visualised in \cref{fig:oct-map} with a $6.25\times6.25\,\text{m}$ loop were measured on 8th October 2024.
@@ -163,9 +163,9 @@ Based upon a first visual inspection of the data some soundings were marked as "
 
 \subsubsection{Python Package}\label{subsubsec:inversion}
 In order to process the gathered data, we developed a python package mainly based on open-source python libraries.
-For the inversion routine we built upon the work of \textcite{aigner_flexible_2021}, 
-which combines the electromagnetic wave modelling capabilities of \texttt{empymod}~\parencite{werthmuller_open-source_2017}
-with the inversion algorithm from \texttt{PyGIMLi}~\parencite{rucker_pygimli_2017}.
+For the inversion routine we built upon the work of \textcite{aignerFlexibleSingleLoop2021}, 
+which combines the electromagnetic wave modelling capabilities of \texttt{empymod}~\parencite{werthmullerOpensourceFull3D2017}
+with the inversion algorithm from \texttt{PyGIMLi}~\parencite{ruckerPyGIMLiOpensourceLibrary2017}.
 
 The capabilities of this package include the reading of TEM data, adding coordinates to each sounding, 
 the filtering based upon a time intervall, and the visualisation of the raw with the filtered data.
@@ -178,22 +178,22 @@ The noise floor limits how strongly the inversion algorithm tries to fit the mod
 This inversion algorithm works with a model of the subsurface, 
 where a resistivity value is assigned to a layer with a certain thickness, 
 and only modifies the resistivity value of every layer while keeping the thicknesses fixed.
-This makes the choice of an appropriate layer distribution (specifying the number and thicknesses of layers) vital~\parencite{welkens_comparison_2025}.
+This makes the choice of an appropriate layer distribution (specifying the number and thicknesses of layers) vital~\parencite{welkensComparisonSubsurfaceGeophysical2025}.
 
 We also implemented the functionality to compute and visualise an L-Curve for a TEM sounding.
 For this we run the inversion for various logarithmically spaced lambda values, 
 specified by the lower bound, the upper bound, and the number of values. 
 For each inversion, we compute the root-mean-square (RMS) misfit of the data with the model 
 as well as the roughness of the model and use these two values as the coordinates of a point
-corresponding to each inversion, which should result in an L-Curve~\parencite{cultrera_simple_2020, hansen_analysis_1992}.
+corresponding to each inversion, which should result in an L-Curve~\parencite{cultreraSimpleAlgorithmFind2020, hansenAnalysisDiscreteIllPosed1992}.
 
 To find an optimal lambda value for the inversion we implemented several search algorithms, 
-which all try to find the point (corresponding to a lambda value) with the highest curvature on the L-Curve~\parencite{lloyd_use_1997,cultrera_simple_2020}.
-We implemented the method used by \textcite{lloyd_use_1997}, which fits a cubic spline function to the L-Curve and 
+which all try to find the point (corresponding to a lambda value) with the highest curvature on the L-Curve~\parencite{lloydUseLcurveMethod1997,cultreraSimpleAlgorithmFind2020}.
+We implemented the method used by \textcite{lloydUseLcurveMethod1997}, which fits a cubic spline function to the L-Curve and 
 computes the first and second derivative of this function, which are used to compute the curvature of the function at each point.
 We also implemented a similar approach, where we used the \texttt{numpy.gradient} function 
 (\url{https://numpy.org/doc/1.26/reference/generated/numpy.gradient.html}) to compute the first and second derivative for the curvature.
-Lastly we implemented the iterative golden section search algorithm as described by \textcite{cultrera_simple_2020}, 
+Lastly we implemented the iterative golden section search algorithm as described by \textcite{cultreraSimpleAlgorithmFind2020}, 
 where a lower and upper bound is defined for the lambda value and by comparing two curvatures within the interval and discarding the lower one,
 this method contracts the interval towards the optimal lambda.
 The advantage compared to the other two methods is that it is not bound to the predifined list of logarithmically spaced lambda values, 
