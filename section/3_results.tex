@@ -178,161 +178,207 @@ which decreased from $2.32\,\%$ to $2.09\,\%$ using $20\,\text{m}$ instead of $1
 \subsection{The L-Curve Method}
 \label{subsec:manual-l-curve}
 
-% \FloatBarrier
-% \subsection{Finding an Optimal Lambda}
-% \label{subsec:optimal-lambda}
+The L-Curve technique can be used to plot the model roughness against the model misfit for varying regularisation parameter ($\lambda$) values, 
+which can be used to find the optimal lambda $\lambda_\text{opt}$~\parencite{hansenAnalysisDiscreteIllPosed1992}.
+This can be done by visually finding the ``corner'' of the L-curve, 
+which were computed with the parameters from \cref{subsec:inversion-parameters}:
+$1.5\,\%$ as the relative error, $20$ logarithmically spaced $\lambda$ values in the range $5-100$, 
+and the layer distribution from \textcite{welkensComparisonSubsurfaceGeophysical2025} but with a maximal depth of $20\,\text{m}$.
+For the first survey the L-Curves were computed for the clean as well as noisy soundings, 
+where we found no significant visual difference between the clean and noisy data, and thus
+excluded all noisy data from further analysis.
+The remaining $43$ soundings of the first survey were manually analysed 
+and we were able to find an optimal lambda $\lambda_\text{opt}$ for $83.3\,\%$ of the soundings.
+Doing the same for the $54$ clean soundings of the second survey resulted in finding a $\lambda_\text{opt}$ for $66.7\,\%$
+of the soundings.
 
-% \cref{fig:example-l-curve} shows that the RMS misfit ($0.1-2.5\mathrm{e}{-6}$) and the roughness ($0.04-0.37$) are of entirely 
-% different orders of magnitude.
-% To highlight this issue the various search algorithms were applied to the sounding M010 of the first survey, 
-% shown in \cref{fig:example-norm-true}, where due to its minor curvature all three algorithms return a too high 
-% lambda value between $483-616$ as opposed to the visual optimum at about $33.6$.
-% To counteract this a linear normalisation, using the formula
-% $\mathbf{a}_i = \frac{\mathbf{a}_\text{i}-\mathbf{a}_\text{min}}{\mathbf{a}_\text{max}-\mathbf{a}_\text{min}}$, was 
-% applied to both RMS and roughness.
-% \cref{fig:example-norm-true} shows how with the normalisation all three search algorithms return a value ($25-43$) around 
-% the visual optimum of $33.6$. Hence all further searches for an optimal lambda were carried out with the normalisation.
+\cref{fig:lcurve-ideal,fig:lcurve-usable} show two L-Curves, which allowed finding an $\lambda_\text{opt}$.
+\cref{fig:lcurve-ideal} shows the L-Curve for the sounding ``M028'' of the first survey 
+and illustrates the expected L-Curve as it is described by \textcite{hansenAnalysisDiscreteIllPosed1992}.
+Based on \cref{fig:lcurve-ideal} we determined the optimal lambda for this sounding to be at $13$,
+which minimises both the RMS misfit and the model roughness.
+\cref{fig:lcurve-usable} shows the L-Curve for the sounding ``M003'' of the second survey 
+and was selected to showcase how the computed L-Curve can deviate from the expected ideal, 
+but still provide usefull information.
+\cref{fig:lcurve-usable} shows contrary to what is expected, 
+the RMS misfit increases between lambdas $8-5$ and decreases between $63-100$, 
+but the curve still has the characteristic ``corner'' at the $\lambda$ value $8$,
+which we determined to be the optimal lambda.
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/M010_normalization_false.png}
-%     \caption[Lambda Search Without Normalisation]{
-%         Automatically searching for an optimal lambda of the sounding M010 in the first survey (22nd May 2024) 
-%         without applying a normalisation to the L-Curve.
-%     }
-%     \label{fig:example-norm-false}
-% \end{figure*}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/l_curve_M028.png}
+    \caption[Example of an ideal L-Curve]{
+        L-Curve of the sounding M028 in the first survey (22nd May 2024), 
+        which shows the expected characteristics of a L-Curve.
+    }
+    \label{fig:lcurve-ideal}
+\end{figure*}
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/M010_normalization_true.png}
-%     \caption[Lambda Search With Normalisation]{
-%         Automatically searching for an optimal lambda of the sounding M010 in the first survey (22nd May 2024) 
-%         while applying a normalisation to the L-Curve.
-%     }
-%     \label{fig:example-norm-true}
-% \end{figure*}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/20241008/TEM-data/07-inversion_analysis/l_curve_M003.png}
+    \caption[Example of an usable L-Curve]{
+        L-Curve of the sounding M003 in the second survey (8th October 2024), 
+        which shows a L-Curve that diverges from the expected, 
+        but still can be used to find an optimal lambda.
+    }
+    \label{fig:lcurve-usable}
+\end{figure*}
 
-% \cref{fig:example-l-curve} shows how the ideal L-Curve would look like as it was 
-% described by \textcite{hansenAnalysisDiscreteIllPosed1992,farquharsonComparisonAutomaticTechniques2004}, but TEM data
-% gathered in the field always includes some level of noise, which can lead differenty shaped resulting
-% curves from this computation.
-% One extreme example can be seen in \cref{fig:search-bad-curve}, which resembles a random cluster of points 
-% rather than an L-Curve, which makes discerning an optimal lambda not feasible. 
-% Both the cubic spline as well as the gradient based algorithm find a local 
-% minimum (\cref{fig:search-bad-curve}), but as the plotted data points
-% do not create a cohesive L-Curve, hence the returned values not be considered the actual
-% optimal lambda for the inversion.
+\cref{fig:lcurve-inverted,fig:lcurve-bad} show two examples of the L-Curve method not working to find an
+optimal lambda for TEM soundings.
+Generally for an increasing $\lambda$ a descreasing model roughness 
+and an increasing model misfit is expected~\parencite{hansenAnalysisDiscreteIllPosed1992}, 
+but \cref{fig:lcurve-inverted}, which was caclulated for the sounding ``M045'' of the first survey, 
+shows a decreasing model misfit (RMS misfit) for an increasing $\lambda$.
+It is plausible that this behaviour changes with further increases in the $\lambda$ values, 
+as it happens in \cref{fig:lcurve-usable} between $8-53$.
+\cref{fig:lcurve-bad} shows an example, which was computed for the sounding ``M019'' of the second survey, 
+where the L-Curve method produced no cohesive curve, but rather collection of seemingly randomly positioned points.
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/comparison_M017.png}
-%     \caption[Example Lambda Search: Bad Curve]{
-%         Automatically searching for an optimal lambda of the sounding M017 in the first survey (22nd May 2024), 
-%         which showcases how the search algorithms perform, when no expected characteristic of an L-curve can be found.
-%     }
-%     \label{fig:search-bad-curve}
-% \end{figure*}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/l_curve_M045.png}
+    \caption[Example of an inverted L-Curve]{
+        L-Curve of the sounding M045 in the first survey (22nd May 2024), 
+        which shows an increasing RMS with an increasing roughness, 
+        which is the opposite to the expected characteristics of a L-Curve.
+    }
+    \label{fig:lcurve-inverted}
+\end{figure*}
 
-% Another example where the L-curve differs from the ideal can be seen in \cref{fig:search-boundry-minimum},
-% which shows an minimum at the lambda value 379 and an increase in the RMS misfit afterwards until the lambda value 55. 
-% This could possibly be explained by the inversion algorithm trying to fit the model to an error in the
-% measured data, which would explain the increase in the RMS misfit.
-% \cref{fig:search-boundry-minimum} shows that both the cubic spline and gradient based algorithm can find this minimum.
-% Only the golden section search fails, which can be explained by the minimum being close to the upper boundry
-% and thus being discarded in the first iteration of the search algorithm. \textcite{cultreraSimpleAlgorithmFind2020} described 
-% that the first two lambda values within the interval are calculated using the golden section method, 
-% which in this case excludes the lambda value associated with the minimum.
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/20241008/TEM-data/07-inversion_analysis/l_curve_M019.png}
+    \caption[Example of a bad L-Curve]{
+        ``L-Curve'' of the sounding M019 in the second survey (8th October 2024), 
+        which shows a seemingly random collection of points instead of a L-Curve.
+    }
+    \label{fig:lcurve-bad}
+\end{figure*}
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=0.55\linewidth]{data/20241008/TEM-data/07-inversion_analysis/comparison_M001.png}
-%     \caption[Example Lambda Search: Minimum Close to Boundry]{
-%         Automatically searching for an optimal lambda of the sounding M001 in the second survey (8th October 2024), 
-%         which showcases that the golden section search algorithm is unable to identify a minimum close to a boundry.
-%     }
-%     \label{fig:search-boundry-minimum}
-% \end{figure*}
+\subsection{Finding an Optimal Lambda}
+\label{subsec:optimal-lambda}
 
-% Another eventuality can be seen in \cref{fig:search-discontinuity}, where the curve shows a discontinuity
-% between the lambda values 43 and 34, where the RMS misfit abruptly decreases by about $70\,\%$.
-% \cref{fig:search-discontinuity} shows that the golden section search and the gradient based algorithm can still
-% find this optimal lambda value, but the cubic spline algorithm can not and returns a value before the discontinuity.
+The clean soundings of both surveys were used to test the three search algorithms presented in \cref{subsubsec:inversion}:
+All algorithms try finding the $\lambda$ corresponding to the point on the L-CUrve with the maximal curvature.
+The ``cubic-spline'' based approach fits a cubic spline function, 
+which is then used to compute the curvatures of each point~\parencite{lloydUseLcurveMethod1997}.
+The ``gradient-based'' method utilises the \texttt{gradient()} function from the \texttt{numpy} library to achieve the same.
+The ``golden section search'' is an iterative search algorithm based on \textcite{cultreraSimpleAlgorithmFind2020}.
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/comparison_M012.png}
-%     \caption[Example Lambda Search: Curve With a Discontinuity]{
-%         Automatically searching for an optimal lambda of the sounding M012 in the second survey (8th October 2024), 
-%         which showcases that the search algorithm fittng a cubic spline function can not optimise the lambda
-%         for an L-Curve with a discontinuity.
-%     }
-%     \label{fig:search-discontinuity}
-% \end{figure*}
+In early versions all three search algorithms performed poorly 
+and we attributed this to the fact that the RMS misfit and the model roughness are $5-6$ orders of magnitude apart,
+which can be seen when looking at the axis of \cref{fig:lcurve-usable}.
+\cref{fig:example-norm-false} shows how all three search algorithms return a $\lambda$ between $41-62$,
+which is higher than the visually determined $\lambda_\text{opt}$ at $13$.
+To counteract this a linear normalisation, using the formula
+$\mathbf{a}_i = \frac{\mathbf{a}_\text{i}-\mathbf{a}_\text{min}}{\mathbf{a}_\text{max}-\mathbf{a}_\text{min}}$, was 
+applied to both RMS and roughness.
+\cref{fig:example-norm-true} shows how with the normalisation all three search algorithms return a value ($12-15$) around 
+the visual optimum of $13$. Hence all further searches for an optimal lambda were carried out with the normalisation.
 
-% An additional case is shown by \cref{fig:search-loop-back}, where the roughness values start to decrease again after the
-% lambda value of about 20 and thus "looping back". This could be caused by the inversion algorithm trying to fit the erroneous data points
-% and thus prioritising outliers over following the general trend. If for example an outlier opposes a general trend, which indicates a multiple
-% layers with differing resistivities, then by fitting the outlier leads to
-% a more homogeneous model and thus a decrease in the model roughness.
-% \cref{fig:search-loop-back} shows that the golden section search returns the lambda value at the turning point as opposed to the actual
-% optimum, which both the cubic spline and gradient based algorithms return.
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/parameter_testing/M028_normalization_false.png}
+    \caption[Lambda Search Without Normalisation]{
+        Automatically searching for an optimal lambda of the sounding M028 in the first survey (22nd May 2024) 
+        without applying a normalisation to the L-Curve.
+    }
+    \label{fig:example-norm-false}
+\end{figure*}
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/comparison_M013.png}
-%     \caption[Example Lambda Search: Curve With a "Loop-Back"]{
-%         Automatically searching for an optimal lambda of the sounding M013 in the first survey (22nd May 2024), 
-%         which showcases how the golden section search algorithm fails, when L-curve shows and inverted C-shape on the end.
-%     }
-%     \label{fig:search-loop-back}
-% \end{figure*}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/parameter_testing/M028_normalization_true.png}
+    \caption[Lambda Search With Normalisation]{
+        Automatically searching for an optimal lambda of the sounding M028 in the first survey (22nd May 2024) 
+        while applying a normalisation to the L-Curve.
+    }
+    \label{fig:example-norm-true}
+\end{figure*}
 
-% These examples highlight the strenghts and shortcomings of each search algorithm. 
-% \cref{tab:search-summary} shows a summary of how the algorithms performed overall 
-% and comparing this to a visual inspection of the generated L-Curve. 
-% In both surveys 7 out of 111 soundings produce a curve, which can not
-% be used to find an optimal lambda, even when visually inspected.
-% The golden section search found the least optimal lambdas, only 57 out of 111, but when it worked, it returned the most
-% accurate results by finding the optimal lambda accurately down to first decimal point.
-% The cubic spline algorithm was more reliable overall by finding 83 out of 111 optimal lambdas, but as \cref{fig:search-discontinuity}
-% shows it also struggles with suboptimal L-Curves.
-% In our analysis the gradient based curvature analysis yielded the most promising results
-% by finding 89 out of 111 optimal lambda values, 
-% hence it was used to find the optimal lambda for each sounding respectively.
-% As all search algorithms maximise the curvature of the L-Curve to find the lambda, all 
-% of them struggle with curves with minimal curvature or even linear graphs.
-% \cref{tab:search-summary} also shows that there are minimal differences in the produced L-Curves 
-% as well as the effectiveness of the automated search algorithms between the two surveys 
-% and thus the two measuring configurations.
-% All comparison plots can be found at \url{https://github.com/pb-tuwien/BSc_Soda_Lakes_Balogh.git}
-% under "data/2024xxxx/TEM\-data/07\-inversion\_analysis/comparison\_M0yy.png", where xxxx is either 
-% "0522" for the first or "1008" for the second survey and yy being the sounding number (either 01 to 45 or 01 to 66).
+\cref{fig:example-norm-true} demontrates that all three search algorithms are able to find the optimal lambda for a 
+L-Curve, which resembles an ideal L-Curve as described by \textcite{hansenAnalysisDiscreteIllPosed1992}.
+\cref{fig:search-working} shows that all three search algorithms find the optimal lambda at $8$ when there is a clear
+point with a maximal curvature, even if the L-Curve deviates from the expected ideal.
+\cref{fig:search-not-working} demonstrated how the various search algorithm find different ``optimal'' lambda values, 
+when the curvature of the computed L-Curve has no distinct maximum, 
+which is exemplified by sounding ``M020'' of the first survey.
+When inspecting the L-Curve shown in \cref{fig:search-not-working}, we determined $\lambda_\text{opt}$ to be $15$:
+The ``cubic-spline'' and ``gradient'' based search algorithms overestimated $\lambda_\text{opt}$ to be between $45-53$,
+while the ``golden section search'' underestimated $\lambda_\text{opt}$ to be $7$.
 
-% \begin{table}[ht]
-%     \centering
-%     \caption[Summary of the search for an optimal Lambda]{
-%         Summary of the search for an optimal lambda for each sounding, comparing the visual identification 
-%         with the various automated search algorithms.
-%         }
-%     \begin{tabular}{cccccc}
-%         \toprule
-%         \textbf{Search Type} & \textbf{Found} & \textbf{Not Found}\\
-%         \midrule
-%         \textbf{22nd May 2024} \\
-%         Visual & 42 & 3 \\
-%         Cubic Spline & 32 & 13 \\
-%         Gradient Based & 34 & 11 \\
-%         Golden Section & 19 & 26 \\
-%         \textbf{8th October 2024} \\
-%         Visual & 62 & 4 \\
-%         Cubic Spline & 51 & 15 \\
-%         Gradient Based & 55 & 11 \\
-%         Golden Section & 38 & 28 \\
-%         \bottomrule
-%     \end{tabular}
-%     \label{tab:search-summary}
-% \end{table}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/20241008/TEM-data/07-inversion_analysis/comparison_M003.png}
+    \caption[Example Lambda Search Not Working]{
+        Automatically searching for an optimal lambda of the sounding M003 in the second survey (8th October 2024), 
+        which showcases how the different search algorithms perform well, even when the computed L-Curve deviates from the theoretical ideal,
+        but some expected characteristic of an L-curve can be found.
+    }
+    \label{fig:search-working}
+\end{figure*}
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/comparison_M020.png}
+    \caption[Example Lambda Search Working With Non-Ideal L-Curve]{
+        Automatically searching for an optimal lambda of the sounding M020 in the first survey (22nd May 2024), 
+        which showcases how performance the different search algorithms deviate.
+    }
+    \label{fig:search-not-working}
+\end{figure*}
+
+These examples highlight the strenghts and shortcomings of each search algorithm. 
+\cref{tab:search-summary} shows a summary of how the algorithms performed overall 
+and comparing this to a visual inspection of the generated L-Curve.
+The L-Curve method worked better at \colorbox{yellow}{revised until here}
+
+In both surveys 7 out of 111 soundings produce a curve, which can not
+be used to find an optimal lambda, even when visually inspected.
+The golden section search found the least optimal lambdas, only 57 out of 111, but when it worked, it returned the most
+accurate results by finding the optimal lambda accurately down to first decimal point.
+The cubic spline algorithm was more reliable overall by finding 83 out of 111 optimal lambdas, but as
+shows it also struggles with suboptimal L-Curves.
+In our analysis the gradient based curvature analysis yielded the most promising results
+by finding 89 out of 111 optimal lambda values, 
+hence it was used to find the optimal lambda for each sounding respectively.
+As all search algorithms maximise the curvature of the L-Curve to find the lambda, all 
+of them struggle with curves with minimal curvature or even linear graphs.
+\cref{tab:search-summary} also shows that there are minimal differences in the produced L-Curves 
+as well as the effectiveness of the automated search algorithms between the two surveys 
+and thus the two measuring configurations.
+All comparison plots can be found at \url{https://github.com/pb-tuwien/BSc_Soda_Lakes_Balogh.git}
+under "data/2024xxxx/TEM\-data/07\-inversion\_analysis/comparison\_M0yy.png", where xxxx is either 
+"0522" for the first or "1008" for the second survey and yy being the sounding number (either 01 to 45 or 01 to 66).
+
+\begin{table*}[!ht]
+    \centering
+    \caption[Summary of the search for an optimal Lambda]{
+        Summary of the search for an optimal lambda for each sounding, comparing the visual identification 
+        with the various automated search algorithms.
+        }
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Search Type} & \textbf{Sucessrate (\%)} & \textbf{Mean relative deviation (\%)}\\
+        \midrule
+        \textbf{22nd May 2024} \\
+        Visual & 83.33 & - \\
+        Cubic Spline & 60.00 & 32.66 \\
+        Gradient Based & 71.43 & 15.89 \\
+        Golden Section & 74.29 & 17.55 \\
+        \textbf{8th October 2024} \\
+        Visual & 66.67 & - \\
+        Cubic Spline & 33.33 & 65.21 \\
+        Gradient Based & 47.22 & 39.57 \\
+        Golden Section & 41.67 & 118.28 \\
+        \bottomrule
+    \end{tabular}
+    % \end{tblr}
+    \label{tab:search-summary}
+\end{table*}
 
 % \FloatBarrier
 % \subsection{Comparing Inversion Results}\label{subsec:inversion-results}
