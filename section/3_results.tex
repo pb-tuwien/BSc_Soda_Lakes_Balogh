@@ -110,6 +110,7 @@ thus all soundings within the lake (marked orange in \cref{fig:oct-map}) were ex
     \label{fig:err-signal-oct}
 \end{figure*}
 
+\FloatBarrier
 \subsection{Inversion Parameters}
 \label{subsec:inversion-parameters}
 
@@ -188,8 +189,8 @@ For the first survey the L-Curves were computed for the clean as well as noisy s
 where we found no significant visual difference between the clean and noisy data, and thus
 excluded all noisy data from further analysis.
 The remaining $43$ soundings of the first survey were manually analysed 
-and we were able to find an optimal lambda $\lambda_\text{opt}$ for $83.3\,\%$ of the soundings.
-Doing the same for the $54$ clean soundings of the second survey resulted in finding a $\lambda_\text{opt}$ for $66.7\,\%$
+and we were able to find an optimal lambda $\lambda_\text{opt}$ for $83.33\,\%$ of the soundings.
+Doing the same for the $54$ clean soundings of the second survey resulted in finding a $\lambda_\text{opt}$ for $66.67\,\%$
 of the soundings.
 
 \cref{fig:lcurve-ideal,fig:lcurve-usable} show two L-Curves, which allowed finding an $\lambda_\text{opt}$.
@@ -258,6 +259,7 @@ where the L-Curve method produced no cohesive curve, but rather collection of se
     \label{fig:lcurve-bad}
 \end{figure*}
 
+\FloatBarrier
 \subsection{Finding an Optimal Lambda}
 \label{subsec:optimal-lambda}
 
@@ -312,6 +314,16 @@ while the ``golden section search'' underestimated $\lambda_\text{opt}$ to be $7
 
 \begin{figure*}[ht]
     \centering
+    \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/comparison_M020.png}
+    \caption[Example Lambda Search Working With Non-Ideal L-Curve]{
+        Automatically searching for an optimal lambda of the sounding M020 in the first survey (22nd May 2024), 
+        which showcases how performance the different search algorithms deviate.
+    }
+    \label{fig:search-not-working}
+\end{figure*}
+
+\begin{figure*}[ht]
+    \centering
     \includegraphics[width=0.55\linewidth]{data/20241008/TEM-data/07-inversion_analysis/comparison_M003.png}
     \caption[Example Lambda Search Not Working]{
         Automatically searching for an optimal lambda of the sounding M003 in the second survey (8th October 2024), 
@@ -321,169 +333,177 @@ while the ``golden section search'' underestimated $\lambda_\text{opt}$ to be $7
     \label{fig:search-working}
 \end{figure*}
 
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=0.55\linewidth]{data/20240522/TEM-data/07-inversion_analysis/comparison_M020.png}
-    \caption[Example Lambda Search Working With Non-Ideal L-Curve]{
-        Automatically searching for an optimal lambda of the sounding M020 in the first survey (22nd May 2024), 
-        which showcases how performance the different search algorithms deviate.
-    }
-    \label{fig:search-not-working}
-\end{figure*}
-
 These examples highlight the strenghts and shortcomings of each search algorithm. 
 \cref{tab:search-summary} shows a summary of how the algorithms performed overall 
 and comparing this to a visual inspection of the generated L-Curve.
-The L-Curve method worked better at \colorbox{yellow}{revised until here}
+The L-Curve method worked for $83.33\,\%$ of the soundings with the first survey and 
+only for $66,67\,\%$ of the soundings with the second survey.
+\cref{tab:search-summary} shows that this trend continues for the performance of the
+search algorithms.
+We evaluated each search algorithm by comparing the obtained $\lambda$ with our visual analysis
+from \cref{subsec:manual-l-curve}.
 
-In both surveys 7 out of 111 soundings produce a curve, which can not
-be used to find an optimal lambda, even when visually inspected.
-The golden section search found the least optimal lambdas, only 57 out of 111, but when it worked, it returned the most
-accurate results by finding the optimal lambda accurately down to first decimal point.
-The cubic spline algorithm was more reliable overall by finding 83 out of 111 optimal lambdas, but as
-shows it also struggles with suboptimal L-Curves.
-In our analysis the gradient based curvature analysis yielded the most promising results
-by finding 89 out of 111 optimal lambda values, 
-hence it was used to find the optimal lambda for each sounding respectively.
-As all search algorithms maximise the curvature of the L-Curve to find the lambda, all 
-of them struggle with curves with minimal curvature or even linear graphs.
-\cref{tab:search-summary} also shows that there are minimal differences in the produced L-Curves 
-as well as the effectiveness of the automated search algorithms between the two surveys 
-and thus the two measuring configurations.
-All comparison plots can be found at \url{https://github.com/pb-tuwien/BSc_Soda_Lakes_Balogh.git}
-under "data/2024xxxx/TEM\-data/07\-inversion\_analysis/comparison\_M0yy.png", where xxxx is either 
-"0522" for the first or "1008" for the second survey and yy being the sounding number (either 01 to 45 or 01 to 66).
+We classified an automatic search ``successful'', 
+if the returned $\lambda$ was within an interval of $15\,\%$ around the $\lambda_\text{opt}$ 
+from our manual inspection.
+\cref{tab:search-summary} shows that for the first survey the ``Golden Section Search'' was more successful at finding
+the $\lambda$ with $74.29\,\%$ than the ``Gradient Based'' approach with $71.43\,\%$, 
+while for the second survey the Gradient Based method worked better with $47.22\,\%$ 
+than the Golden Section Search with $41.67\,\%$.
+Throughout both surveys the ``Cubic Spline'' based search performed the worst with
+$60.00\,\%$ for the first and $33.33\,\%$ for the second survey.
 
-\begin{table*}[!ht]
+We also computed the means of the relative deviations between the visually obtained $\lambda$ 
+and the automatically computed value for each search algorithm.
+We introduced this metric beside the binary ``Successrate'' to quantify the reliability of each search algorithm:
+By measuring the mean deviations, we not only see if the $\lambda_\text{opt}$ was found, 
+but also how far off the lambda searches were on average.
+\cref{tab:search-summary} shows that the Gradien Based approach had the lowest
+mean relative deviations with $15.89\,\%$ (first survey) and $39.57\,\%$ (second survey).
+The Golden Section Search deviated the second least for the first survey with $17.55\,\%$, 
+but performed the worst for the second survey with $118.28\,\%$.
+The Cubic Spline method showed a mean relative deviation of $32.66\,\%$ for the first survey 
+and $65.21\,\%$ for the second.
+
+\begin{table}[!ht]
     \centering
     \caption[Summary of the search for an optimal Lambda]{
         Summary of the search for an optimal lambda for each sounding, comparing the visual identification 
         with the various automated search algorithms.
         }
-    \begin{tabular}{ccc}
-        \toprule
-        \textbf{Search Type} & \textbf{Sucessrate (\%)} & \textbf{Mean relative deviation (\%)}\\
-        \midrule
-        \textbf{22nd May 2024} \\
-        Visual & 83.33 & - \\
-        Cubic Spline & 60.00 & 32.66 \\
-        Gradient Based & 71.43 & 15.89 \\
-        Golden Section & 74.29 & 17.55 \\
-        \textbf{8th October 2024} \\
-        Visual & 66.67 & - \\
-        Cubic Spline & 33.33 & 65.21 \\
-        Gradient Based & 47.22 & 39.57 \\
-        Golden Section & 41.67 & 118.28 \\
-        \bottomrule
-    \end{tabular}
-    % \end{tblr}
+    \resizebox{\columnwidth}{!}{
+        \begin{tabular}{ccc}
+            \toprule
+            \textbf{Search Type} & \textbf{Successrate (\%)} & \textbf{Mean relative deviation (\%)}\\
+            \midrule
+            \textbf{22nd May 2024} \\
+            Visual & 83.33 & - \\
+            Cubic Spline & 60.00 & 32.66 \\
+            Gradient Based & 71.43 & 15.89 \\
+            Golden Section & 74.29 & 17.55 \\
+            \textbf{8th October 2024} \\
+            Visual & 66.67 & - \\
+            Cubic Spline & 33.33 & 65.21 \\
+            Gradient Based & 47.22 & 39.57 \\
+            Golden Section & 41.67 & 118.28 \\
+            \bottomrule
+        \end{tabular}
+    }
     \label{tab:search-summary}
-\end{table*}
+\end{table}
 
-% \FloatBarrier
-% \subsection{Comparing Inversion Results}\label{subsec:inversion-results}
-% With these findings, we finally obtained the necessary parameters for running the inversions, 
-% which enables a comparison of different resistivity models obtained from the various measuring configurations,
-% as described in \cref{tab:sounding-parameters}. 
-% Because the late time data was filtered due to a high noise level, the different time keys are not
-% considered and only the different injected currents and the loop sizes are compared.
-% Ideally the compared soundings, would be at the same location, which is why we chose the soundings
-% M028 (shown in \cref{fig:inv-big-small}) of the first and M052 (shown in \cref{fig:inv-small-big}) of the second survey, 
-% which use the $12.5\times12.5\,\text{m}$ loop with $1.0\,\text{A}$ of current 
-% and $6.25\times6.25\,\text{m}$ loop with $4.1\,\text{A}$ of current.
-% \cref{fig:may-map,fig:oct-map} show that these two broadly align.
-% For the configuration $12.5\times12.5\,\text{m}$ loop with $4.1\,\text{A}$ of current
-% we do not have a sounding at the same location, but sounding M002 (shown in \cref{fig:inv-big-big}) of the first survey
-% is also in the north of the Martenhofer Lacke (\cref{fig:may-map}).
-% \cref{fig:inv-big-small}(c) shows how with the large loop three distinct layers can be found: A $5\,\text{m}$-layer 
-% with $17.5\,\Omega\text{m}$, a second $11\,\text{m}$-layer with $13.5\,\Omega\text{m}$, 
-% and the start of a third layer with $22\,\Omega\text{m}$.
-% The model seems to fit the data adequately as can be seen in \cref{fig:inv-big-small}(a) and (b), 
-% which is also supported by a relative RMS misfit of $4.77\,\%$.
+All comparison plots can be found at \url{https://github.com/pb-tuwien/BSc_Soda_Lakes_Balogh.git}
+under "data/2024xxxx/TEM\-data/07\-inversion\_analysis/comparison\_M0yy.png", where xxxx is either 
+"0522" for the first or "1008" for the second survey and yy being the sounding number 
+(either 01 to 45 or 01 to 66 -- exluding the numbers for the noisy soundings).
+A consistant trend throughout our analysis of the search algorithms (\cref{tab:search-summary})
+is that the second survey performed better for the L-Curve method, than the first survey.
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=\linewidth]{data/20240522/TEM-data/06-inversion_plot/location_2_12.5_M028.png}
-%     \caption[Inversion of Sounding with the Large Loop and Small Current]{
-%         Optimised inversion of the sounding M028 of the first survey, which was measured with a $12.5\times12.5\,\text{m}$ loop
-%         and $1.0\,\text{A}$ of current.
-%         This sounding was done at the same location as M052 of the second survey.
-%         Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
-%         (b) shows the comparison between modelled and measured apparent resistivities,
-%         (c) shows the final subsurface model of the resistivity,
-%         (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
-%         }
-%         \label{fig:inv-big-small}
-%     \end{figure*}
+\FloatBarrier
+\subsection{Comparing Inversion Results}\label{subsec:inversion-results}
+\colorbox{yellow}{REVISED UNTIL HERE}
+
+With these findings, we finally obtained the necessary parameters for running the inversions, 
+which enables a comparison of different resistivity models obtained from the various measuring configurations,
+as described in \cref{tab:sounding-parameters}. 
+Because the late time data was filtered due to a high noise level, the different time keys are not
+considered and only the different injected currents and the loop sizes are compared.
+Ideally the compared soundings, would be at the same location, which is why we chose the soundings
+M028 (shown in \cref{fig:inv-big-small}) of the first and M052 (shown in \cref{fig:inv-small-big}) of the second survey, 
+which use the $12.5\times12.5\,\text{m}$ loop with $1.0\,\text{A}$ of current 
+and $6.25\times6.25\,\text{m}$ loop with $4.1\,\text{A}$ of current.
+\cref{fig:may-map,fig:oct-map} show that these two broadly align.
+For the configuration $12.5\times12.5\,\text{m}$ loop with $4.1\,\text{A}$ of current
+we do not have a sounding at the same location, but sounding M002 (shown in \cref{fig:inv-big-big}) of the first survey
+is also in the north of the Martenhofer Lacke (\cref{fig:may-map}).
+\cref{fig:inv-big-small}(c) shows how with the large loop three distinct layers can be found: A $5\,\text{m}$-layer 
+with $17.5\,\Omega\text{m}$, a second $11\,\text{m}$-layer with $13.5\,\Omega\text{m}$, 
+and the start of a third layer with $22\,\Omega\text{m}$.
+The model seems to fit the data adequately as can be seen in \cref{fig:inv-big-small}(a) and (b), 
+which is also supported by a relative RMS misfit of $4.77\,\%$.
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{data/location_comparison/M028_same_location_12.5.png}
+    \caption[Inversion of Sounding with the Large Loop and Small Current]{
+        Optimised inversion of the sounding M028 of the first survey, which was measured with a $12.5\times12.5\,\text{m}$ loop
+        and $1.0\,\text{A}$ of current.
+        This sounding was done at the same location as M052 of the second survey.
+        Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
+        (b) shows the comparison between modelled and measured apparent resistivities,
+        (c) shows the final subsurface model of the resistivity,
+        (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
+        }
+        \label{fig:inv-big-small}
+    \end{figure*}
     
-% For the same location five moths later the small loop with $4.1\,\text{A}$ produces a model with only
-% two discernable layers, as seen in \cref{fig:inv-small-big}(c): A $5\,\text{m}$-layer with $16\,\Omega\text{m}$ and
-% the start of a second layer with $24\,\Omega\text{m}$.
-% The second layer is not distinctly visible, but rather a gradual increase, 
-% which corresponds with the almost linearly increasing apparent resistivity curve in \cref{fig:inv-small-big}(b).
-% \cref{fig:inv-small-big}(a) and (b) also show that the last measured data point possibly indicates s change in the slope
-% and thus a new layer~\parencite{fittermanTransientElectromagneticSounding1986}, but it could also be data noise.
+For the same location five moths later the small loop with $4.1\,\text{A}$ produces a model with only
+two discernable layers, as seen in \cref{fig:inv-small-big}(c): A $5\,\text{m}$-layer with $16\,\Omega\text{m}$ and
+the start of a second layer with $24\,\Omega\text{m}$.
+The second layer is not distinctly visible, but rather a gradual increase, 
+which corresponds with the almost linearly increasing apparent resistivity curve in \cref{fig:inv-small-big}(b).
+\cref{fig:inv-small-big}(a) and (b) also show that the last measured data point possibly indicates s change in the slope
+and thus a new layer~\parencite{fittermanTransientElectromagneticSounding1986}, but it could also be data noise.
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=\linewidth]{data/20241008/TEM-data/06-inversion_plot/location_2_6.25_M052.png}
-%     \caption[Inversion of Sounding with the Small Loop and Large Current]{
-%         Optimised inversion of the sounding M052 of the second survey, which was measured with a $6.25\times6.25\,\text{m}$ loop
-%         and $4.1\,\text{A}$ of current.
-%         This sounding was done at the same location as M028 of the first survey.
-%         Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
-%         (b) shows the comparison between modelled and measured apparent resistivities,
-%         (c) shows the final subsurface model of the resistivity,
-%         (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
-%     }
-%     \label{fig:inv-small-big}
-% \end{figure*}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{data/location_comparison/M052_same_location_6.25.png}
+    \caption[Inversion of Sounding with the Small Loop and Large Current]{
+        Optimised inversion of the sounding M052 of the second survey, which was measured with a $6.25\times6.25\,\text{m}$ loop
+        and $4.1\,\text{A}$ of current.
+        This sounding was done at the same location as M028 of the first survey.
+        Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
+        (b) shows the comparison between modelled and measured apparent resistivities,
+        (c) shows the final subsurface model of the resistivity,
+        (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
+    }
+    \label{fig:inv-small-big}
+\end{figure*}
 
-% \cref{fig:inv-big-big} represents the measurements made with the large loop as well as $4.1\,\text{A}$ 
-% and in (c) similar three layers can be seen as in \cref{fig:inv-big-small}(c) but with differing resistivity values:
-% A $5\,\text{m}$-layer with $31\,\Omega\text{m}$,
-% a second $12\,\text{m}$-layer with $13.5\,\Omega\text{m}$, and
-% the start of a third layer with $30\,\Omega\text{m}$.
-% \cref{fig:inv-big-big}(b) shows that the model does not quite fit the measured data, 
-% but follows the general trend of the curve.
+\cref{fig:inv-big-big} represents the measurements made with the large loop as well as $4.1\,\text{A}$ 
+and in (c) similar three layers can be seen as in \cref{fig:inv-big-small}(c) but with differing resistivity values:
+A $5\,\text{m}$-layer with $31\,\Omega\text{m}$,
+a second $12\,\text{m}$-layer with $13.5\,\Omega\text{m}$, and
+the start of a third layer with $30\,\Omega\text{m}$.
+\cref{fig:inv-big-big}(b) shows that the model does not quite fit the measured data, 
+but follows the general trend of the curve.
 
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=\linewidth]{data/20240522/TEM-data/06-inversion_plot/optimised_M002.png}
-%     \caption[Inversion of Sounding with the Large Loop and Large Current]{
-%         Optimised inversion of the sounding M002 of the first survey, which was measured with a $12.5\times12.5\,\text{m}$ loop
-%         and $4.1\,\text{A}$ of current.
-%         Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
-%         (b) shows the comparison between modelled and measured apparent resistivities,
-%         (c) shows the final subsurface model of the resistivity,
-%         (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
-%     }
-%     \label{fig:inv-big-big}
-% \end{figure*}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{data/location_comparison/M002_similar_location_12.5.png}
+    \caption[Inversion of Sounding with the Large Loop and Large Current]{
+        Optimised inversion of the sounding M002 of the first survey, which was measured with a $12.5\times12.5\,\text{m}$ loop
+        and $4.1\,\text{A}$ of current.
+        Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
+        (b) shows the comparison between modelled and measured apparent resistivities,
+        (c) shows the final subsurface model of the resistivity,
+        (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
+    }
+    \label{fig:inv-big-big}
+\end{figure*}
 
-% We found that the measurements with the $12.5\times12.5\,\text{m}$ loop were able
-% to discern the same three layers regarding the thicknesses, which \textcite{aignerSensitivityAnalysisInverted2024} found
-% in a borehole at the soda lakes, which is located about $1.5\,\text{km}$ north-east of the Martenhofer Lacke.
-% \textcite{aignerSensitivityAnalysisInverted2024} describes a $1.6\,\text{m}$ clay-silt layer, 
-% followed by a $5.4\,\text{m}$ sandy gravel aquifer, 
-% and a second clay-silt layer until the maximal drilled depth of $10\,\text{m}$.
-% \cref{fig:inv-big-small,fig:inv-big-big} both show in subfigure (c) that the first two layers of the
-% borehole can not be differentiated and are show as one layer with the resistivities of $31\,\Omega\text{m}$
-% and $17.5\,\Omega\text{m}$ respectively. 
-% These diffences could be caused by differing clay-silt layer and aquifer thicknesses,
-% which also changes the influence of each over the resistivity value representing the compined resistivities of both layers.
-% The second layer present in the subfigures (c) of \cref{fig:inv-big-small,fig:inv-big-big}
-% shows a layer with a resistivity of about $13.5\,\Omega\text{m}$, which points to a clay-silt layer when compared with
-% the values in \cref{tab:resistivity} (\colorbox{yellow}{Referencing table with common resistivity}
-% \colorbox{yellow}{from the State of the Art}).
-% This agrees well with the borehole data described by \textcite{aignerSensitivityAnalysisInverted2024}.
-% The third layer with the resistivity of $22\,\Omega\text{m}$ and $30\,\Omega\text{m}$ respectively, 
-% could indicate a second aquifer, which was also detected by \textcite{aignerSensitivityAnalysisInverted2024}, who found
-% that a second aquifer with the resistivity value of $30\,\Omega\text{m}$ at a depth below $35\,\text{m}$.
+We found that the measurements with the $12.5\times12.5\,\text{m}$ loop were able
+to discern the same three layers regarding the thicknesses, which \textcite{aignerSensitivityAnalysisInverted2024} found
+in a borehole at the soda lakes, which is located about $1.5\,\text{km}$ north-east of the Martenhofer Lacke.
+\textcite{aignerSensitivityAnalysisInverted2024} describes a $1.6\,\text{m}$ clay-silt layer, 
+followed by a $5.4\,\text{m}$ sandy gravel aquifer, 
+and a second clay-silt layer until the maximal drilled depth of $10\,\text{m}$.
+\cref{fig:inv-big-small,fig:inv-big-big} both show in subfigure (c) that the first two layers of the
+borehole can not be differentiated and are show as one layer with the resistivities of $31\,\Omega\text{m}$
+and $17.5\,\Omega\text{m}$ respectively. 
+These diffences could be caused by differing clay-silt layer and aquifer thicknesses,
+which also changes the influence of each over the resistivity value representing the compined resistivities of both layers.
+The second layer present in the subfigures (c) of \cref{fig:inv-big-small,fig:inv-big-big}
+shows a layer with a resistivity of about $13.5\,\Omega\text{m}$, which points to a clay-silt layer when compared with
+the values in \cref{tab:resistivity}.
+This agrees well with the borehole data described by \textcite{aignerSensitivityAnalysisInverted2024}.
+The third layer with the resistivity of $22\,\Omega\text{m}$ and $30\,\Omega\text{m}$ respectively, 
+could indicate a second aquifer, which was also detected by \textcite{aignerSensitivityAnalysisInverted2024}, who found
+that a second aquifer with the resistivity value of $30\,\Omega\text{m}$ at a depth below $35\,\text{m}$.
 
-% The model created through the data gathered with the $6.25\times6.25\,\text{m}$ loop, as seen in \cref{fig:inv-small-big}, only shows the first 
-% two layers and is unable to resolve the third layer. 
-% The advantage of being able to resolve shallow layers with a smaller loop~\parencite{kirsch2006groundwater},
-% is counteracted by the effects of turn-off ramp as described by \textcite{aignerFlexibleSingleLoop2021} and thus the need to discard the early time data.
-% The results produced with the larger loop and the current of $4.1\,\text{A}$ seem to reproduce the results of earlier studies like
-% \textcite{aignerSensitivityAnalysisInverted2024} the best out of the configurations tested in this work.
+The model created through the data gathered with the $6.25\times6.25\,\text{m}$ loop, as seen in \cref{fig:inv-small-big}, only shows the first 
+two layers and is unable to resolve the third layer. 
+The advantage of being able to resolve shallow layers with a smaller loop~\parencite{kirsch2006groundwater},
+is counteracted by the effects of turn-off ramp as described by \textcite{aignerFlexibleSingleLoop2021} and thus the need to discard the early time data.
+The results produced with the larger loop and the current of $4.1\,\text{A}$ seem to reproduce the results of earlier studies like
+\textcite{aignerSensitivityAnalysisInverted2024} the best out of the configurations tested in this work.
