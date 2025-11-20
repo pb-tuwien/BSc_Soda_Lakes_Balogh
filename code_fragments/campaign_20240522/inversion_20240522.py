@@ -57,3 +57,24 @@ if __name__ == '__main__':
             limits_rhoa=(5, 38),
             fname=f'optimised_{sounding}.png'
         )
+    
+    #%% Inversions for all soundings
+
+    opt_lam_mode = lambda_df['manual'].mode()[0]
+
+    for sounding in [f'M{i:03d}' for i in range(1, 46) if i not in erroneous_soundings_0522]:
+        survey_0522.optimised_inversion_plot(
+            sounding=sounding,
+            layer_type='dict',
+            layers={0:1, 5:1.5},
+            lam= opt_lam_mode,
+            max_depth=20,
+            filter_times=(8, 210),
+            noise_floor=0.015,
+            constant_error=True,
+            test_range=(5, 100, 20),
+            limits_rho=(0, 55),
+            limits_depth=(0, 20),
+            limits_rhoa=(5, 38),
+            fname=f'same_lambda_{sounding}.png'
+        )
