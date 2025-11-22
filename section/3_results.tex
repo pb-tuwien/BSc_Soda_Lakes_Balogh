@@ -86,7 +86,7 @@ which show similarities to the noisy soundings of the first survey (\cref{fig:er
 at $40\,\mu\text{s}$ $10\,\Omega\text{m}$~(\cref{fig:err-signal-oct}) instead of $20\,\Omega\text{m}$~(\cref{fig:good-signal-oct}).
 This could be due to coupling effects, as the impulse response curves (\cref{fig:err-signal-oct}(a)) look similar to the 
 example for capacitive coupling described by \textcite{christiansenTransientElectromagneticMethod2006}.
-``M024'' shows higher a apparent resistivitiy of $30\,\Omega\text{m}$ at $40\,\mu\text{s}$ and a much steeper increase in
+``M024'' shows higher a apparent resistivity of $30\,\Omega\text{m}$ at $40\,\mu\text{s}$ and a much steeper increase in
 the $\rho_\text{a}$ values~(\cref{fig:err-signal-oct})
 
 Measurements within the lake (``M057''-``M065'', except for ``M062'', as seen in \cref{fig:may-map}), 
@@ -401,26 +401,36 @@ is that the second survey performed better for the L-Curve method, than the firs
 
 \FloatBarrier
 \subsection{Comparing Inversion Results}\label{subsec:inversion-results}
-\colorbox{yellow}{REVISED UNTIL HERE}
 
-With these findings, we finally obtained the necessary parameters for running the inversions, 
-which enables a comparison of different resistivity models obtained from the various measuring configurations,
-as described in \cref{tab:sounding-parameters}. 
-Because the late time data was filtered due to a high noise level, the different time keys are not
-considered and only the different injected currents and the loop sizes are compared.
-Ideally the compared soundings, would be at the same location, which is why we chose the soundings
-M028 (shown in \cref{fig:inv-big-small}) of the first and M052 (shown in \cref{fig:inv-small-big}) of the second survey, 
-which use the $12.5\times12.5\,\text{m}$ loop with $1.0\,\text{A}$ of current 
-and $6.25\times6.25\,\text{m}$ loop with $4.1\,\text{A}$ of current.
-\cref{fig:may-map,fig:oct-map} show that these two broadly align.
-For the configuration $12.5\times12.5\,\text{m}$ loop with $4.1\,\text{A}$ of current
-we do not have a sounding at the same location, but sounding M002 (shown in \cref{fig:inv-big-big}) of the first survey
-is also in the north of the Martenhofer Lacke (\cref{fig:may-map}).
-\cref{fig:inv-big-small}(c) shows how with the large loop three distinct layers can be found: A $5\,\text{m}$-layer 
-with $17.5\,\Omega\text{m}$, a second $11\,\text{m}$-layer with $13.5\,\Omega\text{m}$, 
-and the start of a third layer with $22\,\Omega\text{m}$.
+In this section we compare the inversion results computed for the different acquisition parameters 
+(which were described in \cref{tab:sounding-parameters}).
+For this we ran the inversions for all soundings, 
+where we were able to find an $\lambda_\text{opt}$ using the L-Curve method.
+Ideally this comparison would be done at the same time as well as the same location.
+For this study the data was gathered in two survey, which were $4$ months apart.
+We identified three different configurations:
+Measurements with the loop size $12.5\times12.5\,\text{m}$ and a current of $4.1\,\text{A}$,
+which we reference as ``large loop and large current''.
+Soundings with the $12.5\times12.5\,\text{m}$ 
+and a current of $1.0\,\text{A}$ (``large loop and small current'').
+Measurements with the $6.25\times6.25\,\text{m}$ loop and a current of $4.1\,\text{A}$,
+which we call ``small loop and large current''.
+The different ``time keys'' used in the first survey (as seen in \cref{tab:sounding-parameters})
+were not considered, because the late time data was filtered due to a high noise level.
+
+For the large loop and small current we chose sounding ``M028'' (first survey) 
+and for the small loop and large current we chose sounding ``M052'' (second survey), 
+because these two soundings were done at the same location (as seen in \cref{fig:may-map,fig:oct-map}).
+For the large loop and large current we have no data at this location, 
+so we chose closest sounding to the location, which was ``M002'' (first survey).
+
+The inversion results for ``M028'' are shown in \cref{fig:inv-big-small} 
+and for ``M052'' in \cref{fig:inv-small-big}.
+\cref{fig:inv-big-small}(c) shows how with the large loop and small current a three-layer model is fitted: 
+A $4.0\,\text{m}$-layer with $17.5\,\Omega\text{m}$, a second $9.5\,\text{m}$-layer with $13.5\,\Omega\text{m}$, 
+and the start of a third layer with $20.0\,\Omega\text{m}$.
 The model seems to fit the data adequately as can be seen in \cref{fig:inv-big-small}(a) and (b), 
-which is also supported by a relative RMS misfit of $4.77\,\%$.
+which is also supported by a relative RMS misfit of $2.09\,\%$.
 
 \begin{figure*}[ht]
     \centering
@@ -437,13 +447,12 @@ which is also supported by a relative RMS misfit of $4.77\,\%$.
         \label{fig:inv-big-small}
     \end{figure*}
     
-For the same location five moths later the small loop with $4.1\,\text{A}$ produces a model with only
-two discernable layers, as seen in \cref{fig:inv-small-big}(c): A $5\,\text{m}$-layer with $16\,\Omega\text{m}$ and
-the start of a second layer with $24\,\Omega\text{m}$.
-The second layer is not distinctly visible, but rather a gradual increase, 
-which corresponds with the almost linearly increasing apparent resistivity curve in \cref{fig:inv-small-big}(b).
-\cref{fig:inv-small-big}(a) and (b) also show that the last measured data point possibly indicates s change in the slope
-and thus a new layer~\parencite{fittermanTransientElectromagneticSounding1986}, but it could also be data noise.
+For the same location, four moths later the small loop with the large current produces a model with four
+layers layers, as seen in \cref{fig:inv-small-big}(c): 
+A $4.0\,\text{m}$-layer with $16.5\,\Omega\text{m}$, a second $6.5\,\text{m}$-layer with $18.0\,\Omega\text{m}$,
+a third $6.0\,\text{m}$-layer with $16.5\,\Omega\text{m}$ and the start of a fourth layer with $38.0\,\Omega\text{m}$.
+\cref{fig:inv-small-big}(b) shows that after $40\,\mu\text{s}$ some distortions in the observed data could not be fitted,
+which resulted in an relative RMS misfit of $2.23\,\%$.
 
 \begin{figure*}[ht]
     \centering
@@ -460,13 +469,14 @@ and thus a new layer~\parencite{fittermanTransientElectromagneticSounding1986}, 
     \label{fig:inv-small-big}
 \end{figure*}
 
-\cref{fig:inv-big-big} represents the measurements made with the large loop as well as $4.1\,\text{A}$ 
-and in (c) similar three layers can be seen as in \cref{fig:inv-big-small}(c) but with differing resistivity values:
-A $5\,\text{m}$-layer with $31\,\Omega\text{m}$,
-a second $12\,\text{m}$-layer with $13.5\,\Omega\text{m}$, and
-the start of a third layer with $30\,\Omega\text{m}$.
-\cref{fig:inv-big-big}(b) shows that the model does not quite fit the measured data, 
-but follows the general trend of the curve.
+\cref{fig:inv-big-big} represents the measurements collected with the large loop and large current
+and in (c) similar four layers can be seen as in \cref{fig:inv-small-big}(c) but with a more distinct second layer:
+A $4.0\,\text{m}$-layer with $18.5\,\Omega\text{m}$, a second $6.5\,\text{m}$-layer with $31.0\,\Omega\text{m}$,
+a third $6.0\,\text{m}$-layer with $7.5\,\Omega\text{m}$ and the start of a fourth layer with $39.0\,\Omega\text{m}$.
+\cref{fig:inv-big-big}(b) shows that the modelled apparent resistivity curve has its mininum at $20\,\mu\text{s}$,
+while the observed $\rho_\text{a}$ curve has its minimun between $30-40\,\mu\text{s}$.
+The inversion algorithm also was not able to fit the last time gate of the observed data (seen in \cref{fig:inv-big-big}(b)),
+which results in the highest relative RMS misfit of the sounding discussed in this section with $3.21\,\%$
 
 \begin{figure*}[ht]
     \centering
@@ -482,28 +492,62 @@ but follows the general trend of the curve.
     \label{fig:inv-big-big}
 \end{figure*}
 
-We found that the measurements with the $12.5\times12.5\,\text{m}$ loop were able
-to discern the same three layers regarding the thicknesses, which \textcite{aignerSensitivityAnalysisInverted2024} found
-in a borehole at the soda lakes, which is located about $1.5\,\text{km}$ north-east of the Martenhofer Lacke.
-\textcite{aignerSensitivityAnalysisInverted2024} describes a $1.6\,\text{m}$ clay-silt layer, 
-followed by a $5.4\,\text{m}$ sandy gravel aquifer, 
-and a second clay-silt layer until the maximal drilled depth of $10\,\text{m}$.
-\cref{fig:inv-big-small,fig:inv-big-big} both show in subfigure (c) that the first two layers of the
-borehole can not be differentiated and are show as one layer with the resistivities of $31\,\Omega\text{m}$
-and $17.5\,\Omega\text{m}$ respectively. 
-These diffences could be caused by differing clay-silt layer and aquifer thicknesses,
-which also changes the influence of each over the resistivity value representing the compined resistivities of both layers.
-The second layer present in the subfigures (c) of \cref{fig:inv-big-small,fig:inv-big-big}
-shows a layer with a resistivity of about $13.5\,\Omega\text{m}$, which points to a clay-silt layer when compared with
-the values in \cref{tab:resistivity}.
-This agrees well with the borehole data described by \textcite{aignerSensitivityAnalysisInverted2024}.
-The third layer with the resistivity of $22\,\Omega\text{m}$ and $30\,\Omega\text{m}$ respectively, 
-could indicate a second aquifer, which was also detected by \textcite{aignerSensitivityAnalysisInverted2024}, who found
-that a second aquifer with the resistivity value of $30\,\Omega\text{m}$ at a depth below $35\,\text{m}$.
+\cref{fig:inv-small-big-good} shows the inversion results for ``M050'' of the second survey (small loop and big current),
+which we included because it resolves the same high resistivity second layer as the large loop with large current configuration
+(\cref{fig:inv-big-big}).
+\cref{fig:inv-small-big-good}(c) shows the following four layer model:
+A $4.0\,\text{m}$-layer with $14.0\,\Omega\text{m}$, a second $6.5\,\text{m}$-layer with $25.5\,\Omega\text{m}$,
+a third $6.0\,\text{m}$-layer with $10.0\,\Omega\text{m}$ and the start of a fourth layer with $42.5\,\Omega\text{m}$.
+The fit is adequate, which can be seen in \cref{fig:inv-small-big-good}(b), and thus results in a relative RMS misfit 
+of $2.06\,\%$.
 
-The model created through the data gathered with the $6.25\times6.25\,\text{m}$ loop, as seen in \cref{fig:inv-small-big}, only shows the first 
-two layers and is unable to resolve the third layer. 
-The advantage of being able to resolve shallow layers with a smaller loop~\parencite{kirsch2006groundwater},
-is counteracted by the effects of turn-off ramp as described by \textcite{aignerFlexibleSingleLoop2021} and thus the need to discard the early time data.
-The results produced with the larger loop and the current of $4.1\,\text{A}$ seem to reproduce the results of earlier studies like
-\textcite{aignerSensitivityAnalysisInverted2024} the best out of the configurations tested in this work.
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{data/location_comparison/M050_good_result_6.25.png}
+    \caption[Good Result with the Small Loop and Large Current]{
+        Optimised inversion of the sounding M050 of the second survey, which was measured with a $6.25\times6.25\,\text{m}$ loop
+        and $4.1\,\text{A}$ of current.
+        Subfigure (a) shows the comparison between modelled and measured impulse response as well as the measured error,
+        (b) shows the comparison between modelled and measured apparent resistivities,
+        (c) shows the final subsurface model of the resistivity,
+        (d) shows the L-curve of this sounding with the chosen lambda value marked in orange.
+    }
+    \label{fig:inv-small-big-good}
+\end{figure*}
+
+The models obtained for ``M002'' (first survey) and ``M050'' (second survey) show the same four layers with similar resistivity values,
+which is summarised in \cref{tab:inversion-model}.
+\textcite{aignerStochasticInversionTransient2025} collected TEM data with a $12.5\times12.5\,\text{m}$ loop and 
+$4\,\text{A}$ of current along a profile north of the Martenhofer Lacke.
+This resembles the acquisition parameters from the soundings ``M001'' and ``M002'' from the first survey in this thesis 
+(the later is shown in \cref{fig:inv-big-big}).
+\textcite{aignerStochasticInversionTransient2025} inverted the data using stochastic methods and found the same
+first three layers described in \cref{tab:inversion-model}, but did not find a resistive fourth layer.
+
+\begin{table}[!ht]
+    \centering
+    \caption[Subsurface Resistivity Model]{
+        The model of the subsurface resistivity obtained through the inversion of the soundings M002 of the first 
+        and M050 of the second survey
+        }
+    \resizebox{\columnwidth}{!}{
+        \begin{tabular}{ccc}
+            \toprule
+            \textbf{Layer number} & \textbf{Thickness ($\text{m}$)} & \textbf{resistivity ($\Omega\text{m}$)}\\
+            \midrule
+            1 & $4.0\,\text{m}$ & $14-18\,\Omega\text{m}$ \\
+            2 & $4.0\,\text{m}$ & $25-31\,\Omega\text{m}$ \\
+            3 & $4.0\,\text{m}$ & $7-10\,\Omega\text{m}$ \\
+            4 & $\infty$ & $39-42\,\Omega\text{m}$ \\
+            \bottomrule
+        \end{tabular}
+    }
+    \label{tab:inversion-model}
+\end{table}
+
+The results for ``M052'' (second survey) do not show the resistive second layer described in \cref{tab:inversion-model}.
+This could be due to noise introduced to the observed TEM data or variation in the geology along the lake, 
+as the soundings ``M002'' (first survey) and ``M052'' (second survey) were collected further north in the Martenhofer Lacke
+(\cref{fig:may-map,fig:oct-map}).
+The model obtained for sounding ``M028'' (first survey) shows a different resistivity distribution than the other three soundings
+discussed in this section as well as the model described by \textcite{aignerStochasticInversionTransient2025}.
