@@ -149,20 +149,30 @@ def analyse_results(df:pd.DataFrame, threshold:float, mode:str = 'w'):
     golden_working: float = gold_hit_mask.sum() / noNaN_df.shape[0]
     golden_mean_deviation: float = gold_rel_diff.mean()
 
+    # Modes:
+    mode_manual = noNaN_df['manual'].mode()[0]
+    mode_grad = noNaN_df['gradient'].mode()[0]
+    mode_cub = noNaN_df['cubic'].mode()[0]
+    mode_gold = noNaN_df['golden'].mode()[0]
+
     # Write results to file:
     with open(results_path, mode) as file:
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         file.write(f'Date:\t{now}\n')
+        file.write(f'Mode of manual lambdas:\t{mode_manual:.3f}\n')
         file.write(f'Manual precision:\t{100*manual_working:.3f} %\n\n')
         file.write(f'Comparing search algorithms with evalution\n')
         file.write(f'Threshold for hit:\t{100*threshold:.3f} %\n\n')
         file.write(f'Gradient based search:\n')
+        file.write(f'Mode of lambdas:\t{mode_grad:.3f}\n')
         file.write(f'Acurracy:\t{100*gradient_working:.3f} %\n')
         file.write(f'Mean relative deviation:\t{100*gradient_mean_deviation:.3f} %\n\n')
         file.write(f'Cubic spline based search:\n')
+        file.write(f'Mode of lambdas:\t{mode_cub:.3f}\n')
         file.write(f'Acurracy:\t{100*cubic_working:.3f} %\n')
         file.write(f'Mean relative deviation:\t{100*cubic_mean_deviation:.3f} %\n\n')
         file.write(f'Golden section search:\n')
+        file.write(f'Mode of lambdas:\t{mode_gold:.3f}\n')
         file.write(f'Acurracy:\t{100*golden_working:.3f} %\n')
         file.write(f'Mean relative deviation:\t{100*golden_mean_deviation:.3f} %\n')
         file.write('============================================\n\n')

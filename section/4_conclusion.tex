@@ -19,9 +19,13 @@ while for the second survey this technique did not produce adequate results.
 These manually determined $\lambda$ values were then used to compare three search algorithms used to automatically find the 
 optimal $\lambda$ by search for the point with the maximum curvature. 
 We found that the ``Gradient-Based'' approach was the most reliable algorithm to find the optimal
-regularisation parameter for our data set. 
+regularisation parameter for our data set.
 This method was able to find the visually determined optimal $\lambda$ in $71.43\,\%$ of the cases for the first 
 and $47.22\,\%$ for the second survey(see \cref{tab:search-summary}).
+The ``Golden Section Search'' performed best for finding the mode of the optimal lambdas, 
+which could be used to approximate the optimal $\lambda$ for each sounding of a survey.
+The mode of the visually determined optimal lambdas was $13$ for the first and $11$ for the second survey 
+and the ``Golden Section Search'' produced the modes $12$ (first survey) and $9$ (second survey).
 We found the consistent trend that the L-Curve method performed worse for the second survey throughout our investigation.
 By checking the data qualtity as well the computed L-Curve for each sounding, 
 we found that distortions, possibly due to noise, relate to the L-Curve technique not producing 

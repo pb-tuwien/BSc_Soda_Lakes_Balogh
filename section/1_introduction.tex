@@ -1,8 +1,3 @@
-near surface
-environmental applications
-geophysical methods
-non-invasive exploration
-
 As environmental applications of subsurface exploration gain importance,
 geophysical methods, which allow for a non-invasive shallow investigations, 
 become more relevant~\parencite{barsukovChapter3Shallow2006}.
@@ -15,7 +10,7 @@ Interpreting TEM data effectively requires the solution of an ill-posed inverse 
 which means to calculate a model of the subsurface resistivities from the observed data 
 with the limitation that various models exist, which can explain the measured data~\parencite{zhdanovGeophysicalInverseTheory2002}.
 Inversion techniques have been developed, which employ a smoothness-constraint approach, 
-where data-model misfit is balanced by a smoothing operator (weighted with a regularisation parameter) that helps to obtain a smooth solution, 
+where the data-model misfit is balanced by a smoothing operator (weighted with a regularisation parameter) that helps to obtain a smooth solution, 
 which has a closer correlation with expected (smooth) geological changes~\parencite{ruckerPyGIMLiOpensourceLibrary2017}.
 This requires choosing a value for the regularisation parameter ($\lambda$), 
 which balances the fit of the data with the complexity of the model~\parencite{zhdanovGeophysicalInverseTheory2002}.
@@ -25,25 +20,28 @@ $\lambda$~\parencite{hansenAnalysisDiscreteIllPosed1992,cultreraSimpleAlgorithmF
 
 This thesis aims to adapt the L-Curve method for the interpretation of TEM data, 
 to improve the inversion results through the selection of an adequate regularization parameter.
-For this purpose data was collected at Martenhofer Lacke
+The hypothesis is, that the L-curve method can be used to identify the optimal $\lambda$ (regularisation parameter) 
+for the inversion of TEM data and thus improve the obtained results.
+To investigate this, data was collected at the Martenhofer Lacke
 as part of the effort of the TU Wien Department of Geodesy and Geoinformation,
 Research Unit Geophysics, to understand the hydrogeological processes
 of the soda lakes in the Nationalpark Neusiedlersee - Seewinkel.
 The soda lakes pose a unique habitat for various species, which is threatened by climate change, 
 making it important to grasp the processes governing the ecosystem~\parencite{borosHowCanUnique2025}.
+
 In paticular the objective of this work is to adapt the inversion routine proposed by \textcite{aignerFlexibleSingleLoop2021},
 to compute the L-Curve, which can be visually analysed to find an optimal $\lambda$, 
 as well as three automatic search algorithms based on the works 
 of \textcite{cultreraSimpleAlgorithmFind2020,lloydUseLcurveMethod1997}.
+This work investigates, what conditions are necessary for the automatic determination of an optimal $\lambda$ value, 
+as well as which automated search algorithms can be implemented to find an optimal $\lambda$.
+This is achieved by comparing the $\lambda$ values returned by the search algorithms with values obtained 
+through a visual investigation of the computed L-Curve plot.
 
-\colorbox{yellow}{Finished until here}
-
-The hypothesis is, that the L-curve method can be used to identify the optimal $\lambda$ (regularisation parameter) 
-in the inversion TEM data and thus improve the obtained results.
-
-Research questions:
-\begin{itemize}
-    \item Which conditions are necessary for the determination of an optimal $\lambda$ value?
-    \item Which automated search algorithms can be implemented to find an optimal $\lambda$?
-    \item Which configuration of the TEM method is suitable for the investigation of the Martenhofer Lacke?
-\end{itemize}
+For this thesis TEM data was collected in two different survey at the Martenhofer Lacke, which were four month apart, 
+with two different loop sizes and two different currents used for the measurements.
+As this data set allows for a comparison between the measuring configurations,
+this work also investigates, what TEM configuration is better suited to investigate 
+the shallowest three layers underlying the Martenhofer Lacke.
+This is achieved by analysing the inversion results and comparing them with previous studies
+in the area~\parencite{aignerSensitivityAnalysisInverted2024,aignerStochasticInversionTransient2025}.

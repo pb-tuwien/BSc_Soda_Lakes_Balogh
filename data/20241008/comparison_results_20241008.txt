@@ -1,56 +1,68 @@
-Date:	2025-11-17_20-14-37
+Date:	2025-11-25_19-28-57
+Mode of manual lambdas:	11.000
 Manual precision:	66.667 %
 
 Comparing search algorithms with evalution
 Threshold for hit:	10.000 %
 
 Gradient based search:
+Mode of lambdas:	6.854
 Acurracy:	41.667 %
 Mean relative deviation:	39.565 %
 
 Cubic spline based search:
+Mode of lambdas:	5.000
 Acurracy:	30.556 %
 Mean relative deviation:	65.208 %
 
 Golden section search:
+Mode of lambdas:	8.582
 Acurracy:	33.333 %
 Mean relative deviation:	118.280 %
 ============================================
 
-Date:	2025-11-17_20-14-37
+Date:	2025-11-25_19-28-57
+Mode of manual lambdas:	11.000
 Manual precision:	66.667 %
 
 Comparing search algorithms with evalution
 Threshold for hit:	15.000 %
 
 Gradient based search:
+Mode of lambdas:	6.854
 Acurracy:	47.222 %
 Mean relative deviation:	39.565 %
 
 Cubic spline based search:
+Mode of lambdas:	5.000
 Acurracy:	33.333 %
 Mean relative deviation:	65.208 %
 
 Golden section search:
+Mode of lambdas:	8.582
 Acurracy:	41.667 %
 Mean relative deviation:	118.280 %
 ============================================
 
-Date:	2025-11-17_20-14-37
+Date:	2025-11-25_19-28-57
+Mode of manual lambdas:	11.000
 Manual precision:	66.667 %
 
 Comparing search algorithms with evalution
 Threshold for hit:	20.000 %
 
 Gradient based search:
+Mode of lambdas:	6.854
 Acurracy:	47.222 %
 Mean relative deviation:	39.565 %
 
 Cubic spline based search:
+Mode of lambdas:	5.000
 Acurracy:	44.444 %
 Mean relative deviation:	65.208 %
 
 Golden section search:
+Mode of lambdas:	8.582
 Acurracy:	44.444 %
 Mean relative deviation:	118.280 %
 ============================================

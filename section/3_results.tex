@@ -371,6 +371,17 @@ but performed the worst for the second survey with $118.28\,\%$.
 The Cubic Spline method showed a mean relative deviation of $32.66\,\%$ for the first survey 
 and $65.21\,\%$ for the second.
 
+\cref{tab:search-summary} also shows the modes of the found $\lambda_\text{opt}$.
+For the first survey the Gradient Based search slightly overestimates the lambda with $15$ compared to 
+the mode of visually determined values with $13$,
+while the Golden Section Search underestimates it with $12$.
+In both cases the mode of the lambda values could be used as an approximation 
+of the optimal lambda value, where the L-Curve method did not work 
+or the search algorithm was not able to find $\lambda_\text{opt}$.
+For the second survey the Golden Section Search also slighly underestimates the lambda value with $9$
+compared to the mode of the visually determined lambda values with $11$ (see \cref{tab:search-summary}), 
+while the Gradient Based approach and Cubic Spline method both return even lower lambda values with $7$ and $5$ respectively.
+
 \begin{table}[!ht]
     \centering
     \caption[Summary of the search for an optimal Lambda]{
@@ -378,20 +389,20 @@ and $65.21\,\%$ for the second.
         with the various automated search algorithms.
         }
     \resizebox{\columnwidth}{!}{
-        \begin{tabular}{ccc}
+        \begin{tabular}{lccc}
             \toprule
-            \textbf{Search Type} & \textbf{Successrate (\%)} & \textbf{Mean relative deviation (\%)}\\
+            \textbf{Search Type} & \textbf{Successrate (\%)} & \textbf{Mode of Lambdas} & \textbf{Mean relative deviation (\%)}\\
             \midrule
             \textbf{22nd May 2024} \\
-            Visual & 83.33 & - \\
-            Cubic Spline & 60.00 & 32.66 \\
-            Gradient Based & 71.43 & 15.89 \\
-            Golden Section & 74.29 & 17.55 \\
+            Visual & 83.33 & 13 & - \\
+            Cubic Spline & 60.00 & 28 & 32.66 \\
+            Gradient Based & 71.43 & 15 & 15.89 \\
+            Golden Section & 74.29 & 12 & 17.55 \\
             \textbf{8th October 2024} \\
-            Visual & 66.67 & - \\
-            Cubic Spline & 33.33 & 65.21 \\
-            Gradient Based & 47.22 & 39.57 \\
-            Golden Section & 41.67 & 118.28 \\
+            Visual & 66.67 & 11 & - \\
+            Cubic Spline & 33.33 & 7 & 65.21 \\
+            Gradient Based & 47.22 & 5 & 39.57 \\
+            Golden Section & 41.67 & 9 & 118.28 \\
             \bottomrule
         \end{tabular}
     }
@@ -403,7 +414,7 @@ under "data/2024xxxx/TEM\-data/07\-inversion\_analysis/comparison\_M0yy.png", wh
 "0522" for the first or "1008" for the second survey and yy being the sounding number 
 (either 01 to 45 or 01 to 66 -- exluding the numbers for the noisy soundings).
 A consistent trend throughout our analysis of the search algorithms (\cref{tab:search-summary})
-is that the second survey performed better for the L-Curve method, than the first survey.
+is that the first survey performed better for the L-Curve method, than the second survey.
 
 \FloatBarrier
 \subsection{Comparing Inversion Results}\label{subsec:inversion-results}
