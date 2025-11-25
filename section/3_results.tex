@@ -259,6 +259,12 @@ where the L-Curve method produced no cohesive curve, but rather collection of se
     \label{fig:lcurve-bad}
 \end{figure*}
 
+We found that, modes of the $\lambda$ values for the soundings of the two surveys where $13$ (first) and $11$ (second).
+These values are significantly smaller than the $\lambda$ of $50$ used by \textcite{aignerSensitivityAnalysisInverted2024} for the same location,
+but with a different loop size and using a diffent inversion algorithm, 
+which is based on the blocky instead of the smooth inversion from \texttt{PyGIMLi}~\parencite{ruckerPyGIMLiOpensourceLibrary2017} 
+and decreases the $\lambda$ after each iteration of the inversion by a ``cooling factor''.
+
 \FloatBarrier
 \subsection{Finding an Optimal Lambda}
 \label{subsec:optimal-lambda}
@@ -396,7 +402,7 @@ All comparison plots can be found at \url{https://github.com/pb-tuwien/BSc_Soda_
 under "data/2024xxxx/TEM\-data/07\-inversion\_analysis/comparison\_M0yy.png", where xxxx is either 
 "0522" for the first or "1008" for the second survey and yy being the sounding number 
 (either 01 to 45 or 01 to 66 -- exluding the numbers for the noisy soundings).
-A consistant trend throughout our analysis of the search algorithms (\cref{tab:search-summary})
+A consistent trend throughout our analysis of the search algorithms (\cref{tab:search-summary})
 is that the second survey performed better for the L-Curve method, than the first survey.
 
 \FloatBarrier
@@ -523,6 +529,15 @@ This resembles the acquisition parameters from the soundings ``M001'' and ``M002
 (the later is shown in \cref{fig:inv-big-big}).
 \textcite{aignerStochasticInversionTransient2025} inverted the data using stochastic methods and found the same
 first three layers described in \cref{tab:inversion-model}, but did not find a resistive fourth layer.
+\cref{tab:inversion-model} shows a conductive first layer with $14-18\,\Omega\text{m}$, which could indicate saturated
+clay layer (\cref{tab:resistivity}), a more resistive second layer with $25-31\,\Omega\text{m}$, 
+which could be a saturated sand layer with high salinity (first aquifer), and a third conductive layer with $7-10\,\Omega\text{m}$,
+which indicates a second clay layer.
+This agrees well with the historic borehole data described by \textcite{aignerStochasticInversionTransient2025}, 
+which is located $1.2\,\text{km}$ south of the Martenhofer Lacke.
+The fourth layer not found by \textcite{aignerStochasticInversionTransient2025} could be a second saturated sandy layer
+due to its resistivity of $39-40\,\Omega\text{m}$ (\cref{tab:resistivity}), indicating a second aquifer with a lower salinity 
+(due to its higher resistivity, than the first sandy layer).
 
 \begin{table}[!ht]
     \centering
@@ -536,8 +551,8 @@ first three layers described in \cref{tab:inversion-model}, but did not find a r
             \textbf{Layer number} & \textbf{Thickness ($\text{m}$)} & \textbf{resistivity ($\Omega\text{m}$)}\\
             \midrule
             1 & $4.0\,\text{m}$ & $14-18\,\Omega\text{m}$ \\
-            2 & $4.0\,\text{m}$ & $25-31\,\Omega\text{m}$ \\
-            3 & $4.0\,\text{m}$ & $7-10\,\Omega\text{m}$ \\
+            2 & $6.5\,\text{m}$ & $25-31\,\Omega\text{m}$ \\
+            3 & $6.0\,\text{m}$ & $7-10\,\Omega\text{m}$ \\
             4 & $\infty$ & $39-42\,\Omega\text{m}$ \\
             \bottomrule
         \end{tabular}
@@ -551,3 +566,24 @@ as the soundings ``M002'' (first survey) and ``M052'' (second survey) were colle
 (\cref{fig:may-map,fig:oct-map}).
 The model obtained for sounding ``M028'' (first survey) shows a different resistivity distribution than the other three soundings
 discussed in this section as well as the model described by \textcite{aignerStochasticInversionTransient2025}.
+
+We also computed the inversions for all the soundings first with the visually determined $\lambda_\text{opt}$,
+then with the mode of all the lambda values ($\lambda_\text{mode}$) seperately for each survey.
+For the first survey, where the L-Curve technique worked for $83.33\,\%$ of the soundings, 
+the resulting subsurface model of the resistivity obtained with $\lambda_\text{mode}$ showed no significant
+differences with the one obtained with $\lambda_\text{opt}$.
+This allows for $\lambda_\text{mode}$ to be used for the soundings, where no $\lambda_\text{opt}$ was found using 
+the L-Curve method.
+For the second survey this technique did not work, which is possibly due to the mode being computed for only
+$66.67\,\%$ of the soundings.
+The second survey highlights, that distortions in the observed data curves, possibly due to noise, 
+tend to lead to a not usable L-Curve, which could indicate not sufficient data qualtity or filtering.
+\cref{fig:good-signal-oct}(d) shows that there is great variety in the apparent resistivity curves 
+of the soundings of the second survey, even after filtering, and thus filtering should be done for every sounding seperately, 
+which makes this measuring condfiguration not feasible for mapping applications.
+
+All inversion plots can be found at \url{https://github.com/pb-tuwien/BSc_Soda_Lakes_Balogh.git}
+under "data/2024xxxx/TEM\-data/06\-inversion\_plot/optimised\_M0yy.png" and 
+"data/2024xxxx/TEM\-data/06\-inversion\_plot/same\_lambda\_M0yy.png", where xxxx is either 
+"0522" for the first or "1008" for the second survey and yy being the sounding number 
+(either 01 to 45 or 01 to 66 -- exluding the numbers for the noisy soundings).

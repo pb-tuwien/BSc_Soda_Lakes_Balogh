@@ -1,38 +1,49 @@
-Introduction including:
+near surface
+environmental applications
+geophysical methods
+non-invasive exploration
 
-% Objective: Create a model of the subsurface resistivity at Martenhofer Lacke using the transient electromagnetic method.
+As environmental applications of subsurface exploration gain importance,
+geophysical methods, which allow for a non-invasive shallow investigations, 
+become more relevant~\parencite{barsukovChapter3Shallow2006}.
+The transient electromagnetic (TEM) method is a time-domain electromagnetic technique
+widely used for exploring the subsurface, providing valuable insights for groundwater detection~\parencite{danielsenApplicationTransientElectromagnetic2003,aukenMutuallyConstrainedInversion2005},
+monitoring of saline water intrusions~\parencite{gomezAlluvialAquiferThickness2019,gonzalesamayaDelimitingSalineWater2018}, 
+and detection of karstic features like caves~\parencite{zhouMultiturnSmallloopTransient2022,suResponseAnalysisApplication2024}.
 
-% Hypothesis: An optimal lambda can be found for the TEM data gathered at Martenhofer Lacke by using the L-Curve method.
+Interpreting TEM data effectively requires the solution of an ill-posed inverse problem,
+which means to calculate a model of the subsurface resistivities from the observed data 
+with the limitation that various models exist, which can explain the measured data~\parencite{zhdanovGeophysicalInverseTheory2002}.
+Inversion techniques have been developed, which employ a smoothness-constraint approach, 
+where data-model misfit is balanced by a smoothing operator (weighted with a regularisation parameter) that helps to obtain a smooth solution, 
+which has a closer correlation with expected (smooth) geological changes~\parencite{ruckerPyGIMLiOpensourceLibrary2017}.
+This requires choosing a value for the regularisation parameter ($\lambda$), 
+which balances the fit of the data with the complexity of the model~\parencite{zhdanovGeophysicalInverseTheory2002}.
+Ill-posed inverse problems are not unique to interpretation of TEM data and 
+thus the L-Curve method was developed in other fields to find an optimal value for the 
+$\lambda$~\parencite{hansenAnalysisDiscreteIllPosed1992,cultreraSimpleAlgorithmFind2020,lloydUseLcurveMethod1997}.
+
+This thesis aims to adapt the L-Curve method for the interpretation of TEM data, 
+to improve the inversion results through the selection of an adequate regularization parameter.
+For this purpose data was collected at Martenhofer Lacke
+as part of the effort of the TU Wien Department of Geodesy and Geoinformation,
+Research Unit Geophysics, to understand the hydrogeological processes
+of the soda lakes in the Nationalpark Neusiedlersee - Seewinkel.
+The soda lakes pose a unique habitat for various species, which is threatened by climate change, 
+making it important to grasp the processes governing the ecosystem~\parencite{borosHowCanUnique2025}.
+In paticular the objective of this work is to adapt the inversion routine proposed by \textcite{aignerFlexibleSingleLoop2021},
+to compute the L-Curve, which can be visually analysed to find an optimal $\lambda$, 
+as well as three automatic search algorithms based on the works 
+of \textcite{cultreraSimpleAlgorithmFind2020,lloydUseLcurveMethod1997}.
+
+\colorbox{yellow}{Finished until here}
+
+The hypothesis is, that the L-curve method can be used to identify the optimal $\lambda$ (regularisation parameter) 
+in the inversion TEM data and thus improve the obtained results.
 
 Research questions:
 \begin{itemize}
-    \item Which conditions are necessary for an automatic determination of the lambda value?
-    \item Which automated search algorithms can be implemented to find an optimal lambda?
+    \item Which conditions are necessary for the determination of an optimal $\lambda$ value?
+    \item Which automated search algorithms can be implemented to find an optimal $\lambda$?
     \item Which configuration of the TEM method is suitable for the investigation of the Martenhofer Lacke?
 \end{itemize}
-
-Hypothesis: The L-curve is a method that can be used to identify the best lambda (smoothing parameter) 
-in the inversion and improve the results of the TEM inversion.
-
-Objective: Improve the inversion of TEM data through the selection of an adequate regularization parameter.
-
-\colorbox{yellow}{Adrians start:}
-In this thesis I present the inversion of transient em data collected at the Martenhofer lacke. 
-The movitvation is to better delineate the geometry of the materials controlling the surface-groundwater 
-interactions of the lacke. 
-In particular, I aim at investigating the geometry of the three 
-hydrogeological layer defining the lacke.
-
-The inversion of TEM data is affected by ill-posedness, 
-which means different models can explain the data, 
-and small uncertainty in the data results large uncertainties in the inverted model. 
-To overcome this, inversion of geophysical data commonly uses a smoothness-constraint approach, 
-where data-model misfit is balanced by a smoothing operator that helps to obtain a smooth solution, 
-which has a closer correlation with expected (smooth) geological changes.
-
-\colorbox{orange}{Possible start:}
-The transient electromagnetic (TEM) method is a time-domain electromagnetic technique
-widely used for exploring the subsurface, providing valuable insights into environmental
-applications like groundwater detection~\parencite{aignerSensitivityAnalysisInverted2024}. % TODO: check if good source
-Interpreting TEM data effectively requires accurate inversion techniques of the data,
-and the L-curve method stands out for helping balance the fit of the data with the complexity of the model.
