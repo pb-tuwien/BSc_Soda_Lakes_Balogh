@@ -4,24 +4,26 @@ which is needed for the deterministic inversion of TEM data~\parencite{aignerFle
 Our hypothesis was that it is possible to use the L-Curve method to find an optimal $\lambda$ for the inversion of TEM data.
 
 To test our hypothesis we collected TEM data with a $6.25\times6.25\,\text{m}$ loop and a current of $4.1\,\text{A}$ 
-in a field survey in the soda lakes of the Nationalpark Neusiedlersee - Seewinkel and
+in a field survey in the soda lakes of the \textit{Nationalpark Neusiedlersee - Seewinkel} and
 compared the collected data with TEM data from a similar campaign four months prior with a $12.5\times12.5\,\text{m}$ loop 
 and a current of $4.1\,\text{A}$ for first two soundings and $1.0\,\text{A}$ for the other soundings.
 We processed the TEM data of the two survey seperately allowing for a comparison of the measurent configurations.
 The L-Curve method was used to create a plot of the RMS misfit between observed and modelled data as well as the roughness 
 of the modelled data.
-This was then visually interpreted to find an optimal $\lambda$, which worked for $83.33\,\%$ of the sounding in the first,
+This was then visually interpreted to find an optimal lambda $\lambda_\text{opt}$, 
+which worked for $83.33\,\%$ of the sounding in the first,
 but only for $66.67\,\%$ of the soundings of the second survey (see \cref{tab:search-summary}).
 We found that for the first survey the mode of the found optimal $\lambda$ values, 
-could be used as the $\lambda$ for the inversions instead of computing the optimal value for each sounding seperately, 
+could be used as the approximation of $\lambda_\text{opt}$ for the inversions instead of computing 
+the optimal value for each sounding seperately, 
 while for the second survey this technique did not produce adequate results.
 
-These manually determined $\lambda$ values were then used to compare three search algorithms used to automatically find the 
-optimal $\lambda$ by search for the point with the maximum curvature. 
+These manually determined $\lambda$ values were then used to compare three search algorithms used to automatically find 
+$\lambda_\text{opt}$ by searching for the point with the maximum curvature. 
 We found that the ``Gradient-Based'' approach was the most reliable algorithm to find the optimal
 regularisation parameter for our data set.
 This method was able to find the visually determined optimal $\lambda$ in $71.43\,\%$ of the cases for the first 
-and $47.22\,\%$ for the second survey(see \cref{tab:search-summary}).
+and $47.22\,\%$ for the second survey (see \cref{tab:search-summary}).
 The ``Golden Section Search'' performed best for finding the mode of the optimal lambdas, 
 which could be used to approximate the optimal $\lambda$ for each sounding of a survey.
 The mode of the visually determined optimal lambdas was $13$ for the first and $11$ for the second survey 
@@ -35,7 +37,7 @@ The tested search algorithms also require a L-Curve with a pronounced curvature 
 The data set used for this investigation, can not be used to draw a conclusive comparison between the to loop sizes and currents
 used, as the data with the two different loop sizes was collected four months apart 
 and the data with the two different currents was not measured at the same location.
-Our research indicates that the current of $4.1\,\text{A}$ can be used to resolve the first three layers,
+Yet our research indicates that the current of $4.1\,\text{A}$ can be used to resolve the first three layers,
 while this was not possible with $1.0\,\text{A}$, and the larger loop size of
 $12.5\times12.5\,\text{m}$ produces low-noise data more consistently than the 
 measurements with the $6.25\times6.25\,\text{m}$ loop.
@@ -43,5 +45,6 @@ measurements with the $6.25\times6.25\,\text{m}$ loop.
 Further investigations with various loop sizes and currents at the same location is necessary to specifically
 compare the different measurent configurations, without added variability like spacial and temporal variation in the subsurface.
 The L-Curve method will need more research with diverse subsurfaces, inversion algorithms like \textcite{aignerSensitivityAnalysisInverted2024},
-and numerical modelling to characterise, under which conditions the L-Curve technique is applicable for the analysis of TEM data 
+and numerical modelling to deepen our understanding of which conditions must be met for the 
+L-Curve technique to be applicable for the analysis of TEM data 
 and in which cases this approach produces no usable results.

@@ -20,7 +20,7 @@ and \cref{fig:good-signal-may}(a) shows that measured impulse responses are beco
 For this reason the measurements were filtered by excluding all time gates outside of the time range of $8-210\,\mu\text{s}$ 
 as shown in \cref{fig:good-signal-may}(c) and (d).
 \cref{fig:good-signal-may}(d) shows the pattern, that the $\rho_{\text{a}}$ values first decrease for most soundings 
-and start increasing for all soundings for a time larger than $30\,\mu\text{s}$.
+and start increasing for all soundings for time gates later than $30\,\mu\text{s}$.
 
 \begin{figure*}[!ht]
     \centering
@@ -60,7 +60,7 @@ with the $6.25\times6.25\,\text{m}$ loop were processed in a similar way.
 Comparing \cref{fig:good-signal-oct}(b) with \cref{fig:good-signal-may}(b) shows that the effects of the turn-off ramp both end at $8\,\mu\text{s}$, 
 while the distortions in the data from the second survey start earlier at $100-110\,\mu\text{s}$.
 The impulse response also becomes the same order of magnitude as the measured error~(\cref{fig:good-signal-oct}(a)) at the same time~($110\,\mu\text{s}$).
-Thus all the time gates outside the time range $8-110\,\mu\text{s}$ were filteredas, shown in \cref{fig:good-signal-oct}(c) and (d).
+Thus all the time gates outside the time range $8-110\,\mu\text{s}$ were filtered, as shown in \cref{fig:good-signal-oct}(c) and (d).
 \cref{fig:good-signal-oct}(d) shows that in contrast to the soundings with the larger loop (\cref{fig:good-signal-may}(d)), 
 the $\rho_\text{a}$ values do not decrease in the early times, but also start increasing after $30\,\mu\text{s}$.
 
@@ -89,8 +89,8 @@ example for capacitive coupling described by \textcite{christiansenTransientElec
 ``M024'' shows higher a apparent resistivity of $30\,\Omega\text{m}$ at $40\,\mu\text{s}$ and a much steeper increase in
 the $\rho_\text{a}$ values~(\cref{fig:err-signal-oct})
 
-Measurements within the lake (``M057''-``M065'', except for ``M062'', as seen in \cref{fig:may-map}), 
-which show effects of the turn-off ramp until $12\,\mu\text{s}$ (\cref{fig:err-signal-oct}(b)).
+Measurements within the lake (``M057''-``M065'', except for ``M062'', as seen in \cref{fig:may-map}) 
+show effects of the turn-off ramp until $12\,\mu\text{s}$ (\cref{fig:err-signal-oct}(b)).
 For these sounding the loop was submerged in the lake (up to $30\,\text{cm}$ deep), 
 where the water is a good conductor due to its high salinity with resistivities of $0.78-7.16\,\Omega\text{m}$~\parencite{borosHowCanUnique2025}.
 This also breaks the assumption of a layered half-space, 
@@ -138,13 +138,13 @@ the subsurface model, which is used for the inversion.
 \textcite{welkensComparisonSubsurfaceGeophysical2025} shows that a layer model with $1\,\text{m}$-Layers until $5\,\text{m}$ depth 
 and $1.5\,\text{m}$-Layers below that, until a maximal depth of $10\,\text{m}$ optimises the inversion
 speed and model fit for data gathered with a $6.25\times6.25\,\text{m}$ loop and $4.1\,\text{A}$ of current.
-For a first survey of this thesis a $12.5\times12.5\,\text{m}$ loop was 
-and using \cref{fig:inv-depth-10m}(c) shows that the inversion algorithm struggles to fit the late time data, 
+For the first survey of this thesis a $12.5\times12.5\,\text{m}$ loop was used 
+and \cref{fig:inv-depth-10m}(c) shows that the inversion algorithm struggles to fit the late time data, 
 when using the layer distribution suggested by \textcite{welkensComparisonSubsurfaceGeophysical2025}.
 \cref{fig:inv-depth-20m}(c) shows that this issue can be resolved by choosing a maximal depth of $20\,\text{m}$ 
 and keeping the other layer thickness suggestions from \textcite{welkensComparisonSubsurfaceGeophysical2025}.
 The visual differences between \cref{fig:inv-depth-10m}(c) and \cref{fig:inv-depth-20m}(c) are minimal, 
-and thus the relative root-mean-square (RMS) of the misfit between modelled and observed data was used to quantify the imporvement,
+and thus the relative root-mean-square (rRMS) of the misfit between modelled and observed data was used to quantify the imporvement,
 which decreased from $2.32\,\%$ to $2.09\,\%$ using $20\,\text{m}$ instead of $10\,\text{m}$ as the maximal depth.
 
 \begin{figure*}[ht]
@@ -182,13 +182,13 @@ which decreased from $2.32\,\%$ to $2.09\,\%$ using $20\,\text{m}$ instead of $1
 The L-Curve technique can be used to plot the model roughness against the model misfit for varying regularisation parameter ($\lambda$) values, 
 which can be used to find the optimal lambda $\lambda_\text{opt}$~\parencite{hansenAnalysisDiscreteIllPosed1992}.
 This can be done by visually finding the ``corner'' of the L-curve, 
-which were computed with the parameters from \cref{subsec:inversion-parameters}:
+which was computed with the parameters from \cref{subsec:inversion-parameters}:
 $1.5\,\%$ as the relative error, $20$ logarithmically spaced $\lambda$ values in the range $5-100$, 
 and the layer distribution from \textcite{welkensComparisonSubsurfaceGeophysical2025} but with a maximal depth of $20\,\text{m}$.
 For the first survey the L-Curves were computed for the clean as well as noisy soundings, 
 where we found no significant visual difference between the clean and noisy data, and thus
 excluded all noisy data from further analysis.
-The remaining $43$ soundings of the first survey were manually analysed 
+The remaining $42$ soundings of the first survey were manually analysed 
 and we were able to find an optimal lambda $\lambda_\text{opt}$ for $83.33\,\%$ of the soundings.
 Doing the same for the $54$ clean soundings of the second survey resulted in finding a $\lambda_\text{opt}$ for $66.67\,\%$
 of the soundings.
@@ -202,8 +202,8 @@ which minimises both the RMS misfit and the model roughness.
 and was selected to showcase how the computed L-Curve can deviate from the expected ideal, 
 but still provide usefull information.
 \cref{fig:lcurve-usable} shows contrary to what is expected, 
-the RMS misfit increases between lambdas $8-5$ and decreases between $63-100$, 
-but the curve still has the characteristic ``corner'' at the $\lambda$ value $8$,
+the RMS misfit increases between lambdas $5-8$ and decreases between $63-100$, 
+but the curve still has the characteristic ``corner'' at the $\lambda$ value of $8$,
 which we determined to be the optimal lambda.
 
 \begin{figure*}[ht]
@@ -233,10 +233,10 @@ Generally for an increasing $\lambda$ a descreasing model roughness
 and an increasing model misfit is expected~\parencite{hansenAnalysisDiscreteIllPosed1992}, 
 but \cref{fig:lcurve-inverted}, which was caclulated for the sounding ``M045'' of the first survey, 
 shows a decreasing model misfit (RMS misfit) for an increasing $\lambda$.
-It is plausible that this behaviour changes with further increases in the $\lambda$ values, 
+It is plausible that this behaviour changes with further increases in the $\lambda$ values (outside of the investigated range), 
 as it happens in \cref{fig:lcurve-usable} between $8-53$.
 \cref{fig:lcurve-bad} shows an example, which was computed for the sounding ``M019'' of the second survey, 
-where the L-Curve method produced no cohesive curve, but rather collection of seemingly randomly positioned points.
+where the L-Curve method produced no cohesive curve, but rather collection of points with seemingly random positions.
 
 \begin{figure*}[ht]
     \centering
@@ -261,7 +261,7 @@ where the L-Curve method produced no cohesive curve, but rather collection of se
 
 We found that, modes of the $\lambda$ values for the soundings of the two surveys where $13$ (first) and $11$ (second).
 These values are significantly smaller than the $\lambda$ of $50$ used by \textcite{aignerSensitivityAnalysisInverted2024} for the same location,
-but with a different loop size and using a diffent inversion algorithm, 
+but that study used a different loop size and a diffent inversion algorithm, 
 which is based on the blocky instead of the smooth inversion from \texttt{PyGIMLi}~\parencite{ruckerPyGIMLiOpensourceLibrary2017} 
 and decreases the $\lambda$ after each iteration of the inversion by a ``cooling factor''.
 
@@ -270,7 +270,7 @@ and decreases the $\lambda$ after each iteration of the inversion by a ``cooling
 \label{subsec:optimal-lambda}
 
 The clean soundings of both surveys were used to test the three search algorithms presented in \cref{subsubsec:inversion}:
-All algorithms try finding the $\lambda$ corresponding to the point on the L-CUrve with the maximal curvature.
+All algorithms try finding the $\lambda$ corresponding to the point on the L-Curve with the maximal curvature.
 The ``cubic-spline'' based approach fits a cubic spline function, 
 which is then used to compute the curvatures of each point~\parencite{lloydUseLcurveMethod1997}.
 The ``gradient-based'' method utilises the \texttt{gradient()} function from the \texttt{numpy} library to achieve the same.
@@ -344,8 +344,6 @@ These examples highlight the strenghts and shortcomings of each search algorithm
 and comparing this to a visual inspection of the generated L-Curve.
 The L-Curve method worked for $83.33\,\%$ of the soundings with the first survey and 
 only for $66,67\,\%$ of the soundings with the second survey.
-\cref{tab:search-summary} shows that this trend continues for the performance of the
-search algorithms.
 We evaluated each search algorithm by comparing the obtained $\lambda$ with our visual analysis
 from \cref{subsec:manual-l-curve}.
 
@@ -359,12 +357,12 @@ than the Golden Section Search with $41.67\,\%$.
 Throughout both surveys the ``Cubic Spline'' based search performed the worst with
 $60.00\,\%$ for the first and $33.33\,\%$ for the second survey.
 
-We also computed the means of the relative deviations between the visually obtained $\lambda$ 
+We also computed the means of the relative deviations between the visually obtained $\lambda_\text{opt}$ 
 and the automatically computed value for each search algorithm.
 We introduced this metric beside the binary ``Successrate'' to quantify the reliability of each search algorithm:
 By measuring the mean deviations, we not only see if the $\lambda_\text{opt}$ was found, 
 but also how far off the lambda searches were on average.
-\cref{tab:search-summary} shows that the Gradien Based approach had the lowest
+\cref{tab:search-summary} shows that the Gradient Based approach had the lowest
 mean relative deviations with $15.89\,\%$ (first survey) and $39.57\,\%$ (second survey).
 The Golden Section Search deviated the second least for the first survey with $17.55\,\%$, 
 but performed the worst for the second survey with $118.28\,\%$.
@@ -419,18 +417,18 @@ is that the first survey performed better for the L-Curve method, than the secon
 \FloatBarrier
 \subsection{Comparing Inversion Results}\label{subsec:inversion-results}
 
-In this section we compare the inversion results computed for the different acquisition parameters 
+In this section we compare the inversion results computed for the different measurement configurations 
 (which were described in \cref{tab:sounding-parameters}).
 For this we ran the inversions for all soundings, 
 where we were able to find an $\lambda_\text{opt}$ using the L-Curve method.
-Ideally this comparison would be done at the same time as well as the same location.
+Ideally this comparison would be done with soundings collected at the same time as well as the same location.
 For this study the data was gathered in two survey, which were $4$ months apart.
 We identified three different configurations:
 Measurements with the loop size $12.5\times12.5\,\text{m}$ and a current of $4.1\,\text{A}$,
-which we reference as ``large loop and large current''.
-Soundings with the $12.5\times12.5\,\text{m}$ 
-and a current of $1.0\,\text{A}$ (``large loop and small current'').
-Measurements with the $6.25\times6.25\,\text{m}$ loop and a current of $4.1\,\text{A}$,
+which we reference as ``large loop and large current'', 
+soundings with the $12.5\times12.5\,\text{m}$ 
+and a current of $1.0\,\text{A}$ (``large loop and small current''), and
+measurements with the $6.25\times6.25\,\text{m}$ loop and a current of $4.1\,\text{A}$,
 which we call ``small loop and large current''.
 The different ``time keys'' used in the first survey (as seen in \cref{tab:sounding-parameters})
 were not considered, because the late time data was filtered due to a high noise level.

@@ -81,7 +81,7 @@ the subsurface is assumed to be homogeneous in the horizontal direction~\parenci
 \label{subsec:set-up}
 
 In order to investigate the applicability of automatically determining an optimal lambda value to TEM data, 
-we conducted a field survey in October of 2024 at the Martenhofer Lacke in the Nationalpark Neusiedlersee - Seewinkel. 
+we conducted a field survey in October of 2024 at the Martenhofer Lacke in the \textit{Nationalpark Neusiedlersee - Seewinkel}. 
 Existing data available at the Geophysics Research Unit at TU Wien from May 2024 for the same location, 
 but with a differing measuring configuration was also made available for this thesis, which enables a comparison between varying setups.
 
@@ -96,13 +96,13 @@ the golden section search as proposed by \textcite{cultreraSimpleAlgorithmFind20
 
 Field surveys were conducted with the TEM-Fast 48 HPC system by Applied Electromagnetic Research (AEMR), 
 which is compact device allowing the use of a single-loop configuration~\parencite{barsukovChapter3Shallow2006,aignerFlexibleSingleLoop2021}. 
-By connecting an external $12~/~24\,V$ battery a current either $1~/~4\,A$ can be put through the connected transmitter loop~\parencite{aignerFlexibleSingleLoop2021}.
+By connecting an external $12~\text{or}~24\,V$ battery a current either $1~\text{or}~4\,A$ can be put through the connected transmitter loop~\parencite{aignerFlexibleSingleLoop2021}.
 It records up to 48 logarithmically spaced time gates, which results in a time range between $4 - 16000\,\mu s$~\parencite{aignerFlexibleSingleLoop2021}.
 The specific number of time gates can be chosen through a time-key~\parencite{aignerFlexibleSingleLoop2021}. 
-\cref{tab:time-key} shows which time-key leads to which recording time range ((Excerpt from the manual of the TEM-FAST 48 system)).
+\cref{tab:time-key} shows which time-key leads to which recording time range (Excerpt from the manual of the TEM-FAST 48 system).
 To provide an optimal signal-to-noise ratio the device automatically stacks multiple pulses~\parencite{barsukovChapter3Shallow2006}.
 The number of stacks are given by the formula $P_{tot} = 13 \times n_s \times n_{as}$~\parencite{aignerFlexibleSingleLoop2021}, 
-where $n_s$ ($1-20$) is the chosen stacking-key and $n_{as}$ is the number of analogue stacks depending on the chosen time-key 
+where $n_s$ is the chosen stacking-key ($1-20$) and $n_{as}$ is the number of analogue stacks depending on the chosen time-key 
 and can be found in \cref{tab:time-key}.
 More detailed infromation on the device can be found in the manual provided on the website \url{http://www.aemr.net/tem-fast.htm}.
 
@@ -190,7 +190,7 @@ If not specified otherwise a homogeneous model with the median apparent resistiv
 and the relative error is computed based of the error output of the measuring device.
 In case of particularly noisy data it is possible to set a minimum value for the relative error (noise floor).
 The noise floor can also set to entirely replace the recorded errors with a constant error vector, like \textcite{aignerFlexibleSingleLoop2021} propesed.
-The relative error limits how strongly the inversion algorithm tries to fit the model to each data point to avoid fitting errors.
+The relative error limits how strongly the inversion algorithm tries to fit the model to each data point to avoid creating artifacts.
 This inversion algorithm works with a model of the subsurface, 
 where a resistivity value is assigned to a layer with a certain thickness, 
 and only modifies the resistivity value of every layer while keeping the thicknesses fixed.
